@@ -38,10 +38,13 @@ const getSingleBrand = (req, res) => {
 };
 
 const getAllCategories = (req, res) => {
+  //create new array to store just the category values of item
   let justCategories = [];
+  //loop over and push to the new array
   items.forEach((item) => {
     return justCategories.push(item.category);
   });
+  //creates new set and keeps just the unique values
   let uniqueCategories = [...new Set(justCategories)];
   res
     .status(200)
