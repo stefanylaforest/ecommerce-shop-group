@@ -1,3 +1,6 @@
+const brands = require("./data/companies.json");
+const items = require("./data/items.json");
+
 const getAllProducts = () => {};
 
 const getAllBrands = () => {};
