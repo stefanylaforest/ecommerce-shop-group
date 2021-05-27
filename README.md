@@ -1,5 +1,7 @@
 # Wearables E-Commerce Project
 
+# some changes from hamid
+
 # runtime-terror
 
 [See the list of TEAMS](__documentation/TEAMS.md)
