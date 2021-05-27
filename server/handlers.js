@@ -37,7 +37,16 @@ const getSingleBrand = (req, res) => {
   }
 };
 
-const getAllCategories = () => {};
+const getAllCategories = (req, res) => {
+  let justCategories = [];
+  items.forEach((item) => {
+    return justCategories.push(item.category);
+  });
+  let uniqueCategories = [...new Set(justCategories)];
+  res
+    .status(200)
+    .json({ status: 200, message: "success", data: uniqueCategories });
+};
 
 const createOrder = () => {};
 
