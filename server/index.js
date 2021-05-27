@@ -37,12 +37,12 @@ express()
   // REST endpoints?
   // .get("/test", (req, res) => res.status(200).json("hello from server"))
 
-  // .get("/api/products", getAllProducts)
-  // .get("/api/brands", getAllBrands)
-  // .get("/api/products/:productId", getSingleProduct)
-  // .get("/api/brands/:brandId", getSingleBrand)
-  // .get("/api/categories", getAllCategories)
-  // .post("/api/order", createOrder)
-  // .get("/api/order/:orderId", getOrderById)
+  .get("/api/products", getAllProducts)
+  .get("/api/brands", getAllBrands)
+  .get("/api/products/:productId", getSingleProduct)
+  .get("/api/brands/:brandId", getSingleBrand)
+  .get("/api/categories", getAllCategories)
+  .post("/api/order", createOrder)
+  .get("/api/order/:orderId", getOrderById)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
