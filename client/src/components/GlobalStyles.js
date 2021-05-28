@@ -14,6 +14,12 @@ export default createGlobalStyle`
   *:after {
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
+      
+  }
+
+  body {
+    margin: 0 auto;
+    background: linear-gradient(148deg, rgba(58,68,68, 1) 0%, rgba(153,155,153,1) 100%);
   }
   
   
@@ -27,6 +33,11 @@ text {
 h1, h2, h3, h4, h5, h6 {
   font-family: ${theme.headingFont};
   text-transform: uppercase;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 h2, h3, h4 {
