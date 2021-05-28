@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import HomePage from "./HomePage";
+import Confirmation from "./Confirmation";
+import Header from "./Header";
+import Footer from "/Footer";
+import Cart from "./Cart";
+import Checkout from "./Checkout";
+import GlobalStyles from "./GloabalStyles";
+import Confirmation from "./Confirmation";
+import ProductDetails from "./ProductDetails";
+import ViewOrder from "./ViewOrder";
 
 function App() {
-  // const [bacon, setBacon] = useState(null);
+  const [isCartVisible, setIsCartVisible] = useState(false);
 
-  // useEffect(() => {
-  //   fetch('/bacon')
-  //     .then(res => res.json())
-  //     .then(data => setBacon(data));
-  // }, []);
+  const handleClickOnCartIcon = () => {
+    setIsCartVisible((isCartVisible) => !isCartVisible);
+  };
 
   return (
     <BrowserRouter>
       <GlobalStyles />
-      <Cart />
-      <Header />
+      {isCartVisible && <Cart />}
+      <Header handleClickOnCartIcon={handleClickOnCartIcon} />
       <main>
         <Switch>
           <Route exact path="/">
