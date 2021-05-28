@@ -1,10 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 export const theme = {
-  orange: "#DF6625",
-  darkGrey: "#323232",
-  boldFont: "Archivo Black, sans-serif",
-  contentFont: "Noto Sans TC, sans-serif",
+  accentColor: "#DF6625",
+  hoverAccentColor: "#BB4D12",
+  fontColor: "#323232",
+  headingFont: "Archivo Black, sans-serif",
+  contentFont: "Lato, sans-serif",
 };
 
 export default createGlobalStyle`
@@ -17,19 +18,35 @@ export default createGlobalStyle`
   
   
 html, body, div,
-input, button, select, option,
-h1, h2, h3, h4, h5, h6, p,
+input, button, select, option, p,
 text {
-    font-family: sans-serif;
-    /* font-family: "Noto Sans TC, sans-serif"; */
+    font-family: ${theme.contentFont};
     line-height: 2;
 }
 
-
-button {
-  border-radius: 14px;
+h1, h2, h3, h4, h5, h6 {
+  font-family: ${theme.headingFont};
+  text-transform: uppercase;
 }
-  
-  `;
 
-//border-radius for bigger containers: 14px
+h2, h3, h4 {
+  font-weight: 700;
+}
+
+
+.accentBtn {
+  border-radius: 5px;
+  background-color: ${theme.accentColor};
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-family: ${theme.contentFont};
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    background-color: ${theme.hoverAccentColor};
+  }
+}
+  `;
