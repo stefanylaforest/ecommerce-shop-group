@@ -19,7 +19,6 @@ export default createGlobalStyle`
 
   body {
     margin: 0 auto;
-    height: 100vw;
     background: linear-gradient(148deg, rgba(58,68,68, 1) 0%, rgba(153,155,153,1) 100%);
   }
   

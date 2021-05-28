@@ -1,27 +1,35 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { AppContext } from "./AppContext";
+import { AppContext } from "../components/AppContext";
 import { FaShoppingCart } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
-import DropDown from "./CategoriesDropDown";
+import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
+import BrandDropDown from "./Dropdowns/BrandDropDown";
 
 const Header = () => {
   const { categories, brands } = useContext(AppContext);
 
   // console.log("brands", brands);
+  // console.log("categories", categories);
+
+  const allBrands = Object.values(brands);
+  const brandName = allBrands.map((brand) => {
+    return brand.name;
+  });
+
+  // console.log("brand", brandName);
 
   return (
     <HeaderWrapper>
       <LogoRow>
-        <NavLink to="/">
+        <HomeNavLink exact to="/">
           <Logo>Store Name</Logo>
-        </NavLink>
+        </HomeNavLink>
       </LogoRow>
       <NavMenu>
-        <DropDown title="Shop By Category" />
-        {/* <li>Shop By Category</li> */}
-        <li>Shop By Brand</li>
+        <CategoriesDropDown />
+        <BrandDropDown />
         <li>Wearables</li>
         <li>Shop All</li>
         <li>
@@ -51,6 +59,11 @@ const NavMenu = styled.ul`
   justify-content: space-around;
   color: white;
   text-transform: uppercase;
+`;
+
+const HomeNavLink = styled(NavLink)`
+  cursor: pointer;
+  text-decoration: none;
 `;
 
 const StyledNavLink = styled(NavLink)`
