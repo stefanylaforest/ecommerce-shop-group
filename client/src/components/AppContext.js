@@ -1,7 +1,29 @@
-import React from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-const AppContext = () => {
-  return <div>app context</div>;
+export const AppContext = createContext();
+
+export const AppProvider = ({ children }) => {
+  const [products, setProducts] = useState([]);
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((rest) => rest.json())
+      .then((json) => setProducts(json.data));
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/brands")
+      .then((rest) => rest.json())
+      .then((json) => setBrands(json.data));
+  }, []);
+
+  // console.log(products)
+  // console.log(brands)
+
+  return (
+    <AppContext.Provider value={{ products, brands }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
-
-export default AppContext;
