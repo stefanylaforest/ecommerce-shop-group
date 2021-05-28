@@ -155,7 +155,7 @@ const CopyRight = styled.small`
   color: #323232;
   margin-bottom: 16px;
   font-family: ${theme.contentFont};
-    line-height: 2;
+  line-height: 2;
 `;
 
 const Icons = styled.div`
