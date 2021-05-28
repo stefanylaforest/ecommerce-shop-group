@@ -160,9 +160,9 @@ const CopyRight = styled.small`
 
 const Icons = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 240px;
+  width: 120px;
 `;
 
 const IconLink = styled.a`
