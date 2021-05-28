@@ -5,6 +5,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [itemsInCart, setItemsInCart] = useState([]);
 
   useEffect(() => {
     fetch("/api/products")
@@ -22,7 +23,9 @@ export const AppProvider = ({ children }) => {
   // console.log(brands)
 
   return (
-    <AppContext.Provider value={{ products, brands }}>
+    <AppContext.Provider
+      value={{ products, brands, itemsInCart, setItemsInCart }}
+    >
       {children}
     </AppContext.Provider>
   );
