@@ -36,7 +36,7 @@ const getSingleBrand = (req, res) => {
   } else {
     res.json({
       status: 404,
-      message: `sorry, we do not hold ${result} in our store 😔`,
+      message: `sorry, we do not hold ${brandName} in our store 😔`,
     });
   }
 };
@@ -88,7 +88,7 @@ const createOrder = (req, res) => {
     itemId &&
     quantity
   ) {
-    status = "success"
+    status = "success";
     // validation for email.
     if (!email.split("").includes("@")) {
       return res.json({ status: "error", error: "missing-@" });
@@ -116,8 +116,6 @@ const createOrder = (req, res) => {
     return res.json({ status: "error", error: "missing-entry" });
   }
 };
-
-
 
 const getOrderById = (req, res) => {
   const { orderId } = req.params;
