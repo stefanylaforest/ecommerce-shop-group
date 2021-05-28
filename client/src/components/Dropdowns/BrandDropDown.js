@@ -9,11 +9,12 @@ const BrandDropDown = () => {
   const [open, setOpen] = useState(false);
   const { brands } = useContext(AppContext);
 
-  const allBrands = [Object.values(brands)];
+  let allBrands = Object.values(brands);
+  allBrands = allBrands.map((brand) => {
+    return brand.name;
+  });
 
   const toggle = () => setOpen(!open);
-
-  console.log("open:", open);
 
   return (
     <Wrapper>
@@ -29,15 +30,18 @@ const BrandDropDown = () => {
       </div>
       {open && (
         <Ulbox onMouseLeave={() => toggle(!open)}>
-          {allBrands.map((brandName, i) => (
+          {allBrands.slice(0, 4).map((brandName, i) => (
             <Link to={`/brand/?${brandName}`}>
               <li key={`brand-${i}`}>
                 <DropDownListItem type="button" onClick={() => toggle(!open)}>
-                  {brandName.name}
+                  {brandName}
                 </DropDownListItem>
               </li>
             </Link>
           ))}
+          <Link to={`/`}>
+            <DropDownListItem>View All</DropDownListItem>
+          </Link>
         </Ulbox>
       )}
     </Wrapper>
@@ -57,7 +61,7 @@ const Ulbox = styled.ul`
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  display: none;
+  width: 100%;
 `;
 
 const DropDownListItem = styled.button`
