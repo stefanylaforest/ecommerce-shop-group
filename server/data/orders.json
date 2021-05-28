@@ -1,10 +1,16 @@
 [
-  {
-    "firstName": "hamid",
-    "lastName": "keshmiri",
-    "email": "hmkeshmiri@gmail.com",
-    "address": "montreal",
-    "itemId": "6543",
-    "quantity": "one"
-  }
+    {
+      "orderNum" : "4545436567",
+    "firstName" : "jun",
+    "lastName" : "im",
+    "email" : "junhwanim@hotmail.com",
+    "address" : "1428 overdale ave",
+    "city" : "montreal",
+    "province" : "qc",
+    "country" : "canada",
+    "creditCardNum" : "1234567812344678",
+    "expirationDate" : "03/22",
+    "itemId" : "1000",
+    "quantity" : "1"
+}
 ]

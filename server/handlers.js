@@ -3,21 +3,20 @@ const items = require("./data/items.json");
 const orders = require("./data/orders.json");
 const { v4: uuidv4 } = require("uuid");
 
-
 const getAllProducts = (req, res) => {
   res.status(200).json({ status: 200, message: "success", data: items });
 };
 
 const getAllBrands = (req, res) => {
-  res.status(200).json({ status: 200, messege: "It worked", data: brands });
+  res.status(200).json({ status: 200, message: "It worked", data: brands });
 };
 
 const getSingleProduct = (req, res) => {
   const { productId } = req.params;
 
-  const product = items.find((item) => item._id === productId);
+  const product = items.find((item) => item._id === Number(productId));
 
-  if (productId) {
+  if (product) {
     res.status(200).json({ status: 200, message: "success", data: product });
   } else {
     res
@@ -28,9 +27,16 @@ const getSingleProduct = (req, res) => {
 
 const getSingleBrand = (req, res) => {
   const { brandName } = req.params;
-  const result = brands.filter((brand) => {
-    return brand.name.toLowerCase().includes(brandName.toLowerCase());
-  });
+
+  const id = brands.find(
+    (brand) => brand.name.toLowerCase() === brandName.toLowerCase()
+  )._id;
+
+  const result = items.filter((item) => item.companyId === Number(id));
+
+  // const resultOld = brands.filter((brand) => {
+  //   return brand.name.toLowerCase().includes(brandName.toLowerCase());
+  // });
   if (result.length > 0) {
     res.json({ status: 200, message: "success", data: result });
   } else {
@@ -95,7 +101,9 @@ const createOrder = (req, res) => {
     }
     // validation for the number of credit card.
     if (creditCardNum.length !== 16) {
-      return res.status(400).json({ status: "error", error: "missing-card-number" });
+      return res
+        .status(400)
+        .json({ status: "error", error: "missing-card-number" });
     }
     // validation for the number of expiration date.
     if (expirationDate.length !== 5) {
@@ -120,7 +128,7 @@ const createOrder = (req, res) => {
 const getOrderById = (req, res) => {
   const { orderId } = req.params;
 
-  const order = orders.find((order) => order._id === orderId);
+  const order = orders.find((order) => order.orderNum === orderId);
 
   if (order) {
     res.status(200).json({ status: 200, message: "success", data: order });
