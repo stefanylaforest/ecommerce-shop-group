@@ -6,6 +6,7 @@ export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch("/api/products")
@@ -19,12 +20,18 @@ export const AppProvider = ({ children }) => {
       .then((json) => setBrands(json.data));
   }, []);
 
+  useEffect(() => {
+    fetch("/api/categories")
+      .then((rest) => rest.json())
+      .then((json) => setCategories(json.data));
+  }, []);
+
   // console.log(products)
   // console.log(brands)
 
   return (
     <AppContext.Provider
-      value={{ products, brands, itemsInCart, setItemsInCart }}
+      value={{ products, brands, itemsInCart, setItemsInCart, categories }}
     >
       {children}
     </AppContext.Provider>
