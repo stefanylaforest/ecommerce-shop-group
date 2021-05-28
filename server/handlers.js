@@ -156,12 +156,12 @@ const updateStockNumber = (req, res) => {
 
 const updatedStockNum =  product.numInStock - selectedQuantityNum;
 
-  if (product) {
+  if (product.numInStock > 0) {
     res.status(200).json({ status: 200, message: "success", data: {...product, numInStock: updatedStockNum}});
   } else {
     res
       .status(404)
-      .json({ status: 404, message: "no item with this id", data: null });
+      .json({ status: 404, message: "Out of stock", data: null });
   }
 };
 
