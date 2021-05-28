@@ -14,6 +14,8 @@ const {
   getAllCategories,
   createOrder,
   getOrderById,
+  updateStockNumber,
+  getAllWearables
 } = require("./handlers");
 
 express()
@@ -39,10 +41,12 @@ express()
 
   .get("/api/products", getAllProducts)
   .get("/api/brands", getAllBrands)
+  .get("/api/wearables", getAllWearables)
   .get("/api/products/:productId", getSingleProduct)
   .get("/api/brands/:brandName", getSingleBrand)
   .get("/api/categories", getAllCategories)
   .post("/api/order", createOrder)
   .get("/api/order/:orderId", getOrderById)
+  .patch("/api/products/:productId/update", updateStockNumber)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

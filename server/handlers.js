@@ -11,6 +11,14 @@ const getAllBrands = (req, res) => {
   res.status(200).json({ status: 200, message: "It worked", data: brands });
 };
 
+const getAllWearables = (req, res) => {
+  const filteredWearables = items.map((item) => item.body_location);
+  let uniqueWearables = [...new Set(filteredWearables)];
+  res
+    .status(200)
+    .json({ status: 200, message: "success", data: uniqueWearables });
+};
+
 const getSingleProduct = (req, res) => {
   const { productId } = req.params;
 
@@ -141,6 +149,22 @@ const getOrderById = (req, res) => {
   }
 };
 
+const updateStockNumber = (req, res) => {
+  const { productId } = req.params;
+  const { selectedQuantityNum } = req.body;
+  const product = items.find((item) => item._id === Number(productId));
+
+const updatedStockNum =  product.numInStock - selectedQuantityNum;
+
+  if (product) {
+    res.status(200).json({ status: 200, message: "success", data: {...product, numInStock: updatedStockNum}});
+  } else {
+    res
+      .status(404)
+      .json({ status: 404, message: "no item with this id", data: null });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getAllBrands,
@@ -149,4 +173,6 @@ module.exports = {
   getAllCategories,
   createOrder,
   getOrderById,
+  updateStockNumber,
+  getAllWearables,
 };
