@@ -7,9 +7,9 @@ import Footer from "/Footer";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
 import GlobalStyles from "./GloabalStyles";
-import Confirmation from "./Confirmation";
 import ProductDetails from "./ProductDetails";
 import ViewOrder from "./ViewOrder";
+import CollectionPage from "./CollectionPage";
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -29,7 +29,7 @@ function App() {
             <HomePage />
           </Route>
           <Route exact path="/products">
-            <Collection />
+            <CollectionPage />
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetails />
