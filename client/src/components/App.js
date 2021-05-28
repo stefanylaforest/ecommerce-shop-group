@@ -6,7 +6,7 @@ import Header from "./Header";
 import Footer from "/Footer";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
-import GlobalStyles from "./GloabalStyles";
+import GlobalStyles from "./GlobalStyles";
 import ProductDetails from "./ProductDetails";
 import ViewOrder from "./ViewOrder";
 import CollectionPage from "./CollectionPage";
