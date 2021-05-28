@@ -3,6 +3,7 @@ const items = require("./data/items.json");
 const orders = require("./data/orders.json");
 const { v4: uuidv4 } = require("uuid");
 
+
 const getAllProducts = (req, res) => {
   res.status(200).json({ status: 200, message: "success", data: items });
 };
@@ -90,29 +91,29 @@ const createOrder = (req, res) => {
     status = "success";
     // validation for email.
     if (!email.split("").includes("@")) {
-      return res.json({ status: "error", error: "missing-@" });
+      return res.status(400).json({ status: "error", error: "missing-@" });
     }
     // validation for the number of credit card.
     if (creditCardNum.length !== 16) {
-      return res.json({ status: "error", error: "missing-card-number" });
+      return res.status(400).json({ status: "error", error: "missing-card-number" });
     }
     // validation for the number of expiration date.
     if (expirationDate.length !== 5) {
-      return res.json({ status: "error", error: "invalidation" });
+      return res.status(400).json({ status: "error", error: "invalidation" });
     }
     // validation for the special symbol of expiration date.
     if (!expirationDate.split("").includes("/")) {
-      return res.json({ status: "error", error: "missing-/" });
+      return res.status(400).json({ status: "error", error: "missing-/" });
     } else {
       // setting status accordingly, outputing data, generating random order-number.
-      return res.json({
+      return res.status(201).json({
         status: status,
         error: error,
         data: { ...req.body, orderNum: uuidv4() },
       });
     }
   } else {
-    return res.json({ status: "error", error: "missing-entry" });
+    return res.status(400).json({ status: "error", error: "missing-entry" });
   }
 };
 
