@@ -6,6 +6,7 @@ export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [wearables, setWearables] = useState([]);
 
   useEffect(() => {
     fetch("/api/products")
@@ -19,6 +20,13 @@ export const AppProvider = ({ children }) => {
       .then((json) => setBrands(json.data));
   }, []);
 
+  useEffect(() => {
+    fetch("/api/wearables")
+      .then((rest) => rest.json())
+      .then((json) => setWearables(json.data));
+  }, []);
+
+  console.log(wearables)
   // console.log(products)
   // console.log(brands)
 
