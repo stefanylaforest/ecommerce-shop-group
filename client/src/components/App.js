@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import GlobalStyles, { theme } from "./GlobalStyles";
 
 function App() {
   // const [bacon, setBacon] = useState(null);
@@ -9,7 +10,12 @@ function App() {
   //     .then(data => setBacon(data));
   // }, []);
 
-  return <div>Watch Store</div>;
+  return (
+    <div>
+      {" "}
+      <GlobalStyles />
+    </div>
+  );
 }
 
 export default App;
