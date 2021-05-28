@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import HomePage from "./HomePage";
+import Homepage from "./Homepage";
 import Confirmation from "./Confirmation";
 import Header from "./Header";
-import Footer from "/Footer";
+import Footer from "./Footer";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
 import GlobalStyles from "./GlobalStyles";
@@ -26,7 +26,7 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <Homepage />
           </Route>
           <Route exact path="/products">
             <CollectionPage />
