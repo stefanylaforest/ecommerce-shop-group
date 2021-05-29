@@ -18,7 +18,7 @@ const HeroImage = () => {
   //setting the featuredProduct in a state
   useEffect(() => {
     fetch(`api/products/${featuredProductId}`)
-      .then((rest) => rest.json())
+      .then((res) => res.json())
       .then((json) => setFeaturedProduct(json.data));
   }, []);
 

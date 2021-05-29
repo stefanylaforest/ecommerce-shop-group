@@ -8,13 +8,14 @@ import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
 import BrandDropDown from "./Dropdowns/BrandDropDown";
 import WearablesDropDown from "./Dropdowns/WearablesDropDown";
 
-const Header = ({handleClickOnCartIcon}) => {
+const Header = ({ handleClickOnCartIcon }) => {
   const { categories, brands } = useContext(AppContext);
+  const location = useLocation();
 
   return (
     <div
       style={{
-        background: useLocation().pathname !== "/" && "#454e51",
+        background: location.pathname !== "/" && "#454e51",
       }}
     >
       <LogoRow>
@@ -27,17 +28,21 @@ const Header = ({handleClickOnCartIcon}) => {
           <FaBars />
         </MobileIcon> */}
       </LogoRow>
-      <NavMenu>
-        <CategoriesDropDown />
-        <BrandDropDown />
-        <WearablesDropDown />
-        <StyledNavLink exact to="/products">
-          <li>Shop All</li>
-        </StyledNavLink>
-        <li>
-          <StyledCartIcon onClick={handleClickOnCartIcon}/>
-        </li>
-      </NavMenu>
+      {location.pathname === "/" || location.pathname.includes("/products") ? (
+        <NavMenu>
+          <CategoriesDropDown />
+          <BrandDropDown />
+          <WearablesDropDown />
+          <StyledNavLink exact to="/products">
+            <li>Shop All</li>
+          </StyledNavLink>
+          <li>
+            <StyledCartIcon onClick={handleClickOnCartIcon} />
+          </li>
+        </NavMenu>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
@@ -80,7 +85,7 @@ const StyledCartIcon = styled(FaShoppingCart)`
   fill: white;
   cursor: pointer;
   font-size: 22px;
-  
+
   &:hover {
     fill: ${theme.accentColor};
     transition: 0.3s ease-out;

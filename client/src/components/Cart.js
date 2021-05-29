@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import Image1 from "../assets/garmin-fenix2.png";
+import {Link} from 'react-router-dom'
 
 const handleClickSubtract = () => {};
 
@@ -31,7 +32,9 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
           </ItemInnerWrap>
         </ItemWrap>
       </ItemContainer>
+      <LinkToCheckout to="/checkout">
       <CheckoutBtn>CHECK OUT - PRICE</CheckoutBtn>
+      </LinkToCheckout>
     </CartContainer>
   );
 };
@@ -147,10 +150,11 @@ const CheckoutBtn = styled.button`
   background-color: ${theme.accentColor};
   color: #fff;
   border: none;
+  transition: 0.3s ease-out;
 
   &:hover {
     background-color: ${theme.hoverAccentColor};
-    transition: 0.3s ease-out;
+    cursor: pointer;
   }
 `;
 
@@ -204,6 +208,9 @@ const Hr = styled.hr`
   left: 5%;
   margin: 0 auto;
   width: 90%;
+`;
+
+const LinkToCheckout = styled(Link)`
 `;
 
 export default Cart;
