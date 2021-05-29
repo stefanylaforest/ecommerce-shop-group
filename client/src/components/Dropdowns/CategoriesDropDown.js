@@ -40,7 +40,7 @@ const Ulbox = styled.ul`
   position: absolute;
   display: none;
   width: 150px;
-  z-index:1;
+  z-index: 1;
 `;
 
 const Hover = styled.div`
