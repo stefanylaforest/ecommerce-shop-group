@@ -4,19 +4,13 @@ import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import Image1 from "../assets/garmin-fenix2.png";
 
-const handleClickSubtract = () => {
+const handleClickSubtract = () => {};
 
-}
-
-const handleClickAdd = () => {
-  
-}
+const handleClickAdd = () => {};
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   return (
-    <CartContainer
-      isCartVisible={isCartVisible}
-    >
+    <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
       <Icon onClick={handleClickOnCartIcon}>
         <CloseIcon />
@@ -108,22 +102,22 @@ const Quantity = styled.p`
 `;
 
 const AddBtn = styled.button`
-width: 60px;
-height: 33px;
-font-weight: 500;
-font-size: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-border: none;
-background-color: #fff;
-padding; 0;
+  width: 60px;
+  height: 33px;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #fff;
+  padding: 0;
 
-&:hover {
-  background-color: #CED0D0;
-  cursor: pointer;
-  transition: 0.3s ease-out;
-}
+  &:hover {
+    background-color: #ced0d0;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+  }
 `;
 
 const Price = styled.p`
@@ -152,14 +146,12 @@ const CheckoutBtn = styled.button`
   font-weight: 600;
   background-color: ${theme.accentColor};
   color: #fff;
-border: none;
+  border: none;
 
-&:hover{
-  background-color: ${theme.hoverAccentColor};
-  transition: 0.3s ease-out;
-}
-
-
+  &:hover {
+    background-color: ${theme.hoverAccentColor};
+    transition: 0.3s ease-out;
+  }
 `;
 
 const CartContainer = styled.aside`
@@ -205,14 +197,13 @@ const CloseIcon = styled(FaTimes)`
 `;
 
 const Hr = styled.hr`
-border-top: 1px solid #CED0D0;
-width: 300px;
-position: absolute;
-top: 5rem;
-left: 5%;
-margin: 0 auto;
-width: 90%;
-
+  border-top: 1px solid #ced0d0;
+  width: 300px;
+  position: absolute;
+  top: 5rem;
+  left: 5%;
+  margin: 0 auto;
+  width: 90%;
 `;
 
 export default Cart;
