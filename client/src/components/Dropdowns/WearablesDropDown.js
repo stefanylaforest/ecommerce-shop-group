@@ -17,7 +17,7 @@ const WearablesDropDown = () => {
         </div>
         <Ulbox>
           {wearables.map((wearable, i) => (
-            <Link to={`/wearables?${wearable}`}>
+            <Link to={`/products?${wearable}`}>
               <li key={`wearable-${i}`}>
                 <DropDownListItem type="button">{wearable}</DropDownListItem>
               </li>
