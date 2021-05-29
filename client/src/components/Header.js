@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
-import { FaShoppingCart , FaBars} from "react-icons/fa";
+import { FaShoppingCart, FaBars } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
 import BrandDropDown from "./Dropdowns/BrandDropDown";
@@ -11,12 +11,17 @@ import WearablesDropDown from "./Dropdowns/WearablesDropDown";
 const Header = ({handleClickOnCartIcon}) => {
   const { categories, brands } = useContext(AppContext);
 
-
   return (
-    <HeaderWrapper>
+    <div
+      style={{
+        background: useLocation().pathname !== "/" && "#454e51",
+      }}
+    >
       <LogoRow>
         <HomeNavLink exact to="/">
-          <Logo>Store Name</Logo>
+          <Title>
+            TECH<span style={{ color: `${theme.accentColor}` }}>ACTIV</span>
+          </Title>
         </HomeNavLink>
         {/* <MobileIcon onClick={toggle}>
           <FaBars />
@@ -26,27 +31,26 @@ const Header = ({handleClickOnCartIcon}) => {
         <CategoriesDropDown />
         <BrandDropDown />
         <WearablesDropDown />
-        <li>Shop All</li>
+        <StyledNavLink exact to="/products">
+          <li>Shop All</li>
+        </StyledNavLink>
         <li>
           <StyledCartIcon onClick={handleClickOnCartIcon}/>
         </li>
       </NavMenu>
-    </HeaderWrapper>
+    </div>
   );
 };
-
-const HeaderWrapper = styled.div`
-  background: transparent;
-`;
 
 const LogoRow = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const Logo = styled.h1`
+const Title = styled.h1`
   color: white;
   font-weight: bold;
+  letter-spacing: -3px;
 `;
 
 const NavMenu = styled.ul`
@@ -63,9 +67,12 @@ const HomeNavLink = styled(NavLink)`
 
 const StyledNavLink = styled(NavLink)`
   cursor: pointer;
-  font-size: 22px;
+  text-decoration: none;
   &:hover {
-    fill: ${theme.accentColor};
+    color: ${theme.accentColor};
+  }
+  &:visited {
+    color: white;
   }
 `;
 

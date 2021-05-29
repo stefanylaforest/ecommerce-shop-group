@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
 import styled from "styled-components";
 import { theme } from "../GlobalStyles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const WearablesDropDown = () => {
   const { wearables } = useContext(AppContext);
@@ -47,7 +47,7 @@ const Ulbox = styled.ul`
   position: absolute;
   width: 150px;
   display: none;
-  z-index:1;
+  z-index: 1;
 `;
 
 const Hover = styled.div`
