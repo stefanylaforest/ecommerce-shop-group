@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
-import { FaToggleOff } from "react-icons/fa";
+import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
 import styled from "styled-components";
 import { theme } from "../GlobalStyles";
 import { Link } from "react-router-dom";
 
 const BrandDropDown = () => {
-  const [open, setOpen] = useState(false);
   const { brands } = useContext(AppContext);
 
   let allBrands = Object.values(brands);
@@ -14,28 +12,19 @@ const BrandDropDown = () => {
     return brand.name;
   });
 
-  const toggle = () => setOpen(!open);
-
   return (
     <Wrapper>
-      <div>
-        <Title
-          tabIndex={0}
-          role="button"
-          onKeyPress={() => toggle(!open)}
-          onMouseEnter={() => toggle(!open)}
-        >
-          Shop By Brand
-        </Title>
-      </div>
-      {open && (
-        <Ulbox onMouseLeave={() => toggle(!open)}>
-          {allBrands.slice(0, 4).map((brandName, i) => (
+      <Hover>
+        <div>
+          <Title tabIndex={0} role="button">
+            Shop By Brand
+          </Title>
+        </div>
+        <Ulbox>
+          {allBrands.slice(0, 6).map((brandName, i) => (
             <Link to={`/brand/?${brandName}`}>
               <li key={`brand-${i}`}>
-                <DropDownListItem type="button" onClick={() => toggle(!open)}>
-                  {brandName}
-                </DropDownListItem>
+                <DropDownListItem type="button">{brandName}</DropDownListItem>
               </li>
             </Link>
           ))}
@@ -43,7 +32,7 @@ const BrandDropDown = () => {
             <DropDownListItem>View All</DropDownListItem>
           </Link>
         </Ulbox>
-      )}
+      </Hover>
     </Wrapper>
   );
 };
@@ -61,8 +50,17 @@ const Ulbox = styled.ul`
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  width: 100%;
+  width: 150px;
+  display: none;
   z-index: 1;
+`;
+
+const Hover = styled.div`
+  &:hover {
+    ${Ulbox} {
+      display: block;
+    }
+  }
 `;
 
 const DropDownListItem = styled.button`

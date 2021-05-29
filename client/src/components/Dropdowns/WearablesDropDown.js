@@ -4,25 +4,28 @@ import styled from "styled-components";
 import { theme } from "../GlobalStyles";
 import { Link } from "react-router-dom";
 
-const CategoriesDropDown = () => {
-  const { categories } = useContext(AppContext);
+const WearablesDropDown = () => {
+  const { wearables } = useContext(AppContext);
 
   return (
     <Wrapper>
       <Hover>
         <div>
           <Title tabIndex={0} role="button">
-            Shop By Category
+            Wearables
           </Title>
         </div>
-        <Ulbox className="hoverShow">
-          {categories.map((category, i) => (
-            <Link to={`/products/?${category}`}>
-              <li key={`category-${i}`}>
-                <DropDownListItem type="button">{category}</DropDownListItem>
+        <Ulbox>
+          {wearables.map((wearable, i) => (
+            <Link to={`/wearables?${wearable}`}>
+              <li key={`wearable-${i}`}>
+                <DropDownListItem type="button">{wearable}</DropDownListItem>
               </li>
             </Link>
           ))}
+          <Link to={`/`}>
+            <DropDownListItem>View All</DropDownListItem>
+          </Link>
         </Ulbox>
       </Hover>
     </Wrapper>
@@ -34,13 +37,17 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
+const Title = styled.div`
+  cursor: pointer;
+`;
+
 const Ulbox = styled.ul`
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  display: none;
   width: 150px;
-  z-index: 1;
+  display: none;
+  z-index:1;
 `;
 
 const Hover = styled.div`
@@ -49,10 +56,6 @@ const Hover = styled.div`
       display: block;
     }
   }
-`;
-
-const Title = styled.div`
-  cursor: pointer;
 `;
 
 const DropDownListItem = styled.button`
@@ -69,4 +72,4 @@ const DropDownListItem = styled.button`
   }
 `;
 
-export default CategoriesDropDown;
+export default WearablesDropDown;
