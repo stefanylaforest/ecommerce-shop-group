@@ -53,6 +53,7 @@ const Ulbox = styled.ul`
   background-color: white;
   border-radius: 5px;
   position: absolute;
+  z-index: 1;
 `;
 
 const DropDownListItem = styled.button`
