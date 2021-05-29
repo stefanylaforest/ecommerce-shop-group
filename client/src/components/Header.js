@@ -8,7 +8,7 @@ import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
 import BrandDropDown from "./Dropdowns/BrandDropDown";
 import WearablesDropDown from "./Dropdowns/WearablesDropDown";
 
-const Header = () => {
+const Header = ({handleClickOnCartIcon}) => {
   const { categories, brands } = useContext(AppContext);
 
 
@@ -28,7 +28,7 @@ const Header = () => {
         <WearablesDropDown />
         <li>Shop All</li>
         <li>
-          <StyledCartIcon />
+          <StyledCartIcon onClick={handleClickOnCartIcon}/>
         </li>
       </NavMenu>
     </HeaderWrapper>
@@ -73,8 +73,10 @@ const StyledCartIcon = styled(FaShoppingCart)`
   fill: white;
   cursor: pointer;
   font-size: 22px;
+
   &:hover {
     fill: ${theme.accentColor};
+    transition: 0.3s ease-out;
   }
 `;
 
