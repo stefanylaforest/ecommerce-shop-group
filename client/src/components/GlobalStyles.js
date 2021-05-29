@@ -24,6 +24,7 @@ export default createGlobalStyle`
   background-size: cover;
   background-position: center;
   box-shadow:inset 0 0 0 2000px rgb(48,48,48, 0.4);
+  overflow-x: hidden;
   }
   
   
@@ -47,6 +48,13 @@ ul {
 
 h2, h3, h4 {
   font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  &:visited {
+    text-decoration: none;
+  }
 }
 
 
