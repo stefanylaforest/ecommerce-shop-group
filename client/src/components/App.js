@@ -15,13 +15,13 @@ function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
 
   const handleClickOnCartIcon = () => {
-    setIsCartVisible((isCartVisible) => !isCartVisible);
+    setIsCartVisible(!isCartVisible);
   };
 
   return (
     <BrowserRouter>
       <GlobalStyles />
-      {isCartVisible && <Cart />}
+      <Cart isCartVisible={isCartVisible} handleClickOnCartIcon={handleClickOnCartIcon} />
       <Header handleClickOnCartIcon={handleClickOnCartIcon} />
       <main>
         <Switch>
