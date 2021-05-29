@@ -25,6 +25,7 @@ export default createGlobalStyle`
   background-position: center;
   box-shadow:inset 0 0 0 2000px rgb(48,48,48, 0.4);
   overflow-x: hidden;
+  background-repeat: no-repeat;
   }
   
   
