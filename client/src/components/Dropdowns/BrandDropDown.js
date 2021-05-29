@@ -22,7 +22,7 @@ const BrandDropDown = () => {
         </div>
         <Ulbox>
           {allBrands.slice(0, 6).map((brandName, i) => (
-            <Link to={`/brand/?${brandName}`}>
+            <Link to={`/products?brand=${brandName}`}>
               <li key={`brand-${i}`}>
                 <DropDownListItem type="button">{brandName}</DropDownListItem>
               </li>

@@ -17,7 +17,7 @@ const CategoriesDropDown = () => {
         </div>
         <Ulbox className="hoverShow">
           {categories.map((category, i) => (
-            <Link to={`/products/?${category}`}>
+            <Link to={`/products?category=${category}`}>
               <li key={`category-${i}`}>
                 <DropDownListItem type="button">{category}</DropDownListItem>
               </li>
