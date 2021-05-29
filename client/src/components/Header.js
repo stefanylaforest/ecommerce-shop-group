@@ -73,7 +73,7 @@ const StyledCartIcon = styled(FaShoppingCart)`
   fill: white;
   cursor: pointer;
   font-size: 22px;
-
+  
   &:hover {
     fill: ${theme.accentColor};
     transition: 0.3s ease-out;

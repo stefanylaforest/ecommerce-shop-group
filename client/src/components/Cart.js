@@ -2,12 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
+import Image1 from "../assets/garmin-fenix2.png";
+
+const handleClickSubtract = () => {
+
+}
+
+const handleClickAdd = () => {
+  
+}
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   return (
     <CartContainer
       isCartVisible={isCartVisible}
-      onClick={handleClickOnCartIcon}
     >
       <Subject>Your shopping bag</Subject>
       <Icon onClick={handleClickOnCartIcon}>
@@ -16,59 +24,148 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       <Hr />
       <ItemContainer>
         <ItemWrap>
-          <ItemImage />
-          <ItemName>super magic cleanser</ItemName>
-          <QuantityContainer>
-            <SubtractBtn>-</SubtractBtn>
-            <Quantity>1</Quantity>
-            <AddBtn>+</AddBtn>
-          </QuantityContainer>
-          <Price>$39.00</Price>
-          <ItemDeleteIcon />
+          <ItemImage src={Image1} />
+          <ItemInnerWrap>
+            <ItemName>super power watch</ItemName>
+            <Price>$39.00</Price>
+            <QuantityContainer>
+              <SubtractBtn>-</SubtractBtn>
+              <Quantity>1</Quantity>
+              <AddBtn>+</AddBtn>
+            </QuantityContainer>
+            <ItemDeleteIcon />
+          </ItemInnerWrap>
         </ItemWrap>
       </ItemContainer>
+      <CheckoutBtn>CHECK OUT - PRICE</CheckoutBtn>
     </CartContainer>
   );
 };
 
 const ItemContainer = styled.div`
   position: absolute;
-  top: 4rem;
+  top: 5rem;
   left: 1.5rem;
+  width: 450px;
 `;
 
 const ItemWrap = styled.div`
   display: flex;
-  flex-direction: column;
   margin-top: 40px;
+  width: 100%;
+  position: relative;
+`;
+
+const ItemInnerWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
 `;
 
 const ItemImage = styled.img`
   float: left;
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
 `;
 
-const ItemName = styled.h3`
-  font-size: 1rem;
+const ItemName = styled.p`
+  font-size: 1.1rem;
+  font-weight: 700;
 `;
 
 const QuantityContainer = styled.div`
-display: flex;
+  display: flex;
+  align-items: center;
+  margin-top: -20px;
 `;
 
-const SubtractBtn = styled.button``;
+const SubtractBtn = styled.button`
+  width: 60px;
+  height: 33px;
+  font-weight: 500;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #fff;
+  padding: 0;
 
-const Quantity = styled.p``;
+  &:hover {
+    background-color: #ced0d0;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+  }
+`;
 
-const AddBtn = styled.button``;
+const Quantity = styled.p`
+  border: 1px solid #000000;
+  padding: 3px 20px;
+  font-size: 0.8rem;
+  font-weight: 400;
+`;
 
-const Price = styled.h3``;
+const AddBtn = styled.button`
+width: 60px;
+height: 33px;
+font-weight: 500;
+font-size: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: none;
+background-color: #fff;
+padding; 0;
 
-const ItemDeleteIcon = styled(FaTimes)``;
+&:hover {
+  background-color: #CED0D0;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+`;
+
+const Price = styled.p`
+  margin-top: -5px;
+  font-weight: 500;
+`;
+
+const ItemDeleteIcon = styled(FaTimes)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.4rem;
+
+  &:hover {
+    color: ${theme.accentColor};
+    transition: 0.3s ease-out;
+  }
+`;
+
+const CheckoutBtn = styled.button`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: ${theme.accentColor};
+  color: #fff;
+border: none;
+
+&:hover{
+  background-color: ${theme.hoverAccentColor};
+  transition: 0.3s ease-out;
+}
+
+
+`;
 
 const CartContainer = styled.aside`
   position: fixed;
   z-index: 999;
-  width: 400px;
+  width: 500px;
   height: 100%;
   background: #fff;
   display: flex;
@@ -76,8 +173,8 @@ const CartContainer = styled.aside`
   top: 0;
   right: 0;
   transition: 0.3s ease-in-out;
-  /* opacity: ${({ isCartVisible }) => (isCartVisible ? "100%" : "0")};
-  right: ${({ isCartVisible }) => (isCartVisible ? "0" : "-100%")}; */
+  opacity: ${({ isCartVisible }) => (isCartVisible ? "100%" : "0")};
+  right: ${({ isCartVisible }) => (isCartVisible ? "0" : "-100%")};
 `;
 
 const Subject = styled.h1`
@@ -108,7 +205,7 @@ const CloseIcon = styled(FaTimes)`
 `;
 
 const Hr = styled.hr`
-border-top: 1px solid rgb(0,0,0, 1)
+border-top: 1px solid #CED0D0;
 width: 300px;
 position: absolute;
 top: 5rem;
