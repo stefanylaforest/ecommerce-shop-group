@@ -4,27 +4,22 @@ import styled from "styled-components";
 import { theme } from "../GlobalStyles";
 import { Link } from "react-router-dom";
 
-const BrandDropDown = () => {
-  const { brands } = useContext(AppContext);
-
-  let allBrands = Object.values(brands);
-  allBrands = allBrands.map((brand) => {
-    return brand.name;
-  });
+const WearablesDropDown = () => {
+  const { wearables } = useContext(AppContext);
 
   return (
     <Wrapper>
       <Hover>
         <div>
           <Title tabIndex={0} role="button">
-            Shop By Brand
+            Wearables
           </Title>
         </div>
         <Ulbox>
-          {allBrands.slice(0, 6).map((brandName, i) => (
-            <Link to={`/brand/?${brandName}`}>
-              <li key={`brand-${i}`}>
-                <DropDownListItem type="button">{brandName}</DropDownListItem>
+          {wearables.map((wearable, i) => (
+            <Link to={`/wearables?${wearable}`}>
+              <li key={`wearable-${i}`}>
+                <DropDownListItem type="button">{wearable}</DropDownListItem>
               </li>
             </Link>
           ))}
@@ -52,7 +47,7 @@ const Ulbox = styled.ul`
   position: absolute;
   width: 150px;
   display: none;
-  z-index: 1;
+  z-index:1;
 `;
 
 const Hover = styled.div`
@@ -77,4 +72,4 @@ const DropDownListItem = styled.button`
   }
 `;
 
-export default BrandDropDown;
+export default WearablesDropDown;

@@ -2,23 +2,15 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart , FaBars} from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
 import BrandDropDown from "./Dropdowns/BrandDropDown";
+import WearablesDropDown from "./Dropdowns/WearablesDropDown";
 
 const Header = () => {
   const { categories, brands } = useContext(AppContext);
 
-  // console.log("brands", brands);
-  // console.log("categories", categories);
-
-  const allBrands = Object.values(brands);
-  const brandName = allBrands.map((brand) => {
-    return brand.name;
-  });
-
-  // console.log("brand", brandName);
 
   return (
     <HeaderWrapper>
@@ -26,11 +18,14 @@ const Header = () => {
         <HomeNavLink exact to="/">
           <Logo>Store Name</Logo>
         </HomeNavLink>
+        {/* <MobileIcon onClick={toggle}>
+          <FaBars />
+        </MobileIcon> */}
       </LogoRow>
       <NavMenu>
         <CategoriesDropDown />
         <BrandDropDown />
-        <li>Wearables</li>
+        <WearablesDropDown />
         <li>Shop All</li>
         <li>
           <StyledCartIcon />

@@ -1,41 +1,30 @@
-import React, { useState, useContext } from "react";
-import { FaToggleOff } from "react-icons/fa";
+import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
 import styled from "styled-components";
 import { theme } from "../GlobalStyles";
 import { Link } from "react-router-dom";
 
 const CategoriesDropDown = () => {
-  const [open, setOpen] = useState(false);
   const { categories } = useContext(AppContext);
-
-  const toggle = () => setOpen(!open);
 
   return (
     <Wrapper>
-      <div>
-        <Title
-          tabIndex={0}
-          role="button"
-          onKeyPress={() => toggle(!open)}
-          onMouseEnter={() => toggle(!open)}
-        >
-          Shop By Category
-        </Title>
-      </div>
-      {open && (
-        <Ulbox onMouseLeave={() => toggle(!open)}>
+      <Hover>
+        <div>
+          <Title tabIndex={0} role="button">
+            Shop By Category
+          </Title>
+        </div>
+        <Ulbox className="hoverShow">
           {categories.map((category, i) => (
             <Link to={`/products/?${category}`}>
               <li key={`category-${i}`}>
-                <DropDownListItem type="button" onClick={() => toggle(!open)}>
-                  {category}
-                </DropDownListItem>
+                <DropDownListItem type="button">{category}</DropDownListItem>
               </li>
             </Link>
           ))}
         </Ulbox>
-      )}
+      </Hover>
     </Wrapper>
   );
 };
@@ -45,14 +34,25 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const Title = styled.div`
-  cursor: pointer;
-`;
-
 const Ulbox = styled.ul`
   background-color: white;
   border-radius: 5px;
   position: absolute;
+  display: none;
+  width: 150px;
+  z-index:1;
+`;
+
+const Hover = styled.div`
+  &:hover {
+    ${Ulbox} {
+      display: block;
+    }
+  }
+`;
+
+const Title = styled.div`
+  cursor: pointer;
 `;
 
 const DropDownListItem = styled.button`
