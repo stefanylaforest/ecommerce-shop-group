@@ -121,7 +121,7 @@ const FooterLink = styled(Link)`
 `;
 
 const Media = styled.section`
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
 `;
 
