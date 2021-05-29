@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
 import styled from "styled-components";
 import { theme } from "../GlobalStyles";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const BrandDropDown = () => {
   const { brands } = useContext(AppContext);

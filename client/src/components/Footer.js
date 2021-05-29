@@ -11,13 +11,13 @@ const Footer = () => {
         <FooterLinksContainer>
           <FooterLinksWrapper>
             <FooterLinkItems>
-              <FooterLinkTitle>About us</FooterLinkTitle>
-              <FooterLink to="/">How it works</FooterLink>
+              <FooterLinkTitle>About Us</FooterLinkTitle>
+              <FooterLink to="/">Who We Are</FooterLink>
               <FooterLink to="/">Terms of Service</FooterLink>
             </FooterLinkItems>
             <FooterLinkItems>
-              <FooterLinkTitle>Contact Us</FooterLinkTitle>
-              <FooterLink to="/">Contact</FooterLink>
+              <FooterLinkTitle>Customer Care</FooterLinkTitle>
+              <FooterLink to="/">Contact Us</FooterLink>
               <FooterLink to="/">Sponsorships</FooterLink>
             </FooterLinkItems>
           </FooterLinksWrapper>
@@ -25,7 +25,7 @@ const Footer = () => {
             <FooterLinkItems>
               <FooterLinkTitle>My Account</FooterLinkTitle>
               <FooterLink to="/">Profile</FooterLink>
-              <FooterLink to="/">Purchases</FooterLink>
+              <FooterLink to="/">Track Your Order</FooterLink>
             </FooterLinkItems>
             <FooterLinkItems>
               <FooterLinkTitle>Social Media</FooterLinkTitle>
@@ -56,8 +56,8 @@ const Footer = () => {
 };
 
 const FooterContainer = styled.div`
-  background-color: #ced0d0;
-  color: #323232;
+  background-color: #454e51;
+  color: #fff;
 `;
 
 const FooterWrap = styled.div`
@@ -113,11 +113,10 @@ const FooterLink = styled(Link)`
   text-decoration: none;
   margin-bottom: 0.5rem;
   font-size: 14px;
-  color: #323232;
-
+  color: #fff;
+  transition: 0.3s ease-out;
   &:hover {
     color: ${theme.accentColor};
-    transition: 0.3s ease-out;
   }
 `;
 
@@ -139,7 +138,7 @@ const MediaWrap = styled.div`
 `;
 
 const Logo = styled(Link)`
-  color: #323232;
+  color: #fff;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
@@ -152,7 +151,7 @@ const Logo = styled(Link)`
 `;
 
 const CopyRight = styled.small`
-  color: #323232;
+  color: #fff;
   margin-bottom: 16px;
   font-family: ${theme.contentFont};
   line-height: 2;
@@ -166,12 +165,11 @@ const Icons = styled.div`
 `;
 
 const IconLink = styled.a`
-  color: #323232;
+  color: #fff;
   font-size: 24px;
-
+  transition: 0.3s ease-out;
   &:hover {
     color: ${theme.accentColor};
-    transition: 0.3s ease-out;
   }
 `;
 

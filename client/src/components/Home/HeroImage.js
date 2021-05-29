@@ -54,7 +54,7 @@ const HeroImage = () => {
 
 const Container = styled.div`
   position: relative;
-  height: 90vh;
+  margin: 50px;
 `;
 
 const ProductWrap = styled.div`
@@ -80,7 +80,7 @@ const New = styled.h3`
 `;
 
 const CallToAction = styled.button`
-  width: 20vw;
+  width: 150px;
   position: absolute;
   top: 400px;
 `;
@@ -102,8 +102,8 @@ const BrandWrapper = styled.div`
 `;
 
 const Brand = styled.h2`
-  color: #d9d9d9;
-  font-size: 20vw;
+  color: white;
+  font-size: 250px;
   padding: 0px;
   margin: 0px;
 `;
