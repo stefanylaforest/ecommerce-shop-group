@@ -3,8 +3,13 @@ import Styled from "styled-components";
 
 import { AppContext } from "./AppContext";
 import ProductCard from "./ProductCard";
+import FilterGroup from "./FilterGroup";
 
-const initialFilters = { brands: ["garmin"] , categories: ["Lifestyle"], bodyLocation: ['head']};
+const initialFilters = {
+  brands: ["garmin"],
+  categories: ["Lifestyle"],
+  bodyLocation: ["head"],
+};
 
 const CollectionPage = () => {
   const { products, setItemsInCart, brands } = useContext(AppContext);
@@ -24,8 +29,26 @@ const CollectionPage = () => {
       );
       const newFilters = { ...filters, [filterType]: newFiltersOfThatType };
       setFilters(newFilters);
+
+      filterProducts();
     }
   };
+
+  const filterProducts = () => {
+    let passed = [];
+
+    filters.brands.forEach(brand => {
+      products.forEach(product => {
+        if (product.brand === brand) {
+          passed.push(product);
+        }
+      })
+    });
+
+    return passed;
+
+  }
+
   console.log("Filters are:", filters);
 
   return (
@@ -33,22 +56,14 @@ const CollectionPage = () => {
       <div className="filter-box">
         <h2>Filters:</h2>
 
-        <p>Categories</p>
-        <details>
-          <summary>Brands</summary>
-          {brands.map((brand) => (
-            <div className="checkbox">
-              <input
-                type="checkbox"
-                value={brand.name}
-                name="brands-filter"
-                onChange={handleFilterCahnge}
-              />
-              <lable>{brand.name}</lable>
-            </div>
-          ))}
-        </details>
-        <p>Body Location</p>
+        {/* <FilterGroup title="Categories" type="categories" options={categories}  handleFilterChange={handleFilterCahnge} /> */}
+        <FilterGroup
+          title="Brands"
+          type="brands"
+          options={brands.map((brand) => brand.name)}
+          handleFilterCahnge={handleFilterCahnge}
+        />
+        {/* <FilterGroup title='Body Location' type="bodyLocation" options={brands.map(brand => brand.name)}  handleFilterChange={handleFilterCahnge} /> */}
       </div>
       <div className="wrapper">
         <div className="control-box">
@@ -60,8 +75,8 @@ const CollectionPage = () => {
           </select>
         </div>
         <div className="collection">
-          {products.map((product) => (
-            <ProductCard product={product} />
+          {products.map((product, index) => (
+            <ProductCard key={"product-card-" + index} product={product} />
           ))}
         </div>
       </div>
