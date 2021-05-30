@@ -22,11 +22,11 @@ const BrandDropDown = () => {
         </div>
         <Ulbox>
           {allBrands.slice(0, 6).map((brandName, i) => (
-            <Link to={`/products?brand=${brandName}`}>
-              <li key={`brand-${i}`}>
+            <li key={`brand-${i}`}>
+              <Link to={`/products?brand=${brandName}`}>
                 <DropDownListItem type="button">{brandName}</DropDownListItem>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
           <Link to={`/`}>
             <DropDownListItem>View All</DropDownListItem>
@@ -53,6 +53,8 @@ const Ulbox = styled.ul`
   width: 150px;
   display: none;
   z-index: 1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const Hover = styled.div`

@@ -54,7 +54,10 @@ const HeroImage = () => {
 
 const Container = styled.div`
   position: relative;
-  margin: 50px;
+  /* margin: 50px; */
+  max-width: 1200px;
+  align-self: center;
+  margin: 0 auto;
 `;
 
 const ProductWrap = styled.div`

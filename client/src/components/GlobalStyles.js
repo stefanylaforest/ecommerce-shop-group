@@ -34,7 +34,7 @@ input, button, select, option, p,
 text, a {
     font-family: ${theme.contentFont};
     line-height: 2;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -68,7 +68,7 @@ a {
   font-family: ${theme.contentFont};
   text-transform: uppercase;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   &:hover {
     background-color: ${theme.hoverAccentColor};

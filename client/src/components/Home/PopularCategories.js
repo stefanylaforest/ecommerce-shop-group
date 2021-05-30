@@ -5,12 +5,12 @@ import styled from "styled-components";
 const PopularCategories = () => {
   return (
     <CardWrapper>
-      <Link to="/products?category=entertainment">
+      <Link to="/products?category=Entertainment">
         <CategoryCardOne>
           <Text>Fitness</Text>
         </CategoryCardOne>
       </Link>
-      <Link to="/products?category=fitness">
+      <Link to="/products?category=Fitness">
         <CategoryCardTwo>
           <Text>Entertainment</Text>
         </CategoryCardTwo>
@@ -26,7 +26,9 @@ const PopularCategories = () => {
 
 const CardWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  overflow-x: scroll;
+  margin: 0px 20px;
 `;
 
 const CategoryCardOne = styled.div`
@@ -40,6 +42,7 @@ const CategoryCardOne = styled.div`
   background-image: url("./images/fitness.jpg");
   transition: 0.3s ease-out;
   font-size: 25px;
+  margin: 0px 25px;
   &:hover {
     box-shadow: inset 0 0 0 2000px rgb(0, 0, 0, 0.3);
   }
@@ -55,6 +58,7 @@ const CategoryCardTwo = styled.div`
   background-image: url("./images/entertain.jpg");
   transition: 0.3s ease-out;
   font-size: 25px;
+  margin: 0px 25px;
   &:hover {
     box-shadow: inset 0 0 0 2000px rgb(0, 0, 0, 0.3);
   }
@@ -71,6 +75,7 @@ const CategoryCardThree = styled.div`
   background-image: url("./images/lifestyle.jpg");
   transition: 0.3s ease-out;
   font-size: 25px;
+  margin: 0px 25px;
   &:hover {
     box-shadow: inset 0 0 0 2000px rgb(0, 0, 0, 0.3);
   }
