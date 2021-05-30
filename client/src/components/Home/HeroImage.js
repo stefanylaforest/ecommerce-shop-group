@@ -91,7 +91,6 @@ const CallToAction = styled.button`
 const ProductImg = styled.img`
   align-self: center;
   margin-top: -70px;
-  flex-shrink: 1;
 `;
 
 const BrandWrapper = styled.div`

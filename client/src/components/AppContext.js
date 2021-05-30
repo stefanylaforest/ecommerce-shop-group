@@ -33,13 +33,20 @@ export const AppProvider = ({ children }) => {
       .then((json) => setWearables(json.data));
   }, []);
 
-  console.log(wearables);
+  // console.log(wearables);
   // console.log(products)
   // console.log(brands)
 
   return (
     <AppContext.Provider
-      value={{ products, brands, itemsInCart, setItemsInCart, categories, wearables }}
+      value={{
+        products,
+        brands,
+        itemsInCart,
+        setItemsInCart,
+        categories,
+        wearables,
+      }}
     >
       {children}
     </AppContext.Provider>

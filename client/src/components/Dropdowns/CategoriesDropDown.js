@@ -17,11 +17,11 @@ const CategoriesDropDown = () => {
         </div>
         <Ulbox className="hoverShow">
           {categories.map((category, i) => (
-            <Link to={`/products?category=${category}`}>
-              <li key={`category-${i}`}>
+            <li key={`category-${i}`}>
+              <Link to={`/products?category=${category}`}>
                 <DropDownListItem type="button">{category}</DropDownListItem>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
         </Ulbox>
       </Hover>
@@ -41,6 +41,8 @@ const Ulbox = styled.ul`
   display: none;
   width: 150px;
   z-index: 1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const Hover = styled.div`
