@@ -26,7 +26,7 @@ const PopularCategories = () => {
 
 const CardWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   overflow-x: scroll;
   margin: 0px 20px;
 `;
