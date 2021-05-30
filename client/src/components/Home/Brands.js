@@ -12,53 +12,68 @@ const Brands = () => {
   return (
     <Wrapper>
       <Row>
-        <ImgDiv>
-          <Img
-            style={{ width: "216px", height: "53px" }}
-            src={garminLogo}
-            alt="garmin"
-          />
-        </ImgDiv>
-        <ImgDiv>
-          <Img
-            style={{ width: "216px", height: "88px" }}
-            src={samsungLogo}
-            alt="samsung"
-          />
-        </ImgDiv>
-        <ImgDiv>
-          <Img
-            style={{ width: "216px", height: "33px" }}
-            src={tomtomLogo}
-            alt="tomtom"
-          />
-        </ImgDiv>
+        <Link to="/products?brand=Garmin">
+          <ImgDiv>
+            <Img
+              style={{
+                width: "216px",
+                height: "53px",
+              }}
+              src={garminLogo}
+              alt="garmin"
+            />
+          </ImgDiv>
+        </Link>
+        <Link to="/products?brand=Samsung">
+          <ImgDiv>
+            <Img
+              style={{ width: "216px", height: "88px" }}
+              src={samsungLogo}
+              alt="samsung"
+            />
+          </ImgDiv>
+        </Link>
+        <Link to="/products?brand=Tomtom">
+          <ImgDiv>
+            <Img
+              style={{ width: "216px", height: "33px" }}
+              src={tomtomLogo}
+              alt="tomtom"
+            />
+          </ImgDiv>
+        </Link>
       </Row>
       <Row>
-        <ImgDiv>
-          <Img
-            style={{ width: "216px", height: "54px" }}
-            src={fitbitLogo}
-            alt="fitbit"
-          />
-        </ImgDiv>
-        <ImgDiv>
-          <Img
-            style={{ width: "216px", height: "33px" }}
-            src={casioLogo}
-            alt="casio"
-          />
-        </ImgDiv>
-        <ImgDiv>
-          <Img
-            style={{
-              width: "216px",
-              height: "71px",
-            }}
-            src={colemanLogo}
-            alt="coleman"
-          />
-        </ImgDiv>
+        <Link to="/products?brand=Fitbit">
+          <ImgDiv>
+            <Img
+              style={{ width: "216px", height: "54px" }}
+              src={fitbitLogo}
+              alt="fitbit"
+            />
+          </ImgDiv>
+        </Link>
+        <Link to="/products?brand=Casio">
+          <ImgDiv>
+            <Img
+              style={{ width: "216px", height: "33px" }}
+              src={casioLogo}
+              alt="casio"
+            />
+          </ImgDiv>
+        </Link>
+        <Link to="/products?brand=Coleman">
+          <ImgDiv>
+            <Img
+              style={{
+                width: "216px",
+                height: "71px",
+              }}
+              src={colemanLogo}
+              alt="coleman"
+            />
+          </ImgDiv>
+        </Link>
       </Row>
     </Wrapper>
   );
@@ -70,7 +85,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 100px;
+  margin: 50px 100px 100px 100px;
 `;
 
 const Row = styled.div`
@@ -78,12 +93,12 @@ const Row = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin: 20px 0px;
   align-items: center;
 `;
 
 const ImgDiv = styled.div`
   width: 250px;
+  margin: 20px 0px;
 `;
 const Img = styled.img`
   //not done styling
