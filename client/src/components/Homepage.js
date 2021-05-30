@@ -1,6 +1,7 @@
 import React from "react";
 import HeroImage from "./Home/HeroImage";
 import PopularCategories from "./Home/PopularCategories";
+import Brands from "./Home/Brands";
 import styled from "styled-components";
 
 const Homepage = () => {
@@ -10,6 +11,7 @@ const Homepage = () => {
       <Heading>Popular Categories</Heading>
       <PopularCategories />
       <Heading>Our Brands</Heading>
+      <Brands />
     </div>
   );
 };
