@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
 const ProductCard = ({ product }) => {
@@ -14,14 +15,18 @@ const ProductCard = ({ product }) => {
   } = product;
   return (
     <Div>
-      <img
-        className="product-image"
-        src={imageSrc}
-        alt="product image"
-        width="100%"
-      />
+      <Link to={"/product/" + _id}>
+        <img
+          className="product-image"
+          src={imageSrc}
+          alt="product image"
+          width="100%"
+        />
+      </Link>
       <div className="card-body">
-        <h2>{name}</h2>
+        <Link to={"/product/" + _id}>
+          <h2>{name}</h2>
+        </Link>
         <p>for: {body_location}</p>
         <p>Price: {price}</p>
         <button className="add-to-card-btn">ADD TO CART</button>
