@@ -32,6 +32,11 @@ const CollectionPage = () => {
 
   const [filters, setFilters] = useState(initialFilters);
 
+  useEffect(() => {
+    setFilters(initialFilters);
+    console.log("setting again");
+  }, [query.get("brand"), query.get("category"), query.get("body_location")]);
+
   const fakeHandle = () => {
     console.log("FAKE HANDLEING");
   };
