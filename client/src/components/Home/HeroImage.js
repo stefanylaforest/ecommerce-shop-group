@@ -54,7 +54,10 @@ const HeroImage = () => {
 
 const Container = styled.div`
   position: relative;
-  margin: 50px;
+  /* margin: 50px; */
+  max-width: 1200px;
+  align-self: center;
+  margin: 0 auto;
 `;
 
 const ProductWrap = styled.div`
@@ -68,6 +71,7 @@ const ProductName = styled.p`
   align-items: flex-start;
   text-transform: capitalize;
   font-weight: 400;
+  z-index: 1;
 `;
 
 const New = styled.h3`
@@ -88,6 +92,7 @@ const CallToAction = styled.button`
 const ProductImg = styled.img`
   align-self: center;
   margin-top: -70px;
+  flex-shrink: 1;
 `;
 
 const BrandWrapper = styled.div`
