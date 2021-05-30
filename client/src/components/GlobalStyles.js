@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 export const theme = {
-  accentColor: "#DF6625",
-  hoverAccentColor: "#BB4D12",
+  accentColor: "#F25400",
+  hoverAccentColor: "#C64500",
   fontColor: "#323232",
   headingFont: "Archivo Black, sans-serif",
   contentFont: "Lato, sans-serif",
@@ -18,16 +18,23 @@ export default createGlobalStyle`
   }
 
   body {
-    margin: 0 auto;
-    background: linear-gradient(148deg, rgba(58,68,68, 1) 0%, rgba(153,155,153,1) 100%);
+  margin: 0 auto;
+    /* background: linear-gradient(148deg, rgba(58,68,68, 1) 0%, rgba(153,155,153,1) 100%); */
+    background-image: url('/images/backgroundImg.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow:inset 0 0 0 2000px rgb(48,48,48, 0.4);
+  overflow-x: hidden;
+  background-repeat: no-repeat;
   }
   
   
 html, body, div,
 input, button, select, option, p,
-text {
+text, a {
     font-family: ${theme.contentFont};
     line-height: 2;
+    font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,6 +49,13 @@ ul {
 
 h2, h3, h4 {
   font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  &:visited {
+    text-decoration: none;
+  }
 }
 
 
@@ -60,4 +74,8 @@ h2, h3, h4 {
     background-color: ${theme.hoverAccentColor};
   }
 }
+
+
+
+
   `;

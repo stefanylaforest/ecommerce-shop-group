@@ -1,19 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "./AppContext";
+import React from "react";
+import HeroImage from "./Home/HeroImage";
+import PopularCategories from "./Home/PopularCategories";
+import styled from "styled-components";
 
 const Homepage = () => {
-  const { categories } = useContext(AppContext);
-
-  // const [featuredProduct, setFeaturedProduct] = useState();
-
-  // useEffect(() => {
-  //   fetch("api/products/${productId}")
-  //     .then((rest) => rest.json())
-  //     .then((json) => setFeaturedProduct(json.data));
-  // }, []);
-
-  // console.log("stef", categories);
-  return <div></div>;
+  return (
+    <div>
+      <HeroImage />
+      <Heading>Popular Categories</Heading>
+      <PopularCategories />
+      <Heading>Our Brands</Heading>
+    </div>
+  );
 };
+
+const Heading = styled.h3`
+  text-align: center;
+  color: white;
+  margin-top: 130px;
+`;
 
 export default Homepage;

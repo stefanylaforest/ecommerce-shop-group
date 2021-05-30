@@ -10,18 +10,20 @@ import GlobalStyles from "./GlobalStyles";
 import ProductDetails from "./ProductDetails";
 import ViewOrder from "./ViewOrder";
 import CollectionPage from "./CollectionPage";
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
 
   const handleClickOnCartIcon = () => {
-    setIsCartVisible((isCartVisible) => !isCartVisible);
+    setIsCartVisible(!isCartVisible);
   };
 
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <GlobalStyles />
-      {isCartVisible && <Cart />}
+      <Cart isCartVisible={isCartVisible} handleClickOnCartIcon={handleClickOnCartIcon} />
       <Header handleClickOnCartIcon={handleClickOnCartIcon} />
       <main>
         <Switch>
