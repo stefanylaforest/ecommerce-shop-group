@@ -51,7 +51,10 @@ const Brands = () => {
         </ImgDiv>
         <ImgDiv>
           <Img
-            style={{ width: "216px", height: "83px", borderRadius: "7px" }}
+            style={{
+              width: "216px",
+              height: "71px",
+            }}
             src={colemanLogo}
             alt="coleman"
           />
