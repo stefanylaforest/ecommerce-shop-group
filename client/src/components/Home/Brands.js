@@ -12,14 +12,50 @@ const Brands = () => {
   return (
     <Wrapper>
       <Row>
-        <Img src={garminLogo} alt="garmin" />
-        <Img src={samsungLogo} alt="samsung" />
-        <Img src={tomtomLogo} alt="tomtom" />
+        <ImgDiv>
+          <Img
+            style={{ width: "216px", height: "53px" }}
+            src={garminLogo}
+            alt="garmin"
+          />
+        </ImgDiv>
+        <ImgDiv>
+          <Img
+            style={{ width: "216px", height: "88px" }}
+            src={samsungLogo}
+            alt="samsung"
+          />
+        </ImgDiv>
+        <ImgDiv>
+          <Img
+            style={{ width: "216px", height: "33px" }}
+            src={tomtomLogo}
+            alt="tomtom"
+          />
+        </ImgDiv>
       </Row>
       <Row>
-        <Img src={fitbitLogo} alt="fitbit" />
-        <Img src={casioLogo} alt="casio" />
-        <Img src={colemanLogo} alt="coleman" />
+        <ImgDiv>
+          <Img
+            style={{ width: "216px", height: "54px" }}
+            src={fitbitLogo}
+            alt="fitbit"
+          />
+        </ImgDiv>
+        <ImgDiv>
+          <Img
+            style={{ width: "216px", height: "33px" }}
+            src={casioLogo}
+            alt="casio"
+          />
+        </ImgDiv>
+        <ImgDiv>
+          <Img
+            style={{ width: "216px", height: "83px", borderRadius: "7px" }}
+            src={colemanLogo}
+            alt="coleman"
+          />
+        </ImgDiv>
       </Row>
     </Wrapper>
   );
@@ -31,17 +67,22 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 100px;
 `;
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 20px 0px;
+  align-items: center;
 `;
 
+const ImgDiv = styled.div`
+  width: 250px;
+`;
 const Img = styled.img`
-  width: 216px;
-
   //not done styling
 `;
 

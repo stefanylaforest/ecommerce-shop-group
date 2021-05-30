@@ -71,7 +71,6 @@ const ProductName = styled.p`
   align-items: flex-start;
   text-transform: capitalize;
   font-weight: 400;
-  z-index: 1;
 `;
 
 const New = styled.h3`

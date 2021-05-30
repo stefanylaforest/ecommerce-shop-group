@@ -34,7 +34,7 @@ input, button, select, option, p,
 text, a {
     font-family: ${theme.contentFont};
     line-height: 2;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 h1, h2, h3, h4, h5, h6 {
