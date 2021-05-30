@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
 const ProductCard = ({ product }) => {
@@ -14,16 +15,22 @@ const ProductCard = ({ product }) => {
   } = product;
   return (
     <Div>
-      <img
-        className="product-image"
-        src={imageSrc}
-        alt="product image"
-        width="100%"
+      <Link to={"/product/" + _id}>
+        <img
+          className="product-image"
+          src={imageSrc}
+          alt="product image"
+          width="100%"
         />
-        <h2>{name}</h2>
-      <p>for: {body_location}</p>
-      <p>Price: {price}</p>
-      <button>ADD TO CART</button>
+      </Link>
+      <div className="card-body">
+        <Link to={"/product/" + _id}>
+          <h2>{name}</h2>
+        </Link>
+        <p>for: {body_location}</p>
+        <p>Price: {price}</p>
+        <button className="add-to-card-btn">ADD TO CART</button>
+      </div>
     </Div>
   );
 };
@@ -32,17 +39,42 @@ export default ProductCard;
 
 const Div = Styled.div`
 
-border: 1px solid gray;
-flex: 30%;
+  background: darkgray;
+flex: 25%;
+
+border-radius: 20px;
+overflow: hidden;
 
 .product-image {
   background: yellow;
 }
 
-h2 {
-  font-size: 0.9em;
+.card-body {
+  padding: 1rem;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-border-radius: 10px;
+h2 {
+  font-size: 0.9em;
+  color: white;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  color: white;
+}
+
+.add-to-card-btn {
+  border-radius: 500px;
+  margin-top: auto;
+  display: block;
+  width: 100%;
+  border: none;
+  color: white;
+  background: orange;
+}
 
 `;
