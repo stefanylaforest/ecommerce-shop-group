@@ -5,12 +5,12 @@ import styled from "styled-components";
 const PopularCategories = () => {
   return (
     <CardWrapper>
-      <Link to="/products?category=entertainment">
+      <Link to="/products?category=Entertainment">
         <CategoryCardOne>
           <Text>Fitness</Text>
         </CategoryCardOne>
       </Link>
-      <Link to="/products?category=fitness">
+      <Link to="/products?category=Fitness">
         <CategoryCardTwo>
           <Text>Entertainment</Text>
         </CategoryCardTwo>
