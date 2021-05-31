@@ -192,9 +192,31 @@ background: white;
 
 .collection {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  /* margin: 0 auto; */
+}
+@media screen and ( max-width: 1400px) {
+  .collection {
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4rem;
-  /* margin: 0 auto; */
+}
+@media screen and ( max-width: 1080px) {
+  .collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+@media screen and (max-width: 820px) {
+  .collection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+
 }
 
 .control-box {
