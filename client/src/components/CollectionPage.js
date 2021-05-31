@@ -201,12 +201,14 @@ background: white;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4rem;
+  }
 }
 @media screen and ( max-width: 1080px) {
   .collection {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+}
 }
 
 @media screen and (max-width: 820px) {
@@ -215,8 +217,6 @@ background: white;
   grid-template-columns: 1fr;
   gap: 4rem;
 }
-
-
 }
 
 .control-box {
@@ -227,19 +227,24 @@ background: white;
 
 
 .sort-dropdown {
-  padding: 1rem;
+  padding-right: 10px;
+  padding-left: 10px;
   border-radius: 5px;
+  /* border: 3px solid gray; */
   border: none;
+  background: #dddddd;
   appearance: none;
-  background: gray;
-  color: white;
+  /* background: ; */
+  color: gray;
   font-size:1.2em;
   font-weight: 700;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   option {
-    padding: 1rem;
+    /* padding: 1rem; */
     color: white;
     background: #454e51;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 }
 .filter-box {
