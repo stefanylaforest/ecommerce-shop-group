@@ -15,7 +15,12 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
     if (valuesInStorage.length > 0) {
       valuesInStorage.forEach((item) => {
         let parsedValues = JSON.parse(item);
-        selectedItems.push(parsedValues);
+        console.log(parsedValues)
+        if(parsedValues){
+          selectedItems.push({...item, quantityOfProduct: item.quantityOfProduct})
+        } else {
+          selectedItems.push(parsedValues);
+        }
         setSelectedItems(selectedItems);
       });
     }
@@ -89,7 +94,9 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
         {selectedItems.map((item) => {
           return (
             <ItemWrap key={item.product._id}>
+              <ImageWrapper>
               <ItemImage src={item.product.imageSrc} />
+              </ImageWrapper>
               <ItemInnerWrap>
                 <ItemName>{item.product.name}</ItemName>
                 <Price>{item.product.price}</Price>
@@ -136,18 +143,21 @@ const ItemInnerWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 30px;
-  width: 260px;
+  width: 220px;
+`;
+
+const ImageWrapper = styled.div`
+display: flex;
 `;
 
 const ItemImage = styled.img`
   float: left;
-  width: 120px;
-  height: 180px;
-  object-fit: cover;
+  width: auto 0;
+  height: auto;
 `;
 
 const ItemName = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
 `;
 
@@ -205,6 +215,7 @@ const AddBtn = styled.button`
 const Price = styled.p`
   margin-top: -5px;
   font-weight: 500;
+  font-size: 0.9rem;
 `;
 
 const ItemDeleteIcon = styled(FaTimes)`
