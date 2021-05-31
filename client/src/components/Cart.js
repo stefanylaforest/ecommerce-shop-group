@@ -7,7 +7,6 @@ import { AppContext } from "../components/AppContext";
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   const { selectedItems, setSelectedItems } = useContext(AppContext);
-
   let valuesInStorage = Object.values(localStorage);
 
   // console.log(valuesInStorage);
@@ -75,9 +74,10 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = (count + item.quantityOfProduct * removeDollarSign));
+    return (count = count + item.quantityOfProduct * removeDollarSign);
   });
 
+  console.log(selectedItems);
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
