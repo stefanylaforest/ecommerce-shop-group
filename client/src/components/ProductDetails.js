@@ -104,12 +104,12 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
           <AddToCartRow>
             <QuantityContainer>
               <SubtractBtn onClick={substractQtyHandler}>-</SubtractBtn>
-              <Quantity>{selectedQuantity}</Quantity>
+              <Quantity>{currentItem.numInStock > 0 ? selectedQuantity : 0}</Quantity>
               <AddBtn onClick={addQtyHandler}>+</AddBtn>
             </QuantityContainer>
-            <button className="accentBtn" onClick={addToCart}>
-              Add To Cart - {currentItem.price}
-            </button>
+            <Button className="accentBtn" onClick={currentItem.numInStock > 0 ? addToCart: ""} currentItem={currentItem.numInStock}>
+              {currentItem.numInStock > 0? `Add To Cart - ${currentItem.price}`: "Out of Stock"}
+            </Button>
           </AddToCartRow>
           {message && <p>{message}</p>}
 
@@ -128,6 +128,11 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
     </Container>
   );
 };
+
+const Button = styled.button`
+cursor: ${({currentItem})=> currentItem > 0 ? "pointer" : "not-allowed !important"};
+background-color: ${({currentItem})=> currentItem > 0 ? "" : "gray !important"};
+`;
 
 const Container = styled.div`
   background-color: white;
