@@ -17,6 +17,7 @@ const Header = ({ handleClickOnCartIcon }) => {
     <div
       style={{
         background: location.pathname !== "/" && "#454e51",
+        paddingBottom: "16px",
       }}
     >
       <LogoRow>

@@ -160,7 +160,7 @@ const CollectionPage = () => {
          */}
       <div className="wrapper">
         <div className="control-box">
-          <select>
+          <select className="sort-dropdown">
             <option>Price: Lowest to Highest</option>
             <option>Price: Highest to Lowest</option>
             <option>A to Z</option>
@@ -181,22 +181,33 @@ export default CollectionPage;
 
 const Div = Styled.div`
 
-padding: 1rem;
-background: #7c8183;
+padding: 2rem;
 display: flex;
 
 .collection {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
-  
 }
 
 .control-box {
   display: flex;
   justify-content: flex-end;
+  padding-bottom: 2rem;
 }
 
+
+.sort-dropdown {
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  appearance: none;
+
+  option {
+    padding: 1rem;
+    background: #ffffff;
+  }
+}
 .filter-box {
   background: lightgreen;
   padding: 1rem;
@@ -208,10 +219,4 @@ display: flex;
   border: 2px solid gray;
   border-radius: 10px;
 }
-
-.wrapper {
-  flex: 70%;
-}
-
-
 `;

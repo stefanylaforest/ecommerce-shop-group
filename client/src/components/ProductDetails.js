@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "./GlobalStyles";
+import { RiPaypalFill } from "react-icons/ri";
+import { FaCcApplePay, FaCcVisa, FaCcMastercard } from "react-icons/fa";
+import { SiAmericanexpress } from "react-icons/si";
 
 let initialState = { product: "", quantityOfProduct: "" };
 
@@ -78,41 +81,74 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
   // console.log("quantityInCart:", quantityInCart);
 
   return (
-    <Wrapper>
-      <ItemImg src={currentItem.imageSrc} alt={currentItem.name} />
-      <div>
-        <ItemTitle>{currentItem.name}</ItemTitle>
-        <Price>CAD {currentItem.price}</Price>
-        <p>
-          📦 Free Shipping on all orders <br />
-          🔥 Price Match Guarantee
-        </p>
-        <AddToCartRow>
-          <QuantityContainer>
-            <SubtractBtn onClick={substractQtyHandler}>-</SubtractBtn>
-            <Quantity>{selectedQuantity}</Quantity>
-            <AddBtn onClick={addQtyHandler}>+</AddBtn>
-          </QuantityContainer>
-          <button className="accentBtn" onClick={addToCart}>
-            Add To Cart - {currentItem.price}
-          </button>
-        </AddToCartRow>
-        {message && <p>{message}</p>}
-      </div>
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <ItemContainer>
+          <ItemImg src={currentItem.imageSrc} alt={currentItem.name} />
+        </ItemContainer>
+        <ProductInfoContainer>
+          <ItemTitle>{currentItem.name}</ItemTitle>
+          <Price>CAD {currentItem.price}</Price>
+          <p>
+            📦 Free Shipping on all orders <br />
+            🔥 Price Match Guarantee
+          </p>
+          <AddToCartRow>
+            <QuantityContainer>
+              <SubtractBtn onClick={substractQtyHandler}>-</SubtractBtn>
+              <Quantity>{selectedQuantity}</Quantity>
+              <AddBtn onClick={addQtyHandler}>+</AddBtn>
+            </QuantityContainer>
+            <button className="accentBtn" onClick={addToCart}>
+              Add To Cart - {currentItem.price}
+            </button>
+          </AddToCartRow>
+          {message && <p>{message}</p>}
+
+          <AcceptedPayment>
+            <FaCcVisa style={{ margin: "10px" }} />
+            <FaCcMastercard style={{ margin: "10px" }} />{" "}
+            <RiPaypalFill style={{ margin: "10px" }} />
+            <FaCcApplePay style={{ margin: "10px" }} />
+            <SiAmericanexpress
+              style={{ borderRadius: "3px", margin: "10px" }}
+            />
+          </AcceptedPayment>
+        </ProductInfoContainer>
+      </Wrapper>
+      <Filler></Filler>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  background-color: white;
+`;
 
 const Wrapper = styled.div`
   display: flex;
   background-color: white;
-  margin-top: -16px;
   padding: 50px;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* margin: 0px 100px; */
+  border-radius: 50px;
+`;
+
+const ItemContainer = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
 `;
 
 const ItemImg = styled.img`
   border-radius: 5px;
+`;
+
+const ProductInfoContainer = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
 `;
 
 const ItemTitle = styled.h1`
@@ -129,6 +165,7 @@ const Price = styled.p`
 const AddToCartRow = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const QuantityContainer = styled.div`
@@ -180,6 +217,28 @@ const AddBtn = styled.button`
     cursor: pointer;
     transition: 0.3s ease-out;
   }
+`;
+
+const AcceptedPayment = styled.div`
+  font-size: 32px;
+  margin: 100px 0px -5px 0px;
+  border-top: 1px solid black;
+`;
+
+const Filler = styled.div`
+  background-image: url("../images/surf.jpg");
+  height: 300px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 2000px rgb(48, 48, 48, 0.4);
+  padding: 100px;
+  color: white;
+  font-size: 22px;
+  text-decoration: center;
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
 `;
 
 export default ProductDetails;
