@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "./GlobalStyles";
 import { RiPaypalFill } from "react-icons/ri";
 import { FaCcApplePay, FaCcVisa, FaCcMastercard } from "react-icons/fa";
 import { SiAmericanexpress } from "react-icons/si";
+import { AppContext } from "../components/AppContext";
 
 let initialState = { product: "", quantityOfProduct: "" };
 
 const ProductDetails = ({ handleClickOnCartIcon }) => {
+  const { selectedItems, setSelectedItems } = useContext(AppContext);
   //set current product on page
   const [currentItem, setCurrentItem] = useState([]);
   //declare a state for local storage
@@ -34,7 +36,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
     if (selectedQuantity === 1) {
       return;
     }
-    setSelectedQuantity(selectedQuantity => selectedQuantity - 1);
+    setSelectedQuantity((selectedQuantity) => selectedQuantity - 1);
     setMessage("");
   };
 
@@ -44,14 +46,22 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
       setMessage(`Only ${currentItem.numInStock} left in stock`);
       return;
     }
-    setSelectedQuantity(selectedQuantity => selectedQuantity + 1);
+    setSelectedQuantity((selectedQuantity) => selectedQuantity + 1);
   };
 
   //add to cart function
   const addToCart = () => {
     // handleClickOnCartIcon();
+    setSelectedItems((value) => {
+      return [
+        ...value,
+        { product: currentItem, quantityOfProduct: selectedQuantity },
+      ];
+    });
     if (itemInCart.quantityOfProduct < 1) {
-      setQuantityInCart(selectedQuantity => quantityInCart + selectedQuantity);
+      setQuantityInCart(
+        (selectedQuantity) => quantityInCart + selectedQuantity
+      );
       setItemInCart({
         ...itemInCart,
         product: currentItem,
@@ -59,7 +69,9 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
       });
     }
     if (itemInCart.quantityOfProduct !== 0) {
-      setQuantityInCart(selectedQuantity => quantityInCart + selectedQuantity);
+      setQuantityInCart(
+        (selectedQuantity) => quantityInCart + selectedQuantity
+      );
       setItemInCart({
         ...itemInCart,
         product: currentItem,

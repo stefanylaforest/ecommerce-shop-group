@@ -10,6 +10,7 @@ export const AppProvider = ({ children }) => {
   const [wearables, setWearables] = useState([]);
   const [selectedItems, setSelectedItems] = useState([])
 
+
   useEffect(() => {
     fetch("/api/products")
       .then((rest) => rest.json())
@@ -48,7 +49,7 @@ export const AppProvider = ({ children }) => {
         categories,
         wearables,
         selectedItems,
-        setSelectedItems
+        setSelectedItems,
       }}
     >
       {children}
