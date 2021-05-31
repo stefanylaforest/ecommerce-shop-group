@@ -1,10 +1,52 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "./GlobalStyles";
 import { AppContext } from "../components/AppContext";
 
+let initialState = "";
+
 const Checkout = () => {
+  const [formValue, setFormValue] = useState(initialState);
+  const [errMessage, setErrMessage] = useState("");
   const { selectedItems, setSelectedItems } = useContext(AppContext);
+
+  const postTweet = (e) => {
+    e.preventDefault();
+
+    if (formValue.length === 0) {
+      setErrMessage("zero-characters");
+      return;
+    } else if (formValue.length > 280) {
+      setErrMessage("too-many-characters");
+      return;
+    } else {
+      setErrMessage("none");
+    }
+
+    fetch("/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: formValue }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        setFormValue(initialState);
+      });
+    // .catch((error) => {
+    //   console.error("Error:", error);
+    //   history.push("/error");
+    // });
+  };
+
+  let count = 0;
+  selectedItems.map((item) => {
+    let price = item.product.price;
+    let removeDollarSign = price.substr(1);
+    return (count = count + item.quantityOfProduct * removeDollarSign);
+  });
 
   return (
     <AllWrapper>
@@ -101,6 +143,10 @@ const Checkout = () => {
               );
             })}
             <Divider />
+            <Total>
+              <p>Total</p>
+              <p>{count}</p>
+            </Total>
           </ItemsContainer>
         </CartContainer>
       </ViewCartContainer>
@@ -302,6 +348,11 @@ const AllWrapper = styled.div`
 const Divider = styled.hr`
   border: 0.5px solid black;
   width: 100%;
+`;
+
+const Total = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default Checkout;
