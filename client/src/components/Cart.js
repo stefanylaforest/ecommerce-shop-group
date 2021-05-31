@@ -1,15 +1,61 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
-import Image1 from "../assets/garmin-fenix2.png";
 import { Link } from "react-router-dom";
-
-const handleClickSubtract = () => {};
-
-const handleClickAdd = () => {};
+import { AppContext } from "../components/AppContext";
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
+  const { selectedItem, setSelectedItem } = useContext(AppContext);
+
+  let valuesInStorage = Object.values(localStorage);
+  useEffect(() => {
+    //get values as an array in local strage
+    if (valuesInStorage.length > 0) {
+      valuesInStorage.forEach((item) => {
+        let parsedValues = JSON.parse(item);
+        selectedItem.push(parsedValues);
+        setSelectedItem(selectedItem);
+      });
+    }
+  }, []);
+
+  const handleClickSubtract = (item) => {
+    // if (item.quantityOfProduct > 2) {
+    //   for(let i = 0; i < valuesInStorage.length; i++){
+    //     if(item.product._id === i.product._id){
+    //        i.quantityOfProduct - 1;
+    //        break;
+    //     }
+    //   }
+    //   localStorage.setItem(item.product._id,JSON.stringify(valuesInStorage));
+    // } else {
+    //   return;
+    // }
+  };
+
+  const handleClickAdd = (item) => {
+    // if (item.quantityOfProduct > 2) {
+      // localStorage.setItem(item.product._id,item.quantityOfProduct + 1);
+      // return item.quantityOfProduct + 1;
+    // } else {
+    //   return;
+    // }
+  };
+
+  const handleClickRemove = (item) => {
+    localStorage.removeItem(item.product._id);
+
+    let updatedArray = [...selectedItem];
+    updatedArray.splice(
+      updatedArray.findIndex((i) => i.product._id === item.product._id),
+      1
+    );
+    setSelectedItem(updatedArray);
+  };
+
+  console.log(selectedItem);
+
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
@@ -18,19 +64,23 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       </Icon>
       <Hr />
       <ItemContainer>
-        <ItemWrap>
-          <ItemImage src={Image1} />
-          <ItemInnerWrap>
-            <ItemName>super power watch</ItemName>
-            <Price>$39.00</Price>
-            <QuantityContainer>
-              <SubtractBtn>-</SubtractBtn>
-              <Quantity>1</Quantity>
-              <AddBtn>+</AddBtn>
-            </QuantityContainer>
-            <ItemDeleteIcon />
-          </ItemInnerWrap>
-        </ItemWrap>
+        {selectedItem.map((item) => {
+          return (
+            <ItemWrap key={item.product._id}>
+              <ItemImage src={item.product.imageSrc} />
+              <ItemInnerWrap>
+                <ItemName>{item.product.name}</ItemName>
+                <Price>{item.product.price}</Price>
+                <QuantityContainer>
+                  <SubtractBtn onClick={()=> handleClickSubtract(item)}>-</SubtractBtn>
+                  <Quantity>{item.quantityOfProduct}</Quantity>
+                  <AddBtn onClick={()=> handleClickAdd(item)}>+</AddBtn>
+                </QuantityContainer>
+                <ItemDeleteIcon onClick={() => handleClickRemove(item)} />
+              </ItemInnerWrap>
+            </ItemWrap>
+          );
+        })}
       </ItemContainer>
       <LinkToCheckout to="/checkout">
         <CheckoutBtn>CHECK OUT - PRICE</CheckoutBtn>
@@ -43,7 +93,9 @@ const ItemContainer = styled.div`
   position: absolute;
   top: 5rem;
   left: 1.5rem;
-  width: 450px;
+  width: 476px;
+  height: 700px;
+  overflow: scroll;
 `;
 
 const ItemWrap = styled.div`
@@ -58,6 +110,7 @@ const ItemInnerWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 30px;
+  width: 260px;
 `;
 
 const ItemImage = styled.img`
@@ -68,7 +121,7 @@ const ItemImage = styled.img`
 `;
 
 const ItemName = styled.p`
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
 `;
 
@@ -131,12 +184,13 @@ const Price = styled.p`
 const ItemDeleteIcon = styled(FaTimes)`
   position: absolute;
   top: 0;
-  right: 0;
+  right: 30px;
   font-size: 1.4rem;
 
   &:hover {
     color: ${theme.accentColor};
     transition: 0.3s ease-out;
+    cursor: pointer;
   }
 `;
 
