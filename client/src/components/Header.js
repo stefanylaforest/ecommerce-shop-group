@@ -10,7 +10,7 @@ import WearablesDropDown from "./Dropdowns/WearablesDropDown";
 import { GiRoundStar } from "react-icons/gi";
 
 const Header = ({ handleClickOnCartIcon }) => {
-  const { categories, brands, selectedItems } = useContext(AppContext);
+  const { selectedItems } = useContext(AppContext);
   const location = useLocation();
 
   return (
