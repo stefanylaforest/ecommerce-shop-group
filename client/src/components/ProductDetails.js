@@ -36,7 +36,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
     if (selectedQuantity === 1) {
       return;
     }
-    setSelectedQuantity((selectedQuantity) => selectedQuantity - 1);
+    setSelectedQuantity(selectedQuantity - 1);
     setMessage("");
   };
 
@@ -46,7 +46,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
       setMessage(`Only ${currentItem.numInStock} left in stock`);
       return;
     }
-    setSelectedQuantity((selectedQuantity) => selectedQuantity + 1);
+    setSelectedQuantity(selectedQuantity + 1);
   };
 
   //add to cart function
@@ -59,9 +59,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
       ];
     });
     if (itemInCart.quantityOfProduct < 1) {
-      setQuantityInCart(
-        (selectedQuantity) => quantityInCart + selectedQuantity
-      );
+      setQuantityInCart(quantityInCart + selectedQuantity);
       setItemInCart({
         ...itemInCart,
         product: currentItem,
@@ -69,9 +67,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
       });
     }
     if (itemInCart.quantityOfProduct !== 0) {
-      setQuantityInCart(
-        (selectedQuantity) => quantityInCart + selectedQuantity
-      );
+      setQuantityInCart(quantityInCart + selectedQuantity);
       setItemInCart({
         ...itemInCart,
         product: currentItem,
