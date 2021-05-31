@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext} from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
@@ -7,7 +7,6 @@ import { AppContext } from "../components/AppContext";
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   const { selectedItems, setSelectedItems } = useContext(AppContext);
-
   let valuesInStorage = Object.values(localStorage);
 
   // console.log(valuesInStorage);
@@ -75,9 +74,10 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = (count + item.quantityOfProduct * removeDollarSign).toFixed(2));
+    return (count = count + item.quantityOfProduct * removeDollarSign);
   });
 
+  console.log(selectedItems)
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
