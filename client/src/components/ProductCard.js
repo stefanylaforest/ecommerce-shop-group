@@ -52,7 +52,9 @@ const ProductCard = ({ product, handleClickOnCartIcon }) => {
   return (
     <Div className="card-body">
       <Link to={"/products/" + _id}>
-        <img className="product-image" src={imageSrc} alt="product image" />
+        <div className="image-wrapper">
+          <img className="product-image" src={imageSrc} alt="product image" />
+        </div>
       </Link>
       <Link to={"/products/" + _id}>
         <p className="title">{name}</p>
@@ -60,8 +62,12 @@ const ProductCard = ({ product, handleClickOnCartIcon }) => {
       <div className="tags">
         {/* <span className="tag">For {body_location}</span> */}
       </div>
-      <button className="add-to-card-btn" onClick={addToCart}>
-        {price} - Add to Cart
+      <button
+        className="add-to-card-btn"
+        onClick={addToCart}
+        disabled={!numInStock}
+      >
+        {numInStock ? `${price} - Add to Car` : "Out of Stock"}
       </button>
     </Div>
   );
@@ -80,11 +86,20 @@ overflow: hidden;
   display: flex;
   flex-direction: column;
   /* gap: 1.2rem; */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
+
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    height: 350px;
+  }
 
 .product-image {
-  width: 100%;
-  max-height: 400px;
+  /* width: 100%; */
+  /* max-height: 400px; */
   background: yellow;
   object-fit: cover;
 }
@@ -129,7 +144,7 @@ p {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-radius: 5px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-weight: 700;
   margin: 1rem;
   margin-top: auto;
@@ -138,10 +153,15 @@ p {
   color: white;
   background: ${theme.accentColor};
 
+
   &:hover {
+    background: #C64500;
     cursor: pointer;
   }
 
+  &:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
 }
-
 `;
