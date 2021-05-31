@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
@@ -82,7 +82,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
     return (count = count + item.quantityOfProduct * removeDollarSign);
   });
 
-  console.log(selectedItems)
+  console.log(selectedItems);
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
