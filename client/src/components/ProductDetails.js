@@ -146,10 +146,14 @@ const ItemContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
+  align-items: center;
+  background: white;
 `;
 
 const ItemImg = styled.img`
   border-radius: 5px;
+  object-fit: cover;
+  width: 400px
 `;
 
 const ProductInfoContainer = styled.div`
