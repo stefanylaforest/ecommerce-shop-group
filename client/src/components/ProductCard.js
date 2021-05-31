@@ -62,8 +62,12 @@ const ProductCard = ({ product, handleClickOnCartIcon }) => {
       <div className="tags">
         {/* <span className="tag">For {body_location}</span> */}
       </div>
-      <button className="add-to-card-btn" onClick={addToCart}>
-        {price} - Add to Cart
+      <button
+        className="add-to-card-btn"
+        onClick={addToCart}
+        disabled={!numInStock}
+      >
+        {numInStock ? `${price} - Add to Car` : "Out of Stock"}
       </button>
     </Div>
   );
@@ -90,7 +94,7 @@ overflow: hidden;
     justify-content: center;
     align-items: center;
     background: white;
-    height: 400px;
+    height: 350px;
   }
 
 .product-image {
@@ -140,7 +144,7 @@ p {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-radius: 5px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-weight: 700;
   margin: 1rem;
   margin-top: auto;
@@ -149,11 +153,15 @@ p {
   color: white;
   background: ${theme.accentColor};
 
+
   &:hover {
     background: #C64500;
     cursor: pointer;
   }
 
+  &:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
 }
-
 `;

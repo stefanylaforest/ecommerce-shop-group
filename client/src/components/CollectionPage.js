@@ -15,7 +15,7 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     wearables: body_locations,
   } = useContext(AppContext);
 
-  const [pagination, setPagination] = useState(1)
+  const [pagination, setPagination] = useState(1);
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -31,7 +31,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
       ? [query.get("body_location")]
       : [],
   };
-
 
   const [filters, setFilters] = useState(initialFilters);
 
@@ -107,7 +106,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     );
 
     //
-
 
     return productThatPassAllFilters;
 
