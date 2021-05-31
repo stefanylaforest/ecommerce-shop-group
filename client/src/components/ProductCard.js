@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState , useContext} from "react";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
 import { theme } from "./GlobalStyles";
+import {AppContext} from "./AppContext";
 
-const ProductCard = ({ product }) => {
+let initialState = { product: "", quantityOfProduct: "" };
+
+const ProductCard = ({ product, handleClickOnCartIcon }) => {
   const {
     name,
     price,
@@ -14,6 +17,45 @@ const ProductCard = ({ product }) => {
     numInStock,
     companyId,
   } = product;
+
+  const { selectedItems, setSelectedItems } = useContext(AppContext);
+  const [itemInCart, setItemInCart] = useState(initialState);
+  const [quantityInCart, setQuantityInCart] = useState(0);
+
+  const addToCart = () => {
+    // handleClickOnCartIcon();
+    setSelectedItems((value) => {
+      return [
+        ...value,
+        { product: product, quantityOfProduct: 1 },
+      ];
+    });
+    if (itemInCart.quantityOfProduct < 1) {
+      setQuantityInCart(
+        (selectedQuantity) => quantityInCart + 1
+      );
+      setItemInCart({
+        ...itemInCart,
+        product: product,
+        quantityOfProduct: 1,
+      });
+    }
+    if (itemInCart.quantityOfProduct !== 0) {
+      setQuantityInCart(
+        (selectedQuantity) => quantityInCart + 1
+      );
+      setItemInCart({
+        ...itemInCart,
+        product: product,
+        quantityOfProduct: quantityInCart + 1,
+      });
+    }
+  };
+
+  if (itemInCart !== initialState) {
+    localStorage.setItem(product._id, JSON.stringify(itemInCart));
+  }
+
   return (
     <Div className="card-body">
       <Link to={"/products/" + _id}>
@@ -24,13 +66,15 @@ const ProductCard = ({ product }) => {
           width="400px"
         />
       </Link>
-        <Link to={"/products/" + _id}>
-          <p className="title">{name}</p>
-        </Link>
-        <div className="tags">
-          {/* <span className="tag">For {body_location}</span> */}
-        </div>
-        <button className="add-to-card-btn">{price} - Add to Cart</button>
+      <Link to={"/products/" + _id}>
+        <p className="title">{name}</p>
+      </Link>
+      <div className="tags">
+        {/* <span className="tag">For {body_location}</span> */}
+      </div>
+      <button className="add-to-card-btn" onClick={addToCart}>
+        {price} - Add to Cart
+      </button>
     </Div>
   );
 };
@@ -104,6 +148,10 @@ p {
   border: none;
   color: white;
   background: ${theme.accentColor};
+
+  &:hover {
+    cursor: pointer;
+  }
 
 }
 

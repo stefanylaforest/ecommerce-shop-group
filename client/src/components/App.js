@@ -34,7 +34,7 @@ function App() {
             <Homepage />
           </Route>
           <Route exact path="/products">
-            <CollectionPage />
+            <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon}/>
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon} />

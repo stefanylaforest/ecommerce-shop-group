@@ -6,7 +6,7 @@ import { AppContext } from "./AppContext";
 import ProductCard from "./ProductCard";
 import FilterGroup from "./FilterGroup";
 
-const CollectionPage = () => {
+const CollectionPage = ({ handleClickOnCartIcon }) => {
   const {
     products,
     setItemsInCart,
@@ -169,7 +169,11 @@ const CollectionPage = () => {
         </div>
         <div className="collection">
           {filterProducts().map((product, index) => (
-            <ProductCard key={"product-card-" + index} product={product} />
+            <ProductCard
+              key={"product-card-" + index}
+              product={product}
+              handleClickOnCartIcon={handleClickOnCartIcon}
+            />
           ))}
         </div>
       </div>

@@ -75,7 +75,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = (count + item.quantityOfProduct * removeDollarSign).toFixed(2));
+    return (count = (count + item.quantityOfProduct * removeDollarSign));
   });
 
   return (
