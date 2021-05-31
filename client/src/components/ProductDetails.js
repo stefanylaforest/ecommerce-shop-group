@@ -46,7 +46,7 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
 
   //add to cart function
   const addToCart = () => {
-    handleClickOnCartIcon();
+    // handleClickOnCartIcon();
     if (itemInCart.quantityOfProduct < 1) {
       setQuantityInCart(selectedQuantity => quantityInCart + selectedQuantity);
       setItemInCart({

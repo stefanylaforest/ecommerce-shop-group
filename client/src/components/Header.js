@@ -2,14 +2,15 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
-import { FaShoppingCart, FaBars } from "react-icons/fa";
+import { FaShoppingCart, FaBars, FaBorderNone } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
 import BrandDropDown from "./Dropdowns/BrandDropDown";
 import WearablesDropDown from "./Dropdowns/WearablesDropDown";
+import { GiRoundStar } from "react-icons/gi";
 
 const Header = ({ handleClickOnCartIcon }) => {
-  const { categories, brands } = useContext(AppContext);
+  const { categories, brands, selectedItems } = useContext(AppContext);
   const location = useLocation();
 
   return (
@@ -38,6 +39,7 @@ const Header = ({ handleClickOnCartIcon }) => {
           </StyledNavLink>
           <li>
             <StyledCartIcon onClick={handleClickOnCartIcon} />
+            <ItemInCart selectedItems={selectedItems} />
           </li>
         </NavMenu>
       ) : (
@@ -79,6 +81,12 @@ const StyledNavLink = styled(NavLink)`
   &:visited {
     color: white;
   }
+`;
+
+const ItemInCart = styled(GiRoundStar)`
+  visibility: ${({ selectedItems }) => (selectedItems[0] ? "visible" : "hidden")};
+  transform: translate(-4px, -17px);
+  fill: ${theme.accentColor};
 `;
 
 const StyledCartIcon = styled(FaShoppingCart)`

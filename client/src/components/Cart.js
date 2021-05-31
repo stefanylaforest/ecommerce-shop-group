@@ -6,16 +6,18 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
-  const { selectedItem, setSelectedItem } = useContext(AppContext);
+  const { selectedItems, setSelectedItems } = useContext(AppContext);
 
   let valuesInStorage = Object.values(localStorage);
+
+  console.log(valuesInStorage);
   useEffect(() => {
     //get values as an array in local strage
     if (valuesInStorage.length > 0) {
       valuesInStorage.forEach((item) => {
         let parsedValues = JSON.parse(item);
-        selectedItem.push(parsedValues);
-        setSelectedItem(selectedItem);
+        selectedItems.push(parsedValues);
+        setSelectedItems(selectedItems);
       });
     }
   }, []);
@@ -36,8 +38,8 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
 
   const handleClickAdd = (item) => {
     // if (item.quantityOfProduct > 2) {
-      // localStorage.setItem(item.product._id,item.quantityOfProduct + 1);
-      // return item.quantityOfProduct + 1;
+    // localStorage.setItem(item.product._id,item.quantityOfProduct + 1);
+    // return item.quantityOfProduct + 1;
     // } else {
     //   return;
     // }
@@ -46,17 +48,19 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   const handleClickRemove = (item) => {
     localStorage.removeItem(item.product._id);
 
-    let updatedArray = [...selectedItem];
+    let updatedArray = [...selectedItems];
     updatedArray.splice(
       updatedArray.findIndex((i) => i.product._id === item.product._id),
       1
     );
-    setSelectedItem(updatedArray);
+    setSelectedItems(updatedArray);
   };
 
-  console.log(selectedItem);
+  console.log(selectedItems);
 
   return (
+    <>
+    {isCartVisible &&
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
       <Icon onClick={handleClickOnCartIcon}>
@@ -64,7 +68,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       </Icon>
       <Hr />
       <ItemContainer>
-        {selectedItem.map((item) => {
+        {selectedItems.map((item) => {
           return (
             <ItemWrap key={item.product._id}>
               <ItemImage src={item.product.imageSrc} />
@@ -72,9 +76,11 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
                 <ItemName>{item.product.name}</ItemName>
                 <Price>{item.product.price}</Price>
                 <QuantityContainer>
-                  <SubtractBtn onClick={()=> handleClickSubtract(item)}>-</SubtractBtn>
+                  <SubtractBtn onClick={() => handleClickSubtract(item)}>
+                    -
+                  </SubtractBtn>
                   <Quantity>{item.quantityOfProduct}</Quantity>
-                  <AddBtn onClick={()=> handleClickAdd(item)}>+</AddBtn>
+                  <AddBtn onClick={() => handleClickAdd(item)}>+</AddBtn>
                 </QuantityContainer>
                 <ItemDeleteIcon onClick={() => handleClickRemove(item)} />
               </ItemInnerWrap>
@@ -82,11 +88,13 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
           );
         })}
       </ItemContainer>
-      <LinkToCheckout to="/checkout">
-        <CheckoutBtn>CHECK OUT - PRICE</CheckoutBtn>
+      <LinkToCheckout to={selectedItems[0] && "/checkout"}>
+        <CheckoutBtn>{selectedItems[0]? "CHECK OUT - PRICE" : "NOTHING IN CART"}</CheckoutBtn>
       </LinkToCheckout>
     </CartContainer>
-  );
+      }
+      </>
+      );
 };
 
 const ItemContainer = styled.div`
