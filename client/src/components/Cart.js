@@ -10,7 +10,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
 
   let valuesInStorage = Object.values(localStorage);
 
-  console.log(valuesInStorage);
+  // console.log(valuesInStorage);
   useEffect(() => {
     //get values as an array in local strage
     if (valuesInStorage.length > 0) {
@@ -23,26 +23,41 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   }, []);
 
   const handleClickSubtract = (item) => {
-    // if (item.quantityOfProduct > 2) {
-    //   for(let i = 0; i < valuesInStorage.length; i++){
-    //     if(item.product._id === i.product._id){
-    //        i.quantityOfProduct - 1;
-    //        break;
-    //     }
-    //   }
-    //   localStorage.setItem(item.product._id,JSON.stringify(valuesInStorage));
-    // } else {
-    //   return;
-    // }
+    if (item.quantityOfProduct >= 2) {
+      const updatedItem = {
+        ...item,
+        quantityOfProduct: item.quantityOfProduct - 1,
+      };
+      localStorage.setItem(item.product._id, JSON.stringify(updatedItem));
+      let newVersionOfItems = [];
+      selectedItems.forEach((e) => {
+        if (e.product._id === item.product._id) {
+          newVersionOfItems.push(updatedItem);
+        } else {
+          newVersionOfItems.push(e);
+        }
+      });
+      setSelectedItems(newVersionOfItems);
+    }
   };
 
   const handleClickAdd = (item) => {
-    // if (item.quantityOfProduct > 2) {
-    // localStorage.setItem(item.product._id,item.quantityOfProduct + 1);
-    // return item.quantityOfProduct + 1;
-    // } else {
-    //   return;
-    // }
+    if (item.quantityOfProduct < item.product.numInStock) {
+      const updatedItem = {
+        ...item,
+        quantityOfProduct: item.quantityOfProduct + 1,
+      };
+      localStorage.setItem(item.product._id, JSON.stringify(updatedItem));
+      let newVersionOfItems = [];
+      selectedItems.forEach((e) => {
+        if (e.product._id === item.product._id) {
+          newVersionOfItems.push(updatedItem);
+        } else {
+          newVersionOfItems.push(e);
+        }
+      });
+      setSelectedItems(newVersionOfItems);
+    }
   };
 
   const handleClickRemove = (item) => {
@@ -56,11 +71,14 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
     setSelectedItems(updatedArray);
   };
 
-  console.log(selectedItems);
+  let count = 0;
+  selectedItems.map((item) => {
+    let price = item.product.price;
+    let removeDollarSign = price.substr(1);
+    return (count = (count + item.quantityOfProduct * removeDollarSign).toFixed(2));
+  });
 
   return (
-    <>
-    {isCartVisible &&
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
       <Icon onClick={handleClickOnCartIcon}>
@@ -89,12 +107,12 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
         })}
       </ItemContainer>
       <LinkToCheckout to={selectedItems[0] && "/checkout"}>
-        <CheckoutBtn>{selectedItems[0]? "CHECK OUT - PRICE" : "NOTHING IN CART"}</CheckoutBtn>
+        <CheckoutBtn>
+          {selectedItems[0] ? `CHECK OUT - ${count}` : "YOUR CART IS EMPTY"}
+        </CheckoutBtn>
       </LinkToCheckout>
     </CartContainer>
-      }
-      </>
-      );
+  );
 };
 
 const ItemContainer = styled.div`

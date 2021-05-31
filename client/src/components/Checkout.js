@@ -4,7 +4,7 @@ import { theme } from "./GlobalStyles";
 import { AppContext } from "../components/AppContext";
 
 const Checkout = () => {
-  const { selectedItem, setSelectedItem } = useContext(AppContext);
+  const { selectedItems, setSelectedItems } = useContext(AppContext);
 
   return (
     <AllWrapper>
@@ -85,10 +85,78 @@ const Checkout = () => {
           </BtnWrapper>
         </ContactWrapper>
       </PaymentContainer>
-      <ViewCartContainer></ViewCartContainer>
+      <ViewCartContainer>
+        <CartContainer>
+          <ItemsContainer>
+          {selectedItems.map((item) => {
+            return (
+              <ItemContainer>
+                <ImageWrapper>
+                  <ItemImage src={item.product.imageSrc}/>
+                </ImageWrapper>
+                <Quantity>{item.quantityOfProduct}</Quantity>
+                <ItemName>{item.product.name}</ItemName>
+                <ItemPrice>{item.product.price}</ItemPrice>
+              </ItemContainer>
+            );
+          })}
+          </ItemsContainer>
+        </CartContainer>
+      </ViewCartContainer>
     </AllWrapper>
   );
 };
+
+const ItemPrice = styled.p`
+`;
+
+const ItemName = styled.p`
+width: 300px;
+font-size: 0.9rem;
+font-weight: 600;
+`;
+
+const Quantity = styled.p`
+width: 30px;
+height: 30px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align : center;
+margin: 0;
+padding: 1px 1px;
+font-size: 15px;
+transform: translate(-20px, -50px);
+background-color: #454e51;
+color: #fff;
+border-radius: 50%;
+`;
+
+const ItemImage = styled.img`
+width: 80px;
+`;
+
+const ImageWrapper = styled.div`
+`;
+
+const ItemContainer = styled.div`
+display:flex;
+align-items: center;
+padding-top: 20px;
+`;
+
+const ItemsContainer = styled.div`
+height: 400px;
+overflow: scroll;
+`;
+
+const CartContainer = styled.div`
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+`;
 
 const Btn = styled.button`
   text-transform: none;
