@@ -81,12 +81,25 @@ const createOrder = (req, res) => {
     country,
     creditCardNum,
     expirationDate,
-    itemId,
-    quantity,
+    phoneNumber,
   } = req.body;
 
   let status = "";
   let error = "";
+
+  console.log(
+    "frombackend",
+    firstName,
+    lastName,
+    email,
+    address,
+    city,
+    province,
+    country,
+    creditCardNum,
+    expirationDate,
+    phoneNumber
+  );
 
   // primarily checking if all required informations are filled out.
   if (
@@ -99,8 +112,7 @@ const createOrder = (req, res) => {
     country &&
     creditCardNum &&
     expirationDate &&
-    itemId &&
-    quantity
+    phoneNumber
   ) {
     status = "success";
     // validation for email.
@@ -154,14 +166,16 @@ const updateStockNumber = (req, res) => {
   const { selectedQuantityNum } = req.body;
   const product = items.find((item) => item._id === Number(productId));
 
-const updatedStockNum =  product.numInStock - selectedQuantityNum;
+  const updatedStockNum = product.numInStock - selectedQuantityNum;
 
   if (product.numInStock > 0) {
-    res.status(200).json({ status: 200, message: "success", data: {...product, numInStock: updatedStockNum}});
+    res.status(200).json({
+      status: 200,
+      message: "success",
+      data: { ...product, numInStock: updatedStockNum },
+    });
   } else {
-    res
-      .status(404)
-      .json({ status: 404, message: "Out of stock", data: null });
+    res.status(404).json({ status: 404, message: "Out of stock", data: null });
   }
 };
 

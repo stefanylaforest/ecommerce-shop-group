@@ -1,44 +1,60 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "./GlobalStyles";
 import { AppContext } from "../components/AppContext";
-
-let initialState = "";
+import { errorMessages } from "../settings";
 
 const Checkout = () => {
-  const [formValue, setFormValue] = useState(initialState);
   const [errMessage, setErrMessage] = useState("");
-  const { selectedItems, setSelectedItems } = useContext(AppContext);
+  const [status, setStatus] = useState("idle");
+  const [disabled, setDisabled] = useState(true);
+  const { selectedItems, setSelectedItems, formValue, setFormValue } =
+    useContext(AppContext);
+  const history = useHistory();
 
-  const postTweet = (e) => {
+  useEffect(() => {
+    Object.values(formValue).includes("")
+      ? setDisabled(true)
+      : setDisabled(false);
+  }, [formValue, setDisabled]);
+
+  const handleFormChange = (value, name) => {
+    setFormValue({ ...formValue, [name]: value });
+    setErrMessage("");
+  };
+
+  const createOrderHandler = (e) => {
     e.preventDefault();
+    setStatus("pending");
 
-    if (formValue.length === 0) {
-      setErrMessage("zero-characters");
-      return;
-    } else if (formValue.length > 280) {
-      setErrMessage("too-many-characters");
-      return;
-    } else {
-      setErrMessage("none");
-    }
+    console.log("form", formValue);
 
     fetch("/api/order", {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ status: formValue }),
+      body: JSON.stringify(formValue),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        setFormValue(initialState);
+        const { status, error } = data;
+        console.log("status", status);
+        // setFormValue(initialState);
+        if (status === "success") {
+          setStatus("confirmed");
+          history.push("/confirmation");
+        } else if (error) {
+          setStatus("error");
+          setErrMessage(errorMessages[error]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
-    // .catch((error) => {
-    //   console.error("Error:", error);
-    //   history.push("/error");
-    // });
   };
 
   let count = 0;
@@ -48,6 +64,8 @@ const Checkout = () => {
     return (count = count + item.quantityOfProduct * removeDollarSign);
   });
 
+  console.log("formValue", formValue);
+
   return (
     <AllWrapper>
       <PaymentContainer>
@@ -55,7 +73,13 @@ const Checkout = () => {
           <H3>Contact Information</H3>
           <InputDiv>
             <OuterSpan>
-              <Input className="inputText" type="text" required />
+              <Input
+                className="inputText"
+                type="text"
+                name="email"
+                required
+                onChange={(ev) => handleFormChange(ev.target.value, "email")}
+              />
               <InnerSpan className="floating-label">Email</InnerSpan>
             </OuterSpan>
           </InputDiv>
@@ -63,53 +87,113 @@ const Checkout = () => {
           <InputRow>
             <InputDiv>
               <OuterSpan>
-                <FirstInput className="inputText" type="text" required />
+                <FirstInput
+                  className="inputText"
+                  type="text"
+                  name="fistName"
+                  required
+                  onChange={(ev) =>
+                    handleFormChange(ev.target.value, "firstName")
+                  }
+                />
                 <InnerSpan className="floating-label">First name</InnerSpan>
               </OuterSpan>
             </InputDiv>
             <InputDiv>
               <OuterSpan>
-                <SecondInput className="inputText" type="text" required />
+                <SecondInput
+                  className="inputText"
+                  type="text"
+                  name="lastName"
+                  required
+                  onChange={(ev) =>
+                    handleFormChange(ev.target.value, "lastName")
+                  }
+                />
                 <InnerSpan className="floating-label">Last name</InnerSpan>
               </OuterSpan>
             </InputDiv>
           </InputRow>
           <InputDiv>
             <OuterSpan>
-              <Input className="inputText" type="text" required />
+              <Input
+                className="inputText"
+                type="text"
+                name="address"
+                required
+                onChange={(ev) => handleFormChange(ev.target.value, "address")}
+              />
               <InnerSpan className="floating-label">Address</InnerSpan>
             </OuterSpan>
           </InputDiv>
           <InputRow>
             <InputDiv>
               <OuterSpan>
-                <FirstTwoInput className="inputText" type="text" required />
+                <FirstTwoInput
+                  className="inputText"
+                  type="text"
+                  name="city"
+                  required
+                  onChange={(ev) => handleFormChange(ev.target.value, "city")}
+                />
                 <InnerSpan className="floating-label">City</InnerSpan>
               </OuterSpan>
             </InputDiv>
             <InputDiv>
               <OuterSpan>
-                <FirstTwoInput className="inputText" type="text" required />
+                <FirstTwoInput
+                  className="inputText"
+                  type="text"
+                  name="province"
+                  required
+                  onChange={(ev) =>
+                    handleFormChange(ev.target.value, "province")
+                  }
+                />
                 <InnerSpan className="floating-label">Province</InnerSpan>
               </OuterSpan>
             </InputDiv>
             <InputDiv>
               <OuterSpan>
-                <LastInput className="inputText" type="text" required />
+                <LastInput
+                  className="inputText"
+                  type="text"
+                  name="country"
+                  required
+                  onChange={(ev) =>
+                    handleFormChange(ev.target.value, "country")
+                  }
+                />
                 <InnerSpan className="floating-label">Country</InnerSpan>
               </OuterSpan>
             </InputDiv>
           </InputRow>
           <InputDiv>
             <OuterSpan>
-              <Input className="inputText" type="text" required />
+              <Input
+                className="inputText"
+                type="text"
+                name="phone"
+                required
+                onChange={(ev) =>
+                  handleFormChange(ev.target.value, "phoneNumber")
+                }
+              />
               <InnerSpan className="floating-label">Phone</InnerSpan>
             </OuterSpan>
           </InputDiv>
           <InputRow>
             <InputDiv>
               <OuterSpan>
-                <FirstInput className="inputText" type="text" required />
+                <FirstInput
+                  className="inputText"
+                  type="text"
+                  name="creditCardNumber"
+                  required
+                  onChange={(ev) =>
+                    handleFormChange(ev.target.value, "creditCardNum")
+                  }
+                />
                 <InnerSpan className="floating-label">
                   Credit card number
                 </InnerSpan>
@@ -117,12 +201,21 @@ const Checkout = () => {
             </InputDiv>
             <InputDiv>
               <OuterSpan>
-                <SecondInput className="inputText" type="text" required />
+                <SecondInput
+                  className="inputText"
+                  type="text"
+                  name="expiryDate"
+                  required
+                  onChange={(ev) =>
+                    handleFormChange(ev.target.value, "expirationDate")
+                  }
+                />
                 <InnerSpan className="floating-label">Expiry date</InnerSpan>
               </OuterSpan>
             </InputDiv>
           </InputRow>
-          <BtnWrapper>
+          {errMessage && <p style={{ color: "red" }}>{errMessage}</p>}
+          <BtnWrapper onClick={createOrderHandler}>
             <Btn className="accentBtn">Confirm Payment</Btn>
           </BtnWrapper>
         </ContactWrapper>

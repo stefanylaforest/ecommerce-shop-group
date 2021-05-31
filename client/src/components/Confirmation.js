@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { BiCheckCircle, BiPrinter } from "react-icons/bi";
+import { AppContext } from "../components/AppContext";
 
 const Confirmation = () => {
+  const { selectedItems, setSelectedItems, formValue, setFormValue } =
+    useContext(AppContext);
+
   const printPageHandler = () => {
     window.print();
   };
 
+  console.log("formValue confirm", formValue);
   return (
     <Wrapper>
       <Column1>
@@ -19,15 +24,25 @@ const Confirmation = () => {
           <BiPrinter onClick={printPageHandler} />
         </div>
 
-        <p>Order Number #2392184294832988423</p>
+        <p>Order Number #{formValue.orderNum}</p>
         <p>
           You will be receiving a confirmation email shortly with your order
           details.
         </p>
         <p>Order Summary: </p>
         <p>Date</p>
-        <p>Name</p>
-        <p>Shipping Address</p>
+        <p>
+          {formValue.firstName} {formValue.lastName}
+        </p>
+        <p>{formValue.email}</p>
+        <p>
+          {formValue.address}, {formValue.city}, {formValue.province},{" "}
+          {formValue.country}
+        </p>
+        <p>
+          **** **** **** ****
+          {formValue.creditCardNum.slice(formValue.creditCardNum.length - 4)}
+        </p>
         <ul>
           <li>purchase item - $12</li>
           <li>purchase item - $12</li>
