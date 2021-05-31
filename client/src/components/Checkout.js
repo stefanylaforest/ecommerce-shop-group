@@ -88,18 +88,19 @@ const Checkout = () => {
       <ViewCartContainer>
         <CartContainer>
           <ItemsContainer>
-          {selectedItems.map((item) => {
-            return (
-              <ItemContainer>
-                <ImageWrapper>
-                  <ItemImage src={item.product.imageSrc}/>
-                </ImageWrapper>
-                <Quantity>{item.quantityOfProduct}</Quantity>
-                <ItemName>{item.product.name}</ItemName>
-                <ItemPrice>{item.product.price}</ItemPrice>
-              </ItemContainer>
-            );
-          })}
+            {selectedItems.map((item) => {
+              return (
+                <ItemContainer>
+                  <ImageWrapper>
+                    <ItemImage src={item.product.imageSrc} />
+                  </ImageWrapper>
+                  <Quantity>{item.quantityOfProduct}</Quantity>
+                  <ItemName>{item.product.name}</ItemName>
+                  <ItemPrice>{item.product.price}</ItemPrice>
+                </ItemContainer>
+              );
+            })}
+            <Divider />
           </ItemsContainer>
         </CartContainer>
       </ViewCartContainer>
@@ -107,55 +108,53 @@ const Checkout = () => {
   );
 };
 
-const ItemPrice = styled.p`
-`;
+const ItemPrice = styled.p``;
 
 const ItemName = styled.p`
-width: 300px;
-font-size: 0.9rem;
-font-weight: 600;
+  width: 300px;
+  font-size: 0.9rem;
+  font-weight: 600;
 `;
 
 const Quantity = styled.p`
-width: 30px;
-height: 30px;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align : center;
-margin: 0;
-padding: 1px 1px;
-font-size: 15px;
-transform: translate(-20px, -50px);
-background-color: #454e51;
-color: #fff;
-border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  padding: 1px 1px;
+  font-size: 15px;
+  transform: translate(-20px, -50px);
+  background-color: #454e51;
+  color: #fff;
+  border-radius: 50%;
 `;
 
 const ItemImage = styled.img`
-width: 80px;
+  width: 80px;
 `;
 
-const ImageWrapper = styled.div`
-`;
+const ImageWrapper = styled.div``;
 
 const ItemContainer = styled.div`
-display:flex;
-align-items: center;
-padding-top: 20px;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
 `;
 
 const ItemsContainer = styled.div`
-height: 400px;
-overflow: scroll;
+  height: 400px;
+  overflow: scroll;
 `;
 
 const CartContainer = styled.div`
-height: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const Btn = styled.button`
@@ -298,6 +297,11 @@ const AllWrapper = styled.div`
   align-items: center;
   height: 100%;
   background-color: #fff;
+`;
+
+const Divider = styled.hr`
+  border: 0.5px solid black;
+  width: 100%;
 `;
 
 export default Checkout;

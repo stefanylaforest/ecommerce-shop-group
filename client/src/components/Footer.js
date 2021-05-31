@@ -36,7 +36,9 @@ const Footer = () => {
         </FooterLinksContainer>
         <Media>
           <MediaWrap>
-            <Logo to="/">Logo</Logo>
+            <Logo to="/">
+              TECH<span style={{ color: `${theme.accentColor}` }}>ACTIV</span>
+            </Logo>
             <CopyRight>
               Copyright © {new Date().getFullYear()} Logo. All Rights Reserved{" "}
             </CopyRight>
