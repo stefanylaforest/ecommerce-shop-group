@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext} from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
@@ -16,11 +16,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       valuesInStorage.forEach((item) => {
         let parsedValues = JSON.parse(item);
         console.log(parsedValues)
-        if(parsedValues){
-          selectedItems.push({...item, quantityOfProduct: item.quantityOfProduct})
-        } else {
-          selectedItems.push(parsedValues);
-        }
+        selectedItems.push(parsedValues);
         setSelectedItems(selectedItems);
       });
     }
@@ -82,7 +78,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
     return (count = count + item.quantityOfProduct * removeDollarSign);
   });
 
-  console.log(selectedItems);
+  console.log(selectedItems)
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
@@ -143,17 +139,20 @@ const ItemInnerWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 30px;
-  width: 220px;
+  width: 200px;
 `;
 
 const ImageWrapper = styled.div`
 display: flex;
+justify-content: center;
+align-items: center;
+background: white;
+width: 180px;
 `;
 
 const ItemImage = styled.img`
   float: left;
-  width: auto 0;
-  height: auto;
+  object-fit: cover;
 `;
 
 const ItemName = styled.p`
