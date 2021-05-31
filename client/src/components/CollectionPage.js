@@ -15,6 +15,8 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     wearables: body_locations,
   } = useContext(AppContext);
 
+  const [pagination, setPagination] = useState(1)
+
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -29,6 +31,7 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
       ? [query.get("body_location")]
       : [],
   };
+
 
   const [filters, setFilters] = useState(initialFilters);
 
@@ -105,7 +108,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
 
     //
 
-    console.log("ALLLLL", productThatPassAllFilters);
 
     return productThatPassAllFilters;
 
@@ -188,6 +190,7 @@ const Div = Styled.div`
 padding: 2rem;
 display: flex;
 justify-content: center;
+background: white;
 
 .collection {
   display: grid;
@@ -208,10 +211,15 @@ justify-content: center;
   border-radius: 5px;
   border: none;
   appearance: none;
+  background: gray;
+  color: white;
+  font-size:1.2em;
+  font-weight: 700;
 
   option {
     padding: 1rem;
-    background: #ffffff;
+    color: white;
+    background: #454e51;
   }
 }
 .filter-box {

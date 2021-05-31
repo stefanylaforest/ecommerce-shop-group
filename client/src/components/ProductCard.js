@@ -52,7 +52,9 @@ const ProductCard = ({ product, handleClickOnCartIcon }) => {
   return (
     <Div className="card-body">
       <Link to={"/products/" + _id}>
-        <img className="product-image" src={imageSrc} alt="product image" />
+        <div className="image-wrapper">
+          <img className="product-image" src={imageSrc} alt="product image" />
+        </div>
       </Link>
       <Link to={"/products/" + _id}>
         <p className="title">{name}</p>
@@ -80,11 +82,20 @@ overflow: hidden;
   display: flex;
   flex-direction: column;
   /* gap: 1.2rem; */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
+
+  .image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    height: 400px;
+  }
 
 .product-image {
-  width: 100%;
-  max-height: 400px;
+  /* width: 100%; */
+  /* max-height: 400px; */
   background: yellow;
   object-fit: cover;
 }
@@ -139,6 +150,7 @@ p {
   background: ${theme.accentColor};
 
   &:hover {
+    background: #C64500;
     cursor: pointer;
   }
 
