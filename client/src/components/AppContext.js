@@ -8,6 +8,7 @@ export const AppProvider = ({ children }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [categories, setCategories] = useState([]);
   const [wearables, setWearables] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([])
 
   useEffect(() => {
     fetch("/api/products")
@@ -46,6 +47,8 @@ export const AppProvider = ({ children }) => {
         setItemsInCart,
         categories,
         wearables,
+        selectedItems,
+        setSelectedItems
       }}
     >
       {children}
