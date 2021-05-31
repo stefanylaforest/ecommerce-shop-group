@@ -1,6 +1,21 @@
 import React, { createContext, useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const AppContext = createContext();
+
+let initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  address: "",
+  city: "",
+  province: "",
+  country: "",
+  creditCardNum: "",
+  expirationDate: "",
+  phoneNumber: "",
+  orderNum: uuidv4(),
+};
 
 export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -8,8 +23,8 @@ export const AppProvider = ({ children }) => {
   const [itemsInCart, setItemsInCart] = useState([]);
   const [categories, setCategories] = useState([]);
   const [wearables, setWearables] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([])
-
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [formValue, setFormValue] = useState(initialState);
 
   useEffect(() => {
     fetch("/api/products")
@@ -50,6 +65,8 @@ export const AppProvider = ({ children }) => {
         wearables,
         selectedItems,
         setSelectedItems,
+        formValue,
+        setFormValue,
       }}
     >
       {children}

@@ -145,6 +145,10 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   /* margin: 0px 100px; */
   border-radius: 50px;
+
+  @media screen and (max-width: 820px){
+    flex-direction: column;
+  }
 `;
 
 const ItemContainer = styled.div`
@@ -158,7 +162,7 @@ const ItemContainer = styled.div`
 const ItemImg = styled.img`
   border-radius: 5px;
   object-fit: cover;
-  width: 400px
+  width: 400px;
 `;
 
 const ProductInfoContainer = styled.div`

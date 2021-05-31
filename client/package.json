@@ -12,7 +12,8 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "uuidv4": "^6.2.8"
   },
   "scripts": {
     "start": "react-scripts start",
