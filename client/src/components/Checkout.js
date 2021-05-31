@@ -199,7 +199,7 @@ const InputDiv = styled.div`
 const H3 = styled.h3`
   margin: 0;
   margin-top: 40px;
-  font-weight: 500
+  font-weight: 500;
 `;
 
 const ContactWrapper = styled.div`
