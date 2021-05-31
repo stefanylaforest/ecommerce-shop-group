@@ -187,11 +187,13 @@ const Div = Styled.div`
 
 padding: 2rem;
 display: flex;
+justify-content: center;
 
 .collection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  gap: 4rem;
+  /* margin: 0 auto; */
 }
 
 .control-box {
