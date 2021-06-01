@@ -6,8 +6,7 @@ import { AppContext } from "../components/AppContext";
 import { useHistory } from "react-router-dom";
 
 const Confirmation = () => {
-  const { selectedItems, setSelectedItems, formValue, setFormValue } =
-    useContext(AppContext);
+  const { purchased, formValue, setFormValue } = useContext(AppContext);
 
   const history = useHistory();
 
@@ -16,7 +15,7 @@ const Confirmation = () => {
   };
 
   let count = 0;
-  selectedItems.map((item) => {
+  purchased.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
     return (count =
@@ -27,7 +26,7 @@ const Confirmation = () => {
   return (
     <Wrapper>
       {" "}
-      {/* {formValue.firstName === "" && history.push("/error")} */}
+      {formValue.firstName === "" && history.push("/view-order")}
       <Column1>
         <Check>
           <AiFillCheckCircle />
@@ -70,9 +69,10 @@ const Confirmation = () => {
             </span>
           </Labels>
         </p>
+
         <Products>
           <ul>
-            {selectedItems.map((item) => (
+            {purchased.map((item) => (
               <Item>
                 <p>
                   <Bold>{item.quantityOfProduct}x</Bold> {item.product.name}
