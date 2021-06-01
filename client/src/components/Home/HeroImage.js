@@ -71,6 +71,10 @@ const ProductName = styled.p`
   align-items: flex-start;
   text-transform: capitalize;
   font-weight: 400;
+
+  @media screen and (max-width: 880px) {
+    transform: translateY(-50px);
+  }
 `;
 
 const New = styled.h3`
@@ -80,12 +84,20 @@ const New = styled.h3`
   margin-bottom: -30px;
   color: ${theme.accentColor};
   margin-top: 70px;
+
+  @media screen and (max-width: 880px) {
+    transform: translateY(-50px);
+  }
 `;
 
 const CallToAction = styled.button`
   width: 150px;
   position: absolute;
   top: 400px;
+
+  @media screen and (max-width: 880px) {
+    transform: translateY(100px);
+  }
 `;
 
 const ProductImg = styled.img`
@@ -109,6 +121,15 @@ const Brand = styled.h2`
   font-size: 250px;
   padding: 0px;
   margin: 0px;
+  transition: 0.2s ease-out;
+
+  @media screen and (max-width: 1150px) {
+    font-size: 200px;
+  }
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export default HeroImage;
