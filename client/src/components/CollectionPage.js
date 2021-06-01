@@ -6,6 +6,7 @@ import { AppContext } from "./AppContext";
 import ProductCard from "./ProductCard";
 import FilterGroup from "./FilterGroup";
 import Pagination from "./Pagination";
+import SortDropDown from "./SortDropdown";
 
 const CollectionPage = ({ handleClickOnCartIcon }) => {
   const {
@@ -17,13 +18,12 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   } = useContext(AppContext);
 
   const [pagination, setPagination] = useState(1);
+  const [sortType, setSortType] = useState("");
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   const query = useQuery();
-
-  console.log("brands", brands);
 
   const initialFilters = {
     brand: query.get("brand") ? [query.get("brand")] : [],
@@ -62,34 +62,41 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     }
   };
 
-  const filterProducts = () => {
+  const filterProducts = (arr) => {
+    // console.log("AAAARRR", arr);
+    if (!arr) {
+      return;
+    }
+    if (arr.length === 0) {
+      return arr;
+    }
+
     let productThatPassCategoryFilter = [];
     let productThatPassBrandFilter = [];
     let productThatPassBodyLocationFilter = [];
 
     if (filters.brand.length === 0) {
-      productThatPassBrandFilter = products;
+      productThatPassBrandFilter = arr;
     } else {
-      productThatPassBrandFilter = products.filter((product) =>
+      productThatPassBrandFilter = arr.filter((product) =>
         filters.brand.includes(
           brands.find((brand) => brand._id === product.companyId)?.name
         )
       );
-      console.log("passed brand", productThatPassBrandFilter);
     }
 
     if (filters.category.length === 0) {
-      productThatPassCategoryFilter = products;
+      productThatPassCategoryFilter = arr;
     } else {
-      productThatPassCategoryFilter = products.filter((product) =>
+      productThatPassCategoryFilter = arr.filter((product) =>
         filters.category.includes(product.category)
       );
     }
 
     if (filters.body_location.length === 0) {
-      productThatPassBodyLocationFilter = products;
+      productThatPassBodyLocationFilter = arr;
     } else {
-      productThatPassBodyLocationFilter = products.filter((product) =>
+      productThatPassBodyLocationFilter = arr.filter((product) =>
         filters.body_location.includes(product.body_location)
       );
     }
@@ -101,33 +108,71 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     productThatPassAllFilters = productThatPassAllFilters.filter((p) =>
       productThatPassBrandFilter.includes(p)
     );
-
-    //
-
     return productThatPassAllFilters;
-
-    // if (
-    //   filters.brands.length === 0 &&
-    //   filters.categories.length === 0 &&
-    //   filters.bodyLocation.length === 0
-    // ) {
-    //   console.log('HEEEEEEEEEEEERER');
-    //   return products;
-    // } else {
-
-    //   let productThatPassCategoryFilter = products.filter((product) =>
-    //     filters.categories.includes(product.category)
-    //   );
-    //   return productThatPassCategoryFilter;
-    // }
   };
 
-  console.log("filters are:", filters);
+  const handleChangeSortType = (event) => {
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    console.log("Now Sort Type is ", event.target.value);
+    setSortType(event.target.value);
+  };
 
-  console.log("Page is ", pagination);
-  console.log((pagination - 1)* 12);
-  console.log((pagination ) * 12 + 1);
+  const sortPlease = (arr, type) => {
+    if (arr.length === 0) {
+      return arr;
+    }
+    // console.log("arr is sortPlease", arr);
+    // console.log("type is sortPlease", type);
+    let sortedArr;
+    switch (type) {
+      case "priceLowToHight":
+        sortedArr = arr.sort(function (a, b) {
+          return (
+            Number(a.price.replace("$", "")) - Number(b.price.replace("$", ""))
+          );
+        });
+        break;
+      case "priceHightToLow":
+        sortedArr = arr.sort(function (a, b) {
+          return (
+            Number(b.price.replace("$", "")) - Number(a.price.replace("$", ""))
+          );
+        });
+        break;
+      case "AtoZ":
+        sortedArr = arr.sort(function (a, b) {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+      case "ZtoA":
+        sortedArr = arr.sort(function (a, b) {
+          if (b.name < a.name) {
+            return -1;
+          }
+          if (b.name > a.name) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+      default:
+        return arr;
+        break;
+    }
 
+    return sortedArr;
+  };
+
+  // console.log("filters are:", filters);
+
+  console.log("SOOOOORT TYPE:", sortType);
+  console.log("SORT Please", sortPlease(products, sortType));
 
   return (
     <Div>
@@ -162,17 +207,12 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
          */}
       <div className="wrapper">
         <div className="control-box">
-          <select className="sort-dropdown">
-            <option>Price: Lowest to Highest</option>
-            <option>Price: Highest to Lowest</option>
-            <option>A to Z</option>
-            <option>Z to A</option>
-          </select>
+          <SortDropDown onChangeHandler={handleChangeSortType} />
         </div>
-        
 
         <div className="collection">
-          {filterProducts()
+          {sortPlease(filterProducts(products), sortType)
+            //follwoing filter is doing the pagination stuff!
             .filter((product, index) => {
               return (
                 index > (pagination - 1) * 12 && index < pagination * 12 + 1
@@ -188,9 +228,9 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
         </div>
         <Pagination
           numOfPages={
-            filterProducts().length % 12 === 0
-              ? filterProducts().length / 12
-              : (Math.floor(filterProducts().length / 12) + 1)
+            filterProducts(products).length % 12 === 0
+              ? filterProducts(products).length / 12
+              : Math.floor(filterProducts(products).length / 12) + 1
           }
           pagination={pagination}
           setPagination={setPagination}
@@ -245,26 +285,7 @@ background: white;
 }
 
 
-.sort-dropdown {
-  padding-right: 10px;
-  padding-left: 10px;
-  border-radius: 5px;
-  /* border: 3px solid gray; */
-  border: none;
-  background: #dddddd;
-  appearance: none;
-  /* background: ; */
-  color: gray;
-  font-size:1.2em;
-  font-weight: 700;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-  option {
-    /* padding: 1rem; */
-    color: white;
-    background: #454e51;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
 }
 .filter-box {
   background: lightgreen;
