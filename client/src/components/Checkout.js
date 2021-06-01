@@ -25,6 +25,7 @@ const Checkout = () => {
   //   '6623 Casio A168W-1 Mens Classic Digital Electro Luminescence Bracelet Wrist Watch; Silver $13.99 1',
   //   '6695 Garmin fenix 2 - Hiking, running GPS watch - 1.2" monochrome - 70 x 70 $399.99 1'
   // ]
+
   let itemsPurchased = [];
   selectedItems.forEach((item) => {
     itemsPurchased.push(
@@ -49,8 +50,27 @@ const Checkout = () => {
     setErrMessage("");
   };
 
-  const createOrderHandler = (e) => {
-    e.preventDefault();
+  const updateInventory = () => {
+    selectedItems.forEach((item) => {
+      fetch(`api/products/${item.product._id}/update`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ selectedQuantityNum: item.quantityOfProduct }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  };
+
+  const createOrderHandler = () => {
     setStatus("pending");
 
     console.log("form", formValue);
@@ -71,6 +91,11 @@ const Checkout = () => {
         // setFormValue(initialState);
         if (status === "success") {
           setStatus("confirmed");
+          setPurchased(selectedItems);
+          updateInventory();
+          setSelectedItems([]);
+          localStorage.clear();
+          localStorage.setItem(formValue.orderNum, JSON.stringify(formValue));
           history.push("/confirmation");
         } else if (error) {
           setStatus("error");
@@ -91,7 +116,8 @@ const Checkout = () => {
       Number(item.quantityOfProduct) * Number(removeDollarSign)).toFixed(2);
   });
 
-  console.log("formValue", formValue);
+  // console.log("formValue", formValue);
+  // console.log("purchased", purchased);
 
   return (
     <AllWrapper>

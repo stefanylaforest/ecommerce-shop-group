@@ -7,7 +7,12 @@ import { AppContext } from "../components/AppContext";
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   const { selectedItems, setSelectedItems } = useContext(AppContext);
-  let valuesInStorage = Object.values(localStorage);
+
+  // let valuesInStorage = Object.values(localStorage);
+
+  let valuesInStorage = Object.entries(localStorage)
+    .filter((entry) => entry[0] === "product")
+    .map((entry) => entry[1]);
 
   // console.log(valuesInStorage);
   useEffect(() => {
@@ -80,7 +85,9 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       Number(item.quantityOfProduct) * Number(removeDollarSign).toFixed(2));
   });
 
-  console.log(selectedItems);
+
+
+
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
