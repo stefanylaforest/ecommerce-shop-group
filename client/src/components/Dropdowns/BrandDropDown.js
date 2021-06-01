@@ -28,7 +28,7 @@ const BrandDropDown = () => {
               </Link>
             </li>
           ))}
-          <Link to={`/`}>
+          <Link to={`/brands`}>
             <DropDownListItem>View All</DropDownListItem>
           </Link>
         </Ulbox>
