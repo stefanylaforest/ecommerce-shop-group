@@ -1,39 +1,41 @@
 import React from "react";
+import Styled from "styled-components";
 
-export const FilterGroup = ({
-  title,
-  type,
-  optionsNames,
-  optionsValues,
-  handleFilterChange,
-  selectedOptions,
-}) => {
-
-  const handler = (event) => {
-    // event.preventDefault();
-    console.log('HANDLEEEEEEEEEEEEd');
-    // event.target.checked = !event.target.checked;
-  }
-
+export const FilterGroup = ({ title, options, updateFiltersHandler }) => {
   return (
-    <details>
-      <summary>{title}</summary>
-      {optionsNames.map((option, index) => {
-        return (
-          <div key={"option-" + index} className="checkbox">
-            <input
-              type="checkbox"
-              value={optionsValues[index]}
-              name={type}
-              onChange={handleFilterChange}
-              // checked={selectedOptions.includes(option)}
-            />
-            <label key={"label-" + index}>{option}</label>
-          </div>
-        );
-      })}
-    </details>
+    <Div>
+      {options && (
+        <details>
+          <summary>
+            <h2 className="filter-title">{title}</h2>
+          </summary>
+          <ul>
+            {Object.entries(options).map((entry) => {
+              return (
+                <div>
+                  <input
+                    className=".checkbox"
+                    type="checkbox"
+                    checked={entry[1]}
+                    onChange={updateFiltersHandler}
+                  />
+                  <lable>{entry[0]}</lable>
+                </div>
+              );
+            })}
+          </ul>
+        </details>
+      )}
+    </Div>
   );
 };
 
 export default FilterGroup;
+
+const Div = Styled.div`
+
+padding-right: 1rem;
+padding-left: 1rem;
+background: lightblue;
+
+`;

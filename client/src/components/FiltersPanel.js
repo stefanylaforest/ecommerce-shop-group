@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "./AppContext";
 import { FilterContext } from "./FilterContext";
+import FilterGroup from "./FilterGroup";
 
 const FiltersPanel = () => {
   const {
@@ -17,13 +18,21 @@ const FiltersPanel = () => {
   return (
     <Div>
       Filters are here
-      {filters.brands && (
-        <ul>
-          {Object.entries(filters.brands).map((entry) => {
-            return <li>{entry[0] + "_" + entry[1]}</li>;
-          })}
-        </ul>
-      )}
+      <FilterGroup
+        title="Category"
+        options={filters.category}
+        updateFiltersHandler={updateFiltersHandler}
+      />
+      <FilterGroup
+        title="Brands"
+        options={filters.brand}
+        updateFiltersHandler={updateFiltersHandler}
+      />
+      <FilterGroup
+        title="Body Location"
+        options={filters.body_location}
+        updateFiltersHandler={updateFiltersHandler}
+      />
     </Div>
   );
 };
@@ -32,4 +41,12 @@ export default FiltersPanel;
 
 const Div = styled.div`
   background: lightgreen;
+
+  .checkbox {
+  }
+
+  .filter-title {
+    font-size: 0.6em;
+    display: inline;
+  }
 `;
