@@ -29,6 +29,7 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
+        location.pathname === "/brands" ||
         location.pathname.includes("/products") ? (
           <MobileIcon onClick={handleClickOnHamburger}>
             <FaBars />
@@ -40,6 +41,7 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
       {location.pathname === "/" ||
       location.pathname === "/confirmation" ||
       location.pathname === "/view-order" ||
+      location.pathname === "/brands" ||
       location.pathname.includes("/products") ? (
         <NavMenu>
           <CategoriesDropDown />
