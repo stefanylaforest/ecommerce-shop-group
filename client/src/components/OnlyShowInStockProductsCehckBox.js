@@ -1,21 +1,29 @@
-import React from 'react'
-import Styled from 'styled-components';
+import React from "react";
+import Styled from "styled-components";
 
-const OnlyShowInStockProductsCehckBox = ({onChangeHandler, isOnlyShowInStockChecked}) => {
-    return (
-        <Div>
-            <input type='checkbox' checked={isOnlyShowInStockChecked} onChange={onChangeHandler} />
-            <label className='label'>Only In Stock Products</label>
-        </Div>
-    )
-}
+const OnlyShowInStockProductsCehckBox = ({
+  onChangeHandler,
+  isOnlyShowInStockChecked,
+}) => {
+  return (
+    <Div>
+      <input
+        type="checkbox"
+        checked={isOnlyShowInStockChecked}
+        onChange={onChangeHandler}
+      />
+      <label className="label">Only In Stock Products</label>
+    </Div>
+  );
+};
 
-export default OnlyShowInStockProductsCehckBox
+export default OnlyShowInStockProductsCehckBox;
 
 const Div = Styled.div`
 
 display: flex;
 gap: 0.5rem;
+align-items: center;
 
 .label {
     font-size:1.2em;
@@ -24,5 +32,4 @@ gap: 0.5rem;
 }
 
 
-`
-
+`;
