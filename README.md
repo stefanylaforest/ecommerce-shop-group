@@ -62,3 +62,9 @@ The most important aspect of this project is the ability to work in a team. No m
 ## GitHub
 
 see the [GITHUB Document](__documentation/GITHUB.md)
+
+---
+
+##
+
+Open another terminal and cd into client `cd client` then run `yarn install` to install dependencies. Run `yarn start` to start the client.

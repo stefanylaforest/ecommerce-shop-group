@@ -38,7 +38,7 @@ const getSingleBrand = (req, res) => {
 
   const id = brands.find(
     (brand) => brand.name.toLowerCase() === brandName.toLowerCase()
-  )._id;
+  )?._id;
 
   const result = items.filter((item) => item.companyId === Number(id));
 
