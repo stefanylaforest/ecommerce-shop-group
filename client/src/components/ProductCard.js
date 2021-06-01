@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import Styled, { keyframes } from "styled-components";
 import { theme } from "./GlobalStyles";
 import { AppContext } from "./AppContext";
 
@@ -75,9 +75,18 @@ const ProductCard = ({ product, handleClickOnCartIcon }) => {
 
 export default ProductCard;
 
+const scaleIn = keyframes`
+  from {
+    transform: scale(0.8)
+  }
+
+  to {
+    transform: scale(1);
+  }
+`;
+
 const Div = Styled.div`
 
-/* flex: 15%; */
 max-width: 400px;
 background: #454e51;
 
@@ -88,6 +97,9 @@ overflow: hidden;
   /* gap: 1.2rem; */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
+&:hover {
+  box-shadow: rgba(100, 100, 111, 0.8) 0px 7px 29px 0px;
+}
 
   .image-wrapper {
     display: flex;
@@ -153,6 +165,9 @@ p {
   color: white;
   background: ${theme.accentColor};
 
+  &:active {
+    animation: scaleIn 0.3s ease-in-out forwards;
+  }
 
   &:hover {
     background: #C64500;
