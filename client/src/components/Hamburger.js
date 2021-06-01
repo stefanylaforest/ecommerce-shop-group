@@ -13,7 +13,7 @@ function Hamburger({ isHamburgerOpen, handleClickOnHamburger, handleClickOnCartI
       <Wrapper>
         <HamburgerLink to="/" onClick={handleClickOnHamburger}>Home</HamburgerLink>
         <HamburgerLink to="products" onClick={handleClickOnHamburger}>All Products</HamburgerLink>
-        <HamburgerLink to="view-order" onClick={handleClickOnHamburger}>View Order</HamburgerLink>
+        <HamburgerLink to="view-order" onClick={handleClickOnHamburger}>Track-Order</HamburgerLink>
         <HamburgerLink onClick={()=>{handleClickOnHamburger(); handleClickOnCartIcon(); } }>My Cart</HamburgerLink>
    
       </Wrapper>
