@@ -67,7 +67,7 @@ const ProductCard = ({ product, handleClickOnCartIcon }) => {
         onClick={addToCart}
         disabled={!numInStock}
       >
-        {numInStock ? `${price} - Add to Car` : "Out of Stock"}
+        {numInStock ? `${price} - Add to Cart` : "Out of Stock"}
       </button>
     </Div>
   );
@@ -144,7 +144,7 @@ p {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-radius: 5px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 700;
   margin: 1rem;
   margin-top: auto;
