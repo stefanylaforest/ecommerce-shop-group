@@ -1,10 +1,9 @@
-import React, { useEffect, useContext} from "react";
-import styled, {keyframes} from "styled-components";
+import React, { useEffect, useContext } from "react";
+import styled, { keyframes } from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import { Link } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
-
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   const { selectedItems, setSelectedItems } = useContext(AppContext);
@@ -16,7 +15,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
     if (valuesInStorage.length > 0) {
       valuesInStorage.forEach((item) => {
         let parsedValues = JSON.parse(item);
-        console.log(parsedValues)
+        console.log(parsedValues);
         selectedItems.push(parsedValues);
         setSelectedItems(selectedItems);
       });
@@ -76,10 +75,12 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = count + Number(item.quantityOfProduct) * Number(removeDollarSign).toFixed(2));
+    return (count =
+      count +
+      Number(item.quantityOfProduct) * Number(removeDollarSign).toFixed(2));
   });
 
-  console.log(selectedItems)
+  console.log(selectedItems);
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
@@ -92,7 +93,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
           return (
             <ItemWrap key={item.product._id}>
               <ImageWrapper>
-              <ItemImage src={item.product.imageSrc} />
+                <ItemImage src={item.product.imageSrc} />
               </ImageWrapper>
               <ItemInnerWrap>
                 <ItemName>{item.product.name}</ItemName>
@@ -110,9 +111,14 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
           );
         })}
       </ItemContainer>
-      <LinkToCheckout to={selectedItems[0] && "/checkout"} onClick={handleClickOnCartIcon}>
+      <LinkToCheckout
+        to={selectedItems[0] && "/checkout"}
+        onClick={handleClickOnCartIcon}
+      >
         <CheckoutBtn>
-          {selectedItems[0] ? `CHECK OUT - ${Number(count).toFixed(2)}` : "YOUR CART IS EMPTY"}
+          {selectedItems[0]
+            ? `CHECK OUT - ${Number(count).toFixed(2)}`
+            : "YOUR CART IS EMPTY"}
         </CheckoutBtn>
       </LinkToCheckout>
     </CartContainer>
@@ -144,11 +150,11 @@ const ItemInnerWrap = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-background: white;
-width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  width: 180px;
 `;
 
 const ItemImage = styled.img`
@@ -303,7 +309,6 @@ const Hr = styled.hr`
   width: 90%;
 `;
 
-const LinkToCheckout = styled(Link)`
-`;
+const LinkToCheckout = styled(Link)``;
 
 export default Cart;

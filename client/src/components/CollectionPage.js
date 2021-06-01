@@ -7,19 +7,10 @@ import ProductCard from "./ProductCard";
 import FilterGroup from "./FilterGroup";
 import Pagination from "./Pagination";
 import SortDropDown from "./SortDropdown";
+import OnlyShowInStockProductsCehckBox from "./OnlyShowInStockProductsCehckBox";
 
 const CollectionPage = ({ handleClickOnCartIcon }) => {
-  const {
-    products,
-    setItemsInCart,
-    brands,
-    categories,
-    wearables: body_locations,
-  } = useContext(AppContext);
-
-  const [pagination, setPagination] = useState(1);
-  const [sortType, setSortType] = useState("");
-
+  //defining useQuery hook
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -33,15 +24,27 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
       : [],
   };
 
+  const {
+    products,
+    setItemsInCart,
+    brands,
+    categories,
+    wearables: body_locations,
+  } = useContext(AppContext);
+
+  const [pagination, setPagination] = useState(1);
+  const [sortType, setSortType] = useState("");
+  const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
+    useState(true);
   const [filters, setFilters] = useState(initialFilters);
 
+  //setting filters to initials on url change
   useEffect(() => {
     setFilters(initialFilters);
     setPagination(1);
   }, [query.get("brand"), query.get("category"), query.get("body_location")]);
 
   const handleFilterChange = (event) => {
-    console.log("Handling Changes");
     updateFilters(event);
   };
 
@@ -63,12 +66,15 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   };
 
   const filterProducts = (arr) => {
-    // console.log("AAAARRR", arr);
     if (!arr) {
       return;
     }
     if (arr.length === 0) {
       return arr;
+    }
+
+    if (isOnlyShowInStockChecked) {
+      arr = arr.filter((product) => product.numInStock > 1);
     }
 
     let productThatPassCategoryFilter = [];
@@ -112,8 +118,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   };
 
   const handleChangeSortType = (event) => {
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-    console.log("Now Sort Type is ", event.target.value);
     setSortType(event.target.value);
   };
 
@@ -121,8 +125,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     if (arr.length === 0) {
       return arr;
     }
-    // console.log("arr is sortPlease", arr);
-    // console.log("type is sortPlease", type);
     let sortedArr;
     switch (type) {
       case "priceLowToHight":
@@ -169,44 +171,20 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     return sortedArr;
   };
 
-  // console.log("filters are:", filters);
-
-  console.log("SOOOOORT TYPE:", sortType);
-  console.log("SORT Please", sortPlease(products, sortType));
+  const handleOnlyInStockProducts = () => {
+    setIsOnlyShowInStockChecked(
+      (isOnlyShowInStockChecked) => !isOnlyShowInStockChecked
+    );
+  };
 
   return (
     <Div>
-      {/* 
-      <div className="filter-box">
-        <h2>Filters:</h2>
-        <FilterGroup
-          title="Categories"
-          type="category"
-          optionsNames={categories}
-          optionsValues={categories}
-          handleFilterChange={handleFilterChange}
-          selectedOptions={filters.category}
-        />
-        <FilterGroup
-          title="Brands"
-          type="brand"
-          optionsNames={brands.map((brand) => brand.name)}
-          optionsValues={brands.map((brand) => brand.name)}
-          handleFilterCahnge={handleFilterChange}
-          selectedOptions={filters.brand}
-        />
-        <FilterGroup
-          title="Body Location"
-          type="body_location"
-          optionsNames={body_locations}
-          optionsValues={body_locations}
-          handleFilterChange={handleFilterChange}
-          selectedOptions={filters.body_location}
-        />
-      </div>
-         */}
       <div className="wrapper">
         <div className="control-box">
+          <OnlyShowInStockProductsCehckBox
+            onChangeHandler={handleOnlyInStockProducts}
+            isOnlyShowInStockChecked={isOnlyShowInStockChecked}
+          />
           <SortDropDown onChangeHandler={handleChangeSortType} />
         </div>
 
@@ -214,9 +192,7 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
           {sortPlease(filterProducts(products), sortType)
             //follwoing filter is doing the pagination stuff!
             .filter((product, index) => {
-              return (
-                index > (pagination - 1) * 12 && index < pagination * 12 + 1
-              );
+              return index >= (pagination - 1) * 12 && index < pagination * 12;
             })
             .map((product, index) => (
               <ProductCard
@@ -253,21 +229,51 @@ background: white;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
+  justify-items: center;
   /* margin: 0 auto; */
 }
+
+.control-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+  gap: 2rem;
+}
+
+
 @media screen and ( max-width: 1400px) {
+
   .collection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4rem;
   }
+
+  .control-box {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  gap: 2rem;
+  }
 }
+
 @media screen and ( max-width: 1080px) {
+
   .collection {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-}
+  }
+
+  .control-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  gap: 2rem;
+  }
 }
 
 @media screen and (max-width: 820px) {
@@ -275,27 +281,27 @@ background: white;
   display: grid;
   grid-template-columns: 1fr;
   gap: 4rem;
-}
-}
+  }  
 
-.control-box {
+  .control-box {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
   padding-bottom: 2rem;
+  gap: 2rem;
+  }
 }
-
-
 
 }
 .filter-box {
   background: lightgreen;
   padding: 1rem;
   flex: 30%;
-}
+  }
 
 .checkbox {
   padding: 0.1rem;
   border: 2px solid gray;
   border-radius: 10px;
-}
+  }
 `;
