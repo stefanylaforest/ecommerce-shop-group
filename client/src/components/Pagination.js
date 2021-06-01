@@ -1,7 +1,7 @@
 import React from "react";
 import Styled from "styled-components";
 import { theme } from "./GlobalStyles";
-import { BiArrowBack, BiRightArrowAlt } from "react-icons/bi";
+import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 export const Pagination = ({ numOfPages, pagination, setPagination }) => {
   const numArr = [];
@@ -28,49 +28,51 @@ export const Pagination = ({ numOfPages, pagination, setPagination }) => {
 
   return (
     <Wrapper>
-      <button
-        className="page-button"
-        onClick={handleGoToPreviousPage}
-        value={1}
-      >
-        <BiArrowBack />
-      </button>
-      {numArr
-        .filter((num) => num <= 8)
-        .map((num) => {
-          return (
-            <button
-              className={`page-button ${
-                num === pagination ? "current-page" : ""
-              }`}
-              onClick={handleSelectPage}
-              value={num}
-            >
-              {num}
-            </button>
-          );
-        })}
-      {numArr.length > 8 && (
-        <button className="page-button" disabled>
-          ...
-        </button>
-      )}
-      {numArr.length > 8 && (
+      <div className="buttons">
         <button
           className="page-button"
-          onClick={handleSelectPage}
+          onClick={handleGoToPreviousPage}
+          value={1}
+        >
+          <FiArrowLeft />
+        </button>
+        {numArr
+          .filter((num) => num <= 8)
+          .map((num) => {
+            return (
+              <button
+                className={`page-button ${
+                  num === pagination ? "current-page" : ""
+                }`}
+                onClick={handleSelectPage}
+                value={num}
+              >
+                {num}
+              </button>
+            );
+          })}
+        {numArr.length > 8 && (
+          <button className="page-button" disabled>
+            ...
+          </button>
+        )}
+        {numArr.length > 8 && (
+          <button
+            className="page-button"
+            onClick={handleSelectPage}
+            value={numArr.length}
+          >
+            {numArr.length}
+          </button>
+        )}
+        <button
+          className="page-button"
+          onClick={handleGoToNextPage}
           value={numArr.length}
         >
-          {numArr.length}
+          <FiArrowRight />
         </button>
-      )}
-      <button
-        className="page-button"
-        onClick={handleGoToNextPage}
-        value={numArr.length}
-      >
-        <BiRightArrowAlt />
-      </button>
+      </div>
     </Wrapper>
   );
 };
@@ -78,6 +80,11 @@ export const Pagination = ({ numOfPages, pagination, setPagination }) => {
 export default Pagination;
 
 const Wrapper = Styled.div`
+display: flex;
+justify-content: center;
+
+.buttons {
+
 max-width: 800px;
 margin: 0 auto;
 display: flex;
@@ -85,9 +92,9 @@ gap: 0;
 justify-content: stretch;
 margin-top: 3rem;
 margin-bottom: 3rem;
-border-radius: 10px;
 overflow: hidden;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
 
 
@@ -99,6 +106,7 @@ overflow: hidden;
     background: #454e51;
     font-size: 1.3em;
     font-weight: 700;
+    width: 6rem;
 
 
 
@@ -110,6 +118,13 @@ overflow: hidden;
 
         background:  #C64500;;
         color: white;
+    }
+
+    &:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+    &:last-child {
+      border-radius: 0 10px 10px 0;
     }
 }
 
