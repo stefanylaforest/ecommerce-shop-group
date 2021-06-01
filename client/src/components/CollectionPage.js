@@ -7,6 +7,7 @@ import ProductCard from "./ProductCard";
 import FilterGroup from "./FilterGroup";
 import Pagination from "./Pagination";
 import SortDropDown from "./SortDropdown";
+import OnlyShowInStockProductsCehckBox from "./OnlyShowInStockProductsCehckBox";
 
 const CollectionPage = ({ handleClickOnCartIcon }) => {
   const {
@@ -19,6 +20,8 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
 
   const [pagination, setPagination] = useState(1);
   const [sortType, setSortType] = useState("");
+  const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
+    useState(true);
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -69,6 +72,10 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     }
     if (arr.length === 0) {
       return arr;
+    }
+
+    if (isOnlyShowInStockChecked) {
+      arr = arr.filter((product) => product.numInStock > 1);
     }
 
     let productThatPassCategoryFilter = [];
@@ -169,6 +176,12 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     return sortedArr;
   };
 
+  const handleOnlyInStockProducts = () => {
+    setIsOnlyShowInStockChecked(
+      (isOnlyShowInStockChecked) => !isOnlyShowInStockChecked
+    );
+  };
+
   // console.log("filters are:", filters);
 
   console.log("SOOOOORT TYPE:", sortType);
@@ -207,6 +220,10 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
          */}
       <div className="wrapper">
         <div className="control-box">
+          <OnlyShowInStockProductsCehckBox
+            onChangeHandler={handleOnlyInStockProducts}
+            isOnlyShowInStockChecked={isOnlyShowInStockChecked}
+          />
           <SortDropDown onChangeHandler={handleChangeSortType} />
         </div>
 
@@ -249,25 +266,55 @@ display: flex;
 justify-content: center;
 background: white;
 
+
+
 .collection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
+  justify-items: center;
   /* margin: 0 auto; */
 }
+
+.control-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+  gap: 2rem;
+}
+
+
 @media screen and ( max-width: 1400px) {
   .collection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4rem;
   }
+
+  .control-box {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  gap: 2rem;
+  }
 }
 @media screen and ( max-width: 1080px) {
+
   .collection {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-}
+  }
+
+  .control-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  gap: 2rem;
+  }
 }
 
 @media screen and (max-width: 820px) {
@@ -275,13 +322,15 @@ background: white;
   display: grid;
   grid-template-columns: 1fr;
   gap: 4rem;
-}
-}
+  }  
 
-.control-box {
+  .control-box {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
   padding-bottom: 2rem;
+  gap: 2rem;
+}
 }
 
 
