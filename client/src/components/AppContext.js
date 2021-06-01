@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 export const AppContext = createContext();
 
@@ -14,6 +15,7 @@ let initialState = {
   creditCardNum: "",
   expirationDate: "",
   phoneNumber: "",
+  date: moment().format("LLLL"),
   orderNum: uuidv4(),
 };
 
@@ -25,6 +27,7 @@ export const AppProvider = ({ children }) => {
   const [wearables, setWearables] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [formValue, setFormValue] = useState(initialState);
+  const [purchased, setPurchased] = useState([]);
 
   useEffect(() => {
     fetch("/api/products")
@@ -67,6 +70,8 @@ export const AppProvider = ({ children }) => {
         setSelectedItems,
         formValue,
         setFormValue,
+        purchased,
+        setPurchased,
       }}
     >
       {children}

@@ -9,9 +9,34 @@ const Checkout = () => {
   const [errMessage, setErrMessage] = useState("");
   const [status, setStatus] = useState("idle");
   const [disabled, setDisabled] = useState(true);
-  const { selectedItems, setSelectedItems, formValue, setFormValue } =
-    useContext(AppContext);
+  const {
+    selectedItems,
+    setSelectedItems,
+    formValue,
+    setFormValue,
+    purchased,
+    setPurchased,
+  } = useContext(AppContext);
   const history = useHistory();
+
+  //to add to req.body -> example of what it will look like:
+  //starts with product id, then name, then price, then amount purchased
+  // itemsPurchased: [
+  //   '6623 Casio A168W-1 Mens Classic Digital Electro Luminescence Bracelet Wrist Watch; Silver $13.99 1',
+  //   '6695 Garmin fenix 2 - Hiking, running GPS watch - 1.2" monochrome - 70 x 70 $399.99 1'
+  // ]
+  let itemsPurchased = [];
+  selectedItems.forEach((item) => {
+    itemsPurchased.push(
+      item.product._id +
+        " " +
+        item.product.name +
+        " " +
+        item.product.price +
+        " " +
+        item.quantityOfProduct
+    );
+  });
 
   useEffect(() => {
     Object.values(formValue).includes("")
@@ -20,7 +45,7 @@ const Checkout = () => {
   }, [formValue, setDisabled]);
 
   const handleFormChange = (value, name) => {
-    setFormValue({ ...formValue, [name]: value });
+    setFormValue({ ...formValue, [name]: value, itemsPurchased });
     setErrMessage("");
   };
 
@@ -61,7 +86,9 @@ const Checkout = () => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = count + item.quantityOfProduct * removeDollarSign);
+    return (count =
+      count +
+      Number(item.quantityOfProduct) * Number(removeDollarSign)).toFixed(2);
   });
 
   console.log("formValue", formValue);
@@ -235,12 +262,27 @@ const Checkout = () => {
                 </ItemContainer>
               );
             })}
-            <Divider />
-            <Total>
-              <p>Total</p>
-              <p>{count}</p>
-            </Total>
           </ItemsContainer>
+          <Divider />
+          <SubTotal>
+            <p>Subtotal</p>
+            <p>CAD ${count}</p>
+          </SubTotal>
+          <SubTotal>
+            <p>Shipping</p>
+            <p>Free</p>
+          </SubTotal>
+          <SubTotal>
+            <p>Tax</p>
+            <p>CAD ${Number(count * 0.15).toFixed(2)}</p>
+          </SubTotal>
+          <Divider />
+          <Total>
+            <p>Total</p>
+            <p>
+              CAD ${Number(Number(count) + Number(count) * 0.15).toFixed(2)}
+            </p>
+          </Total>
         </CartContainer>
       </ViewCartContainer>
     </AllWrapper>
@@ -256,16 +298,15 @@ const ItemName = styled.p`
 `;
 
 const Quantity = styled.p`
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin: 0;
-  padding: 1px 1px;
-  font-size: 15px;
-  transform: translate(-20px, -50px);
+  font-size: 13px;
+  transform: translate(-15px, -50px);
   background-color: #454e51;
   color: #fff;
   border-radius: 50%;
@@ -284,7 +325,7 @@ const ItemContainer = styled.div`
 `;
 
 const ItemsContainer = styled.div`
-  height: 400px;
+  height: 420px;
   overflow: scroll;
 `;
 
@@ -417,17 +458,27 @@ const ContactWrapper = styled.div`
 `;
 
 const PaymentContainer = styled.div`
-  width: 60%;
+  width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  margin: 0 30px;
+
+  @media screen and (max-width: 1020px) {
+    justify-content: center;
+  }
 `;
 
 const ViewCartContainer = styled.div`
-  width: 40%;
+  width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin: 0 30px;
+
+  @media screen and (max-width: 1020px) {
+    display: none;
+  }
 `;
 
 const AllWrapper = styled.div`
@@ -441,11 +492,25 @@ const AllWrapper = styled.div`
 const Divider = styled.hr`
   border: 0.5px solid black;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: -12px;
 `;
 
 const Total = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  font-weight: 900;
+`;
+
+const SubTotal = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -30px;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
 `;
 
 export default Checkout;

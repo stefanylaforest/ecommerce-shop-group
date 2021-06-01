@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink, useLocation } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
-import { FaShoppingCart, FaBars, FaBorderNone } from "react-icons/fa";
+import { FaShoppingCart, FaBars } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import CategoriesDropDown from "./Dropdowns/CategoriesDropDown";
 import BrandDropDown from "./Dropdowns/BrandDropDown";
 import WearablesDropDown from "./Dropdowns/WearablesDropDown";
 import { GiRoundStar } from "react-icons/gi";
 
-const Header = ({ handleClickOnCartIcon }) => {
+const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
   const { selectedItems } = useContext(AppContext);
   const location = useLocation();
 
@@ -26,17 +26,30 @@ const Header = ({ handleClickOnCartIcon }) => {
             TECH<span style={{ color: `${theme.accentColor}` }}>ACTIV</span>
           </Title>
         </HomeNavLink>
-        {/* <MobileIcon onClick={toggle}>
-          <FaBars />
-        </MobileIcon> */}
+        {location.pathname === "/" ||
+        location.pathname === "/confirmation" ||
+        location.pathname === "/view-order" ||
+        location.pathname.includes("/products") ? (
+          <MobileIcon onClick={handleClickOnHamburger}>
+            <FaBars />
+          </MobileIcon>
+        ) : (
+          <></>
+        )}
       </LogoRow>
-      {location.pathname === "/" || location.pathname.includes("/products") ? (
+      {location.pathname === "/" ||
+      location.pathname === "/confirmation" ||
+      location.pathname === "/view-order" ||
+      location.pathname.includes("/products") ? (
         <NavMenu>
           <CategoriesDropDown />
           <BrandDropDown />
           <WearablesDropDown />
           <StyledNavLink exact to="/products">
             <li>Shop All</li>
+          </StyledNavLink>
+          <StyledNavLink exact to="/view-order">
+            <li>View-Order</li>
           </StyledNavLink>
           <li>
             <StyledCartIcon onClick={handleClickOnCartIcon} />
@@ -49,6 +62,21 @@ const Header = ({ handleClickOnCartIcon }) => {
     </div>
   );
 };
+
+const MobileIcon = styled.div`
+  display: none;
+
+  @media screen and (max-width: 820px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #fff;
+  }
+`;
 
 const LogoRow = styled.div`
   display: flex;
@@ -66,6 +94,10 @@ const NavMenu = styled.ul`
   justify-content: space-around;
   color: white;
   text-transform: uppercase;
+
+  @media screen and (max-width: 820px) {
+    display: none !important;
+  }
 `;
 
 const HomeNavLink = styled(NavLink)`
@@ -76,6 +108,8 @@ const HomeNavLink = styled(NavLink)`
 const StyledNavLink = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
+  color: white;
+
   &:hover {
     color: ${theme.accentColor};
   }
@@ -85,7 +119,8 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const ItemInCart = styled(GiRoundStar)`
-  visibility: ${({ selectedItems }) => (selectedItems[0] ? "visible" : "hidden")};
+  visibility: ${({ selectedItems }) =>
+    selectedItems[0] ? "visible" : "hidden"};
   transform: translate(-4px, -17px);
   fill: ${theme.accentColor};
 `;

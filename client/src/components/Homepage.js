@@ -10,16 +10,24 @@ const Homepage = () => {
       <HeroImage />
       <Heading>Popular Categories</Heading>
       <PopularCategories />
-      <Heading>Our Brands</Heading>
+      <HeadingBrand>Our Brands</HeadingBrand>
       <Brands />
     </div>
   );
 };
 
+const HeadingBrand = styled.h3`
+  text-align: center;
+  color: white;
+  margin-top: 130px;
+  margin-bottom: -30px;
+`;
+
 const Heading = styled.h3`
   text-align: center;
   color: white;
   margin-top: 130px;
+  margin-bottom: 50px;
 `;
 
 export default Homepage;
