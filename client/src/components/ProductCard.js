@@ -77,6 +77,8 @@ export default ProductCard;
 
 const Div = Styled.div`
 
+
+
 /* flex: 15%; */
 max-width: 400px;
 background: #454e51;
@@ -88,6 +90,9 @@ overflow: hidden;
   /* gap: 1.2rem; */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
+&:hover {
+  box-shadow: rgba(100, 100, 111, 0.8) 0px 7px 29px 0px;
+}
 
   .image-wrapper {
     display: flex;

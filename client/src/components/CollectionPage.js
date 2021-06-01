@@ -5,6 +5,7 @@ import Styled from "styled-components";
 import { AppContext } from "./AppContext";
 import ProductCard from "./ProductCard";
 import FilterGroup from "./FilterGroup";
+import Pagination from "./Pagination";
 
 const CollectionPage = ({ handleClickOnCartIcon }) => {
   const {
@@ -36,12 +37,8 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
 
   useEffect(() => {
     setFilters(initialFilters);
-    console.log("setting again");
+    setPagination(1);
   }, [query.get("brand"), query.get("category"), query.get("body_location")]);
-
-  const fakeHandle = () => {
-    console.log("FAKE HANDLEING");
-  };
 
   const handleFilterChange = (event) => {
     console.log("Handling Changes");
@@ -127,6 +124,11 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
 
   console.log("filters are:", filters);
 
+  console.log("Page is ", pagination);
+  console.log((pagination - 1)* 12);
+  console.log((pagination ) * 12 + 1);
+
+
   return (
     <Div>
       {/* 
@@ -167,15 +169,32 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
             <option>Z to A</option>
           </select>
         </div>
+        
+
         <div className="collection">
-          {filterProducts().map((product, index) => (
-            <ProductCard
-              key={"product-card-" + index}
-              product={product}
-              handleClickOnCartIcon={handleClickOnCartIcon}
-            />
-          ))}
+          {filterProducts()
+            .filter((product, index) => {
+              return (
+                index > (pagination - 1) * 12 && index < pagination * 12 + 1
+              );
+            })
+            .map((product, index) => (
+              <ProductCard
+                key={"product-card-" + index}
+                product={product}
+                handleClickOnCartIcon={handleClickOnCartIcon}
+              />
+            ))}
         </div>
+        <Pagination
+          numOfPages={
+            filterProducts().length % 12 === 0
+              ? filterProducts().length / 12
+              : (Math.floor(filterProducts().length / 12) + 1)
+          }
+          pagination={pagination}
+          setPagination={setPagination}
+        />
       </div>
     </Div>
   );
