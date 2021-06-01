@@ -85,7 +85,9 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       Number(item.quantityOfProduct) * Number(removeDollarSign).toFixed(2));
   });
 
-  // console.log(selectedItems);
+
+
+
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>

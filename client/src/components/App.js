@@ -13,6 +13,7 @@ import CollectionPage from "./CollectionPage";
 import ScrollToTop from "./ScrollToTop";
 import Hamburger from "./Hamburger";
 import Error from "./Error";
+import AllBrandsPage from "./AllBrandsPage";
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -47,6 +48,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Homepage />
+          </Route>
+          <Route exact path="/brands">
+            <AllBrandsPage />
           </Route>
           <Route exact path="/products">
             <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon} />
