@@ -1,9 +1,10 @@
 import React, { useEffect, useContext} from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { theme } from "./GlobalStyles";
 import { Link } from "react-router-dom";
 import { AppContext } from "../components/AppContext";
+
 
 const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   const { selectedItems, setSelectedItems } = useContext(AppContext);
@@ -75,7 +76,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = count + item.quantityOfProduct * removeDollarSign);
+    return (count = count + Number(item.quantityOfProduct) * Number(removeDollarSign).toFixed(2));
   });
 
   console.log(selectedItems)
@@ -109,9 +110,9 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
           );
         })}
       </ItemContainer>
-      <LinkToCheckout to={selectedItems[0] && "/checkout"}>
+      <LinkToCheckout to={selectedItems[0] && "/checkout"} onClick={handleClickOnCartIcon}>
         <CheckoutBtn>
-          {selectedItems[0] ? `CHECK OUT - ${count}` : "YOUR CART IS EMPTY"}
+          {selectedItems[0] ? `CHECK OUT - ${Number(count).toFixed(2)}` : "YOUR CART IS EMPTY"}
         </CheckoutBtn>
       </LinkToCheckout>
     </CartContainer>
@@ -258,7 +259,7 @@ const CartContainer = styled.aside`
   align-items: flex-start;
   top: 0;
   right: 0;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   opacity: ${({ isCartVisible }) => (isCartVisible ? "100%" : "0")};
   right: ${({ isCartVisible }) => (isCartVisible ? "0" : "-100%")};
   box-shadow: ${({ isCartVisible }) =>
@@ -302,6 +303,7 @@ const Hr = styled.hr`
   width: 90%;
 `;
 
-const LinkToCheckout = styled(Link)``;
+const LinkToCheckout = styled(Link)`
+`;
 
 export default Cart;

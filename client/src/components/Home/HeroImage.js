@@ -121,7 +121,7 @@ const Brand = styled.h2`
   font-size: 250px;
   padding: 0px;
   margin: 0px;
-  transition: 0.3s ease-out;
+  transition: 0.2s ease-out;
 
   @media screen and (max-width: 1150px) {
     font-size: 200px;
