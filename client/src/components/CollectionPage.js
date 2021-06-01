@@ -10,19 +10,7 @@ import SortDropDown from "./SortDropdown";
 import OnlyShowInStockProductsCehckBox from "./OnlyShowInStockProductsCehckBox";
 
 const CollectionPage = ({ handleClickOnCartIcon }) => {
-  const {
-    products,
-    setItemsInCart,
-    brands,
-    categories,
-    wearables: body_locations,
-  } = useContext(AppContext);
-
-  const [pagination, setPagination] = useState(1);
-  const [sortType, setSortType] = useState("");
-  const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
-    useState(true);
-
+  //defining useQuery hook
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -36,8 +24,21 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
       : [],
   };
 
+  const {
+    products,
+    setItemsInCart,
+    brands,
+    categories,
+    wearables: body_locations,
+  } = useContext(AppContext);
+
+  const [pagination, setPagination] = useState(1);
+  const [sortType, setSortType] = useState("");
+  const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
+    useState(true);
   const [filters, setFilters] = useState(initialFilters);
 
+  //setting filters to initials on url change
   useEffect(() => {
     setFilters(initialFilters);
     setPagination(1);
@@ -182,42 +183,9 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     );
   };
 
-  // console.log("filters are:", filters);
-
-  console.log("SOOOOORT TYPE:", sortType);
-  console.log("SORT Please", sortPlease(products, sortType));
 
   return (
     <Div>
-      {/* 
-      <div className="filter-box">
-        <h2>Filters:</h2>
-        <FilterGroup
-          title="Categories"
-          type="category"
-          optionsNames={categories}
-          optionsValues={categories}
-          handleFilterChange={handleFilterChange}
-          selectedOptions={filters.category}
-        />
-        <FilterGroup
-          title="Brands"
-          type="brand"
-          optionsNames={brands.map((brand) => brand.name)}
-          optionsValues={brands.map((brand) => brand.name)}
-          handleFilterCahnge={handleFilterChange}
-          selectedOptions={filters.brand}
-        />
-        <FilterGroup
-          title="Body Location"
-          type="body_location"
-          optionsNames={body_locations}
-          optionsValues={body_locations}
-          handleFilterChange={handleFilterChange}
-          selectedOptions={filters.body_location}
-        />
-      </div>
-         */}
       <div className="wrapper">
         <div className="control-box">
           <OnlyShowInStockProductsCehckBox
@@ -231,9 +199,7 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
           {sortPlease(filterProducts(products), sortType)
             //follwoing filter is doing the pagination stuff!
             .filter((product, index) => {
-              return (
-                index > (pagination - 1) * 12 && index < pagination * 12 + 1
-              );
+              return index >= (pagination - 1) * 12 && index < pagination * 12;
             })
             .map((product, index) => (
               <ProductCard
