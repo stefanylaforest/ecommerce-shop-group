@@ -70,11 +70,25 @@ a {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+
+  &:active {
+    animation: scaleIn 0.3s ease-in-out forwards;
+  }
+
   &:hover {
     background-color: ${theme.hoverAccentColor};
   }
 }
 
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8)
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
 
 
 

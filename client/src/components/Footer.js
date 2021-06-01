@@ -5,6 +5,10 @@ import { theme } from "./GlobalStyles";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
+  const handleClickScroll = () => {
+    window.scrollTo(0,0)
+  };
+
   return (
     <FooterContainer>
       <FooterWrap>
@@ -36,7 +40,7 @@ const Footer = () => {
         </FooterLinksContainer>
         <Media>
           <MediaWrap>
-            <Logo to="/">
+            <Logo onClick={handleClickScroll} to="/">
               TECH<span style={{ color: `${theme.accentColor}` }}>ACTIV</span>
             </Logo>
             <CopyRight>

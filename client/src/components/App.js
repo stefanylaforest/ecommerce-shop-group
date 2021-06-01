@@ -11,30 +11,44 @@ import ProductDetails from "./ProductDetails";
 import ViewOrder from "./ViewOrder";
 import CollectionPage from "./CollectionPage";
 import ScrollToTop from "./ScrollToTop";
+import Hamburger from "./Hamburger";
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   const handleClickOnCartIcon = () => {
     setIsCartVisible(!isCartVisible);
+  };
+  const handleClickOnHamburger = () => {
+    setIsHamburgerOpen(!isHamburgerOpen);
   };
 
   return (
     <BrowserRouter>
       <ScrollToTop />
       <GlobalStyles />
+      <Hamburger
+        isHamburgerOpen={isHamburgerOpen}
+        handleClickOnCartIcon={handleClickOnCartIcon}
+        handleClickOnHamburger={handleClickOnHamburger}
+      />
       <Cart
         isCartVisible={isCartVisible}
         handleClickOnCartIcon={handleClickOnCartIcon}
       />
-      <Header handleClickOnCartIcon={handleClickOnCartIcon} />
+      <Header
+        isCartVisible={isCartVisible}
+        handleClickOnCartIcon={handleClickOnCartIcon}
+        handleClickOnHamburger={handleClickOnHamburger}
+      />
       <main>
         <Switch>
           <Route exact path="/">
             <Homepage />
           </Route>
           <Route exact path="/products">
-            <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon}/>
+            <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon} />
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon} />
