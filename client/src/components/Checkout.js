@@ -433,7 +433,11 @@ const PaymentContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 30px;
+  margin:0 30px;
+
+  @media screen and (max-width: 1020px){
+    justify-content: center;
+  }
 `;
 
 const ViewCartContainer = styled.div`
@@ -441,7 +445,7 @@ const ViewCartContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 30px;
+  margin:0 30px;
 
   @media screen and (max-width: 1020px){
     display: none;
