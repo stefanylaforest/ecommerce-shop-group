@@ -27,6 +27,8 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
           </Title>
         </HomeNavLink>
         {location.pathname === "/" ||
+        location.pathname === "/confirmation" ||
+        location.pathname === "/view-order" ||
         location.pathname.includes("/products") ? (
           <MobileIcon onClick={handleClickOnHamburger}>
             <FaBars />
@@ -35,7 +37,10 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
           <></>
         )}
       </LogoRow>
-      {location.pathname === "/" || location.pathname.includes("/products") ? (
+      {location.pathname === "/" ||
+      location.pathname === "/confirmation" ||
+      location.pathname === "/view-order" ||
+      location.pathname.includes("/products") ? (
         <NavMenu>
           <CategoriesDropDown />
           <BrandDropDown />
@@ -103,7 +108,8 @@ const HomeNavLink = styled(NavLink)`
 const StyledNavLink = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
-  
+  color: white;
+
   &:hover {
     color: ${theme.accentColor};
   }

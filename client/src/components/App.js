@@ -12,6 +12,7 @@ import ViewOrder from "./ViewOrder";
 import CollectionPage from "./CollectionPage";
 import ScrollToTop from "./ScrollToTop";
 import Hamburger from "./Hamburger";
+import Error from "./Error";
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -61,6 +62,9 @@ function App() {
           </Route>
           <Route exact path="/view-order">
             <ViewOrder />
+          </Route>
+          <Route exact path="/error">
+            <Error />
           </Route>
         </Switch>
       </main>

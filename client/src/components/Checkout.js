@@ -9,9 +9,34 @@ const Checkout = () => {
   const [errMessage, setErrMessage] = useState("");
   const [status, setStatus] = useState("idle");
   const [disabled, setDisabled] = useState(true);
-  const { selectedItems, setSelectedItems, formValue, setFormValue } =
-    useContext(AppContext);
+  const {
+    selectedItems,
+    setSelectedItems,
+    formValue,
+    setFormValue,
+    purchased,
+    setPurchased,
+  } = useContext(AppContext);
   const history = useHistory();
+
+  //to add to req.body -> example of what it will look like:
+  //starts with product id, then name, then price, then amount purchased
+  // itemsPurchased: [
+  //   '6623 Casio A168W-1 Mens Classic Digital Electro Luminescence Bracelet Wrist Watch; Silver $13.99 1',
+  //   '6695 Garmin fenix 2 - Hiking, running GPS watch - 1.2" monochrome - 70 x 70 $399.99 1'
+  // ]
+  let itemsPurchased = [];
+  selectedItems.forEach((item) => {
+    itemsPurchased.push(
+      item.product._id +
+        " " +
+        item.product.name +
+        " " +
+        item.product.price +
+        " " +
+        item.quantityOfProduct
+    );
+  });
 
   useEffect(() => {
     Object.values(formValue).includes("")
@@ -20,7 +45,7 @@ const Checkout = () => {
   }, [formValue, setDisabled]);
 
   const handleFormChange = (value, name) => {
-    setFormValue({ ...formValue, [name]: value });
+    setFormValue({ ...formValue, [name]: value, itemsPurchased });
     setErrMessage("");
   };
 
@@ -61,7 +86,9 @@ const Checkout = () => {
   selectedItems.map((item) => {
     let price = item.product.price;
     let removeDollarSign = price.substr(1);
-    return (count = count+ Number(item.quantityOfProduct) * Number(removeDollarSign)).toFixed(2);
+    return (count =
+      count +
+      Number(item.quantityOfProduct) * Number(removeDollarSign)).toFixed(2);
   });
 
   console.log("formValue", formValue);
@@ -252,7 +279,9 @@ const Checkout = () => {
           <Divider />
           <Total>
             <p>Total</p>
-            <p>CAD ${Number(Number(count) + Number(count) * 0.15).toFixed(2)}</p>
+            <p>
+              CAD ${Number(Number(count) + Number(count) * 0.15).toFixed(2)}
+            </p>
           </Total>
         </CartContainer>
       </ViewCartContainer>
@@ -433,9 +462,9 @@ const PaymentContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin:0 30px;
+  margin: 0 30px;
 
-  @media screen and (max-width: 1020px){
+  @media screen and (max-width: 1020px) {
     justify-content: center;
   }
 `;
@@ -445,9 +474,9 @@ const ViewCartContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin:0 30px;
+  margin: 0 30px;
 
-  @media screen and (max-width: 1020px){
+  @media screen and (max-width: 1020px) {
     display: none;
   }
 `;
@@ -463,7 +492,7 @@ const AllWrapper = styled.div`
 const Divider = styled.hr`
   border: 0.5px solid black;
   width: 100%;
-  margin-top:20px;
+  margin-top: 20px;
   margin-bottom: -12px;
 `;
 
