@@ -82,24 +82,11 @@ const createOrder = (req, res) => {
     creditCardNum,
     expirationDate,
     phoneNumber,
+    date,
   } = req.body;
 
   let status = "";
   let error = "";
-
-  console.log(
-    "frombackend",
-    firstName,
-    lastName,
-    email,
-    address,
-    city,
-    province,
-    country,
-    creditCardNum,
-    expirationDate,
-    phoneNumber
-  );
 
   // primarily checking if all required informations are filled out.
   if (
@@ -133,6 +120,7 @@ const createOrder = (req, res) => {
     if (!expirationDate.split("").includes("/")) {
       return res.status(400).json({ status: "error", error: "missing-/" });
     } else {
+      console.log(req.body);
       // setting status accordingly, outputing data, generating random order-number.
       return res.status(201).json({
         status: status,
