@@ -2,7 +2,7 @@
 
 # Description
 
-This is a group e-commerce project built on **React**, **Node.js**, and styled with **styled-components**.
+This is a group e-commerce shop where you can shop for sports items. This project has been built on **React**, **Node.js**, and styled with **styled-components**.
 
 ## Contributers
 
