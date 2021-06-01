@@ -45,7 +45,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   }, [query.get("brand"), query.get("category"), query.get("body_location")]);
 
   const handleFilterChange = (event) => {
-    console.log("Handling Changes");
     updateFilters(event);
   };
 
@@ -67,7 +66,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   };
 
   const filterProducts = (arr) => {
-    // console.log("AAAARRR", arr);
     if (!arr) {
       return;
     }
@@ -120,8 +118,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   };
 
   const handleChangeSortType = (event) => {
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-    console.log("Now Sort Type is ", event.target.value);
     setSortType(event.target.value);
   };
 
@@ -129,8 +125,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     if (arr.length === 0) {
       return arr;
     }
-    // console.log("arr is sortPlease", arr);
-    // console.log("type is sortPlease", type);
     let sortedArr;
     switch (type) {
       case "priceLowToHight":
@@ -183,7 +177,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     );
   };
 
-
   return (
     <Div>
       <div className="wrapper">
@@ -232,8 +225,6 @@ display: flex;
 justify-content: center;
 background: white;
 
-
-
 .collection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -252,6 +243,7 @@ background: white;
 
 
 @media screen and ( max-width: 1400px) {
+
   .collection {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -266,6 +258,7 @@ background: white;
   gap: 2rem;
   }
 }
+
 @media screen and ( max-width: 1080px) {
 
   .collection {
@@ -296,21 +289,19 @@ background: white;
   justify-content: center;
   padding-bottom: 2rem;
   gap: 2rem;
+  }
 }
-}
-
-
 
 }
 .filter-box {
   background: lightgreen;
   padding: 1rem;
   flex: 30%;
-}
+  }
 
 .checkbox {
   padding: 0.1rem;
   border: 2px solid gray;
   border-radius: 10px;
-}
+  }
 `;
