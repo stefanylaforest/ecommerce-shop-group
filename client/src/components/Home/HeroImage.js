@@ -30,21 +30,7 @@ const HeroImage = () => {
   let splitFeaturedProductName =
     newStr.split("-")[0] + "-" + newStr.split("-")[1];
 
-  // console.log("feat prod", featuredProduct.imageSrc)
-
   const [bgImage, handleImage] = useState(garminFenix);
-  // window.addEventListener("wheel", (e) => {
-  //   if (e.deltaY === 0) {
-  //     handleImage(garminFenix);
-  //   }
-  //   if (e.deltaY > 0 && e.deltaY < 2) {
-  //     handleImage(garminFenix1);
-  //   }
-  //   if (e.deltaY > 2) {
-  //     handleImage(garminFenix2);
-  //   }
-
-  // });
 
   window.addEventListener("mousemove", function (e) {
     let windowWidth = window.screen.width;

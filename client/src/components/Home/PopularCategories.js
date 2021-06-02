@@ -27,8 +27,14 @@ const PopularCategories = () => {
 const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
+  /* overflow-x: hidden; */
   overflow-x: scroll;
   margin: 0px 20px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &:-webkit-scrollbar {
+    display: none; //safari
+  }
 `;
 
 const CategoryCardOne = styled.div`
