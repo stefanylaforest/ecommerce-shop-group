@@ -89,6 +89,7 @@ const Div = Styled.div`
 
 max-width: 400px;
 background: #454e51;
+width: 100%;
 
 border-radius: 20px;
 overflow: hidden;

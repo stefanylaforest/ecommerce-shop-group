@@ -89,7 +89,7 @@ details summary
 
 .summary {
   list-style: none;
-  cursor: context-menu;
+  cursor: pointer;
   
 }
 
