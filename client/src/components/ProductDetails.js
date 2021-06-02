@@ -81,13 +81,6 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
     localStorage.setItem(currentItem._id, JSON.stringify(itemInCart));
   }
 
-  //for you to understand what everything does: I left my console.logs in here feel free to comment them out
-  //& keep clicking the add to cart button:
-
-  // console.log("itemInCart Quantity:", itemInCart.quantityOfProduct);
-  // console.log("cart:", itemInCart);
-  // console.log("quantityInCart:", quantityInCart);
-
   return (
     <Container>
       <Wrapper>
@@ -104,11 +97,19 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
           <AddToCartRow>
             <QuantityContainer>
               <SubtractBtn onClick={substractQtyHandler}>-</SubtractBtn>
-              <Quantity>{currentItem.numInStock > 0 ? selectedQuantity : 0}</Quantity>
+              <Quantity>
+                {currentItem.numInStock > 0 ? selectedQuantity : 0}
+              </Quantity>
               <AddBtn onClick={addQtyHandler}>+</AddBtn>
             </QuantityContainer>
-            <Button className="accentBtn" onClick={currentItem.numInStock > 0 ? addToCart: ""} currentItem={currentItem.numInStock}>
-              {currentItem.numInStock > 0? `Add To Cart - ${currentItem.price}`: "Out of Stock"}
+            <Button
+              className="accentBtn"
+              onClick={currentItem.numInStock > 0 ? addToCart : ""}
+              currentItem={currentItem.numInStock}
+            >
+              {currentItem.numInStock > 0
+                ? `Add To Cart - ${currentItem.price}`
+                : "Out of Stock"}
             </Button>
           </AddToCartRow>
           {message && <p>{message}</p>}
@@ -130,8 +131,10 @@ const ProductDetails = ({ handleClickOnCartIcon }) => {
 };
 
 const Button = styled.button`
-cursor: ${({currentItem})=> currentItem > 0 ? "pointer" : "not-allowed !important"};
-background-color: ${({currentItem})=> currentItem > 0 ? "" : "gray !important"};
+  cursor: ${({ currentItem }) =>
+    currentItem > 0 ? "pointer" : "not-allowed !important"};
+  background-color: ${({ currentItem }) =>
+    currentItem > 0 ? "" : "gray !important"};
 `;
 
 const Container = styled.div`
@@ -146,7 +149,7 @@ const Wrapper = styled.div`
   /* margin: 0px 100px; */
   border-radius: 50px;
 
-  @media screen and (max-width: 820px){
+  @media screen and (max-width: 820px) {
     flex-direction: column;
   }
 `;

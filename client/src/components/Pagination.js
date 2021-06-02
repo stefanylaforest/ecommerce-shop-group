@@ -24,8 +24,6 @@ export const Pagination = ({ numOfPages, pagination, setPagination }) => {
     }
   };
 
-  // console.log("numArr is:", numArr);
-
   return (
     <Wrapper>
       <div className="buttons">
