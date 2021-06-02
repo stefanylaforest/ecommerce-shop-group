@@ -51,7 +51,7 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
             <li>Shop All</li>
           </StyledNavLink>
           <StyledNavLink exact to="/view-order">
-            <li>Track-Order</li>
+            <li>Track Your Order</li>
           </StyledNavLink>
           <li>
             <StyledCartIcon onClick={handleClickOnCartIcon} />
@@ -64,8 +64,6 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
     </div>
   );
 };
-
-
 
 const MobileIcon = styled.div`
   display: none;
@@ -102,7 +100,6 @@ const NavMenu = styled.ul`
   @media screen and (max-width: 820px) {
     display: none !important;
   }
-
 `;
 
 const HomeNavLink = styled(NavLink)`
