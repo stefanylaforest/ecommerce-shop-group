@@ -42,19 +42,19 @@ const Confirmation = () => {
         </Instructions>
         <Divider />
         <p>
-          <Labels>Order Number </Labels>
+          <Labels>Order Number: </Labels>
 
-          <span>#{formValue.orderNum}</span>
+          <span>{formValue.orderNum}</span>
         </p>
         <p>
           {" "}
-          <Labels>Date</Labels> <span>{formValue.date}</span>
+          <Labels>Date: </Labels> <span>{formValue.date}</span>
         </p>
 
         <p>
-          {formValue.firstName} {formValue.lastName}
+          <strong>Name</strong>: {formValue.firstName} {formValue.lastName}
         </p>
-        <Labels>Shipping Address</Labels>
+        <Labels>Shipping Address: </Labels>
         <ShippingAddress>
           {formValue.address}, {formValue.city}, {formValue.province},{" "}
           {formValue.country}
