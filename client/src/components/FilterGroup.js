@@ -11,9 +11,9 @@ export const FilterGroup = ({
   return (
     <Div>
       {options && Object.keys(options).length > 1 && (
-        <details>
-          <summary>
-            <h2 className="filter-title">{title}</h2>
+        <details className='details'>
+          <summary className='summary'>
+            <p className="filter-group-title">{title}</p>
           </summary>
           <ul>
             {Object.keys(options).map((key) => {
@@ -42,8 +42,22 @@ export default FilterGroup;
 
 const Div = Styled.div`
 
-padding-right: 1rem;
-padding-left: 1rem;
-background: lightblue;
+border-top: 1px solid lightgray;
+border-bottom: 1px solid lightgray;
+/* padding-right: 1rem; */
+/* padding-left: 1rem; */
+
+.filter-group-title {
+  /* font-weight: 700; */
+  font-size: 1.2em;
+  color: dimgray;
+
+}
+
+.summary {
+  list-style: none;
+  cursor: context-menu;
+}
+
 
 `;

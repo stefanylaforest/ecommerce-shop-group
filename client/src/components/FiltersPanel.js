@@ -17,19 +17,19 @@ const FiltersPanel = () => {
 
   return (
     <Div>
-      Filters are here
+      <p className="filter-panel-title">Filters</p>
       <FilterGroup
         filteType="category"
         title="Categories"
         options={filters.category}
         updateFiltersHandler={updateFiltersHandler}
-        />
+      />
       <FilterGroup
         filteType="brand"
         title="Brands"
         options={filters.brand}
         updateFiltersHandler={updateFiltersHandler}
-        />
+      />
       <FilterGroup
         filteType="body_location"
         title="Body Location"
@@ -43,7 +43,21 @@ const FiltersPanel = () => {
 export default FiltersPanel;
 
 const Div = styled.div`
-  background: lightgreen;
+  @media screen and (max-width: 1080px) {
+    &{
+      display: none;
+    }
+  }
+
+  justify-self: flex-start;
+  flex: 0;
+  min-width: 200px;
+
+  .filter-panel-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: dimgray;
+  }
 
   .checkbox {
   }

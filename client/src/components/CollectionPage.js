@@ -147,11 +147,14 @@ const Div = Styled.div`
 
 padding: 2rem;
 display: flex;
-justify-content: center;
+justify-content: stretch;
 background: white;
 gap: 2rem;
 
 
+.wrapper {
+  flex: 1;
+}
 
 .collection {
   display: grid;
@@ -199,6 +202,8 @@ gap: 2rem;
   gap: 4rem;
   }
 
+  
+
   .control-box {
   display: flex;
   justify-content: center;
@@ -210,6 +215,7 @@ gap: 2rem;
 
 @media screen and (max-width: 820px) {
 
+  justify-content: center;
   .filters {
     display: none;
   }

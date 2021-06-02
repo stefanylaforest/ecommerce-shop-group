@@ -12,7 +12,7 @@ const OnlyShowInStockProductsCehckBox = ({
         checked={isOnlyShowInStockChecked}
         onChange={onChangeHandler}
       />
-      <label className="label">Product In Stock</label>
+      <label className="label">Products In Stock</label>
     </Div>
   );
 };

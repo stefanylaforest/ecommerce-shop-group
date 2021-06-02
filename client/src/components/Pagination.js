@@ -80,11 +80,14 @@ export const Pagination = ({ numOfPages, pagination, setPagination }) => {
 export default Pagination;
 
 const Wrapper = Styled.div`
+overflow: hidden;
 display: flex;
 justify-content: center;
+border-radius: 10px;
 
 .buttons {
 
+border-radius: 10px;
 max-width: 800px;
 margin: 0 auto;
 display: flex;
@@ -94,6 +97,9 @@ margin-top: 3rem;
 margin-bottom: 3rem;
 overflow: hidden;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+&:hover {
+  box-shadow: rgba(100, 100, 111, 0.8) 0px 7px 29px 0px;
+}
 }
 
 

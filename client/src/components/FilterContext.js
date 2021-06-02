@@ -95,23 +95,28 @@ const FilterProvider = ({ children }) => {
   // filtering products ##################################################################################
 
   const filterProductsPlease = (arr) => {
+console.log('CALLED?');
+
     if (!arr) {
+      console.log(1);
       return arr;
     }
     if (arr.length === 0) {
+      console.log(2);
       return arr;
     }
-
+    
     if (!filters.brand || filters.brand.length < 2) {
+      console.log(3);
       return arr;
     }
-    console.log("ARRR1", arr);
-
+    
+    console.log(4);
     if (isOnlyShowInStockChecked) {
+      console.log(5);
       arr = arr.filter((product) => product.numInStock > 0);
     }
 
-    console.log("ARRR2", arr);
 
     let productsThatPassBrandFilter = arr;
     let productsThatPassCategoryFilter = arr;
