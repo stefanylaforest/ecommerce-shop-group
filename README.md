@@ -52,7 +52,7 @@ Other features of the collection page includes:
 
 - Sort by Price: low to high, high to low. 
 - Sort by Name: A-Z, Z-A
-- Option to select on products currently in stock
+- Option to select only products currently in stock
 - Filters to multiple select: Categories, Brands, Body Location. 
 - Option to add to cart from the collection page.
 
@@ -81,6 +81,8 @@ The cart is a "drawer" style cart which slides out on click of the cart icon in 
 ### Confirmation 
 
 - Ability to see all the order details mentioned in the checkout without item photos as well as confirmation, order number and date.
+- Ability to print your receipt.
+
 
 ## Track order
 
@@ -125,6 +127,25 @@ The cart is a "drawer" style cart which slides out on click of the cart icon in 
 
 ## Screenshots
 
+### Cart
+
+<img width="1433" alt="Screen Shot 2021-06-02 at 20 47 31" src="https://user-images.githubusercontent.com/66086002/120543054-c41a9100-c3e3-11eb-8573-d4179453cc2e.png">
+
+### Collection page
+
+<img width="1434" alt="Screen Shot 2021-06-02 at 20 49 33" src="https://user-images.githubusercontent.com/66086002/120543262-0b088680-c3e4-11eb-84c6-4427851c7c81.png">
+
+## Checkout 
+
+<img width="1433" alt="Screen Shot 2021-06-02 at 20 50 02" src="https://user-images.githubusercontent.com/66086002/120543327-1c519300-c3e4-11eb-91cc-b29d9c0d88b5.png">
+
+## Confirmation 
+
+<img width="1432" alt="Screen Shot 2021-06-02 at 20 51 47" src="https://user-images.githubusercontent.com/66086002/120543569-5ae74d80-c3e4-11eb-8a82-8e5b66898306.png">
+
+## Track Order
+
+<img width="1430" alt="Screen Shot 2021-06-02 at 20 52 56" src="https://user-images.githubusercontent.com/66086002/120543701-84a07480-c3e4-11eb-9f87-aa8a7a7c93d4.png">
 
 
 ## Guidelines from Concordia Bootcamp below:
