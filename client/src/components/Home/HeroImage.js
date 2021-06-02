@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../components/AppContext";
 import styled from "styled-components";
 import garminFenix from "../../assets/garmin-fenix2-1.png";
+import garminFenix1 from "../../assets/garmin-fenix2.png";
+import garminFenix2 from "../../assets/garmin-fenix.png";
 import { Link } from "react-router-dom";
 import { theme } from "../GlobalStyles";
 
@@ -30,6 +32,36 @@ const HeroImage = () => {
 
   // console.log("feat prod", featuredProduct.imageSrc)
 
+  const [bgImage, handleImage] = useState(garminFenix);
+  // window.addEventListener("wheel", (e) => {
+  //   if (e.deltaY === 0) {
+  //     handleImage(garminFenix);
+  //   }
+  //   if (e.deltaY > 0 && e.deltaY < 2) {
+  //     handleImage(garminFenix1);
+  //   }
+  //   if (e.deltaY > 2) {
+  //     handleImage(garminFenix2);
+  //   }
+
+  // });
+
+  window.addEventListener("mousemove", function (e) {
+    let windowWidth = window.screen.width;
+
+    if (e.x < 0.4 * windowWidth) {
+      handleImage(garminFenix);
+    }
+
+    if (e.x > 0.4 * windowWidth && e.x < 0.8 * windowWidth) {
+      handleImage(garminFenix1);
+    }
+
+    if (e.x > 0.8 * windowWidth) {
+      handleImage(garminFenix2);
+    }
+  });
+
   return (
     <div>
       <Container>
@@ -45,7 +77,22 @@ const HeroImage = () => {
           <Link exact to={`/products/${featuredProductId}`}>
             <CallToAction className="accentBtn">View Watch</CallToAction>
           </Link>
-          <ProductImg src={garminFenix} alt={featuredProduct.name} />
+          <ProductImg
+            className="inline-css show-on-scroll"
+            src={bgImage}
+            alt={featuredProduct.name}
+          />
+
+          {/* <ProductImg
+            className="inline-css show-on-scroll"
+            src={garminFenix1}
+            alt={featuredProduct.name}
+          />
+          <ProductImg
+            className="inline-css show-on-scroll"
+            src={garminFenix2}
+            alt={featuredProduct.name}
+          /> */}
         </ProductWrap>
       </Container>
     </div>
