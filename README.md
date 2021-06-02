@@ -27,7 +27,7 @@ Head over to https://localhost:3000 to view the project.
 
 ## Endpoints
 
-**Endpoints have been documented in [server/README.md](https://github.com/stefanylaforest/ecommerce-shop-group/blob/main/server/README.md)s**
+**Endpoints have been documented in [server/README.md](https://github.com/stefanylaforest/ecommerce-shop-group/blob/main/server/README.md)**
 
 ## What has been implemented in this project
 
