@@ -20,14 +20,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   }
   const query = useQuery();
 
-  // const oldInitialFilters = {
-  //   brand: query.get("brand") ? [query.get("brand")] : [],
-  //   category: query.get("category") ? [query.get("category")] : [],
-  //   body_location: query.get("body_location")
-  //     ? [query.get("body_location")]
-  //     : [],
-  // };
-
   const [pagination, setPagination] = useState(1);
   const [sortType, setSortType] = useState("");
   const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
@@ -39,14 +31,13 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     filteredProducts,
     setFilteredProducts,
     updateFiltersHandler,
+    filterProductsPlease,
   } = useContext(FilterContext);
 
   //reseeting states on url change
   useEffect(() => {
     setPagination(1);
   }, [query.get("brand"), query.get("category"), query.get("body_location")]);
-
-  
 
   const handleChangeSortType = (event) => {
     setSortType(event.target.value);
@@ -134,15 +125,17 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
               />
             ))}
         </div>
-        <Pagination
-          numOfPages={
-            filteredProducts.length % 12 === 0
-              ? filteredProducts.length / 12
-              : Math.floor(filteredProducts.length / 12) + 1
-          }
-          pagination={pagination}
-          setPagination={setPagination}
-        />
+        {filteredProducts && filteredProducts.length > 12 && (
+          <Pagination
+            numOfPages={
+              filteredProducts.length % 12 === 0
+                ? filteredProducts.length / 12
+                : Math.floor(filteredProducts.length / 12) + 1
+            }
+            pagination={pagination}
+            setPagination={setPagination}
+          />
+        )}
       </div>
     </Div>
   );

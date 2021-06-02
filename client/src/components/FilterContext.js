@@ -13,6 +13,7 @@ const FilterProvider = ({ children }) => {
   const query = useQuery();
 
   const {
+    products,
     brands,
     categories,
     wearables: body_locations,
@@ -79,28 +80,83 @@ const FilterProvider = ({ children }) => {
   // updating filteres $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   const updateFiltersHandler = (event) => {
-    console.log("updatIIIIIINNNG");
     const filterType = event.target.name;
     const key = event.target.value;
     const isOn = event.target.checked;
-    console.log("filter type", filterType);
-    console.log("value", key);
-    console.log("isOn", isOn);
-    console.log("GGG", filters[filterType]);
 
     let newfilters = filters;
     newfilters[filterType][key] = !filters[filterType][key];
-    console.log('new F is', newfilters);
     setFilters(newfilters);
+    setFilteredProducts(() => filterProductsPlease(products));
   };
 
   // filtering products ##################################################################################
 
   const filterProductsPlease = (arr) => {
-    return arr;
-  };
+    if (!arr) {
+      return arr;
+    }
+    if (arr.length === 0) {
+      return arr;
+    }
 
-  console.log('filllllters', filters);
+    if (!filters.brand || filters.brand.length < 2) {
+      return arr;
+    }
+
+    let productsThatPassBrandFilter = arr;
+    let productsThatPassCategoryFilter = arr;
+    let productsThatPassBodyLocationFilter = arr;
+
+    if (!Object.values(filters.category).every((e) => e === false)) {
+      productsThatPassCategoryFilter = products.filter((product) => {
+        return filters.category[product.category.toLowerCase()] === true;
+      });
+    }
+
+    if (!Object.values(filters.brand).every((e) => e === false)) {
+      productsThatPassBrandFilter = products.filter((product) => {
+        const ProductBrand = brands.find(
+          (brand) => Number(brand._id) === Number(product.companyId)
+        );
+        return filters.brand[ProductBrand.name.toLowerCase()] === true;
+      });
+    }
+
+    if (!Object.values(filters.body_location).every((e) => e === false)) {
+      productsThatPassBodyLocationFilter = products.filter((product) => {
+        return (
+          filters.body_location[product.body_location.toLowerCase()] === true
+        );
+      });
+    }
+
+    // intersection pass products
+    let productsThatPassAllFilters = productsThatPassCategoryFilter;
+
+    productsThatPassAllFilters = productsThatPassAllFilters.filter(
+      (product) => {
+        return !productsThatPassBodyLocationFilter.every(
+          (productPassBrand) => product._id !== productPassBrand._id
+        );
+      }
+    );
+
+    productsThatPassAllFilters = productsThatPassAllFilters.filter(
+      (product) => {
+        return !productsThatPassBrandFilter.every(
+          (productPassBD) => product._id !== productPassBD._id
+        );
+      }
+    );
+
+    return productsThatPassAllFilters;
+  };
+  useEffect(() => {
+    setFilteredProducts(() => filterProductsPlease(products));
+  }, [filters]);
+
+  // console.log("filllllters", filters);
 
   return (
     <FilterContext.Provider
