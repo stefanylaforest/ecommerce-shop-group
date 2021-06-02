@@ -1,5 +1,7 @@
 # Wearables E-Commerce Project
 
+Demo: 
+
 # Description
 
 This is a group e-commerce shop where you can shop for sports items. This fully responsive project has been built on **React**, **Node.js**, and styled with **styled-components**.
