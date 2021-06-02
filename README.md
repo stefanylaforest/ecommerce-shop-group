@@ -1,6 +1,6 @@
 # Wearables E-Commerce Project
 
-Demo: 
+Demo: https://www.youtube.com/watch?v=XwwbCloyKL8
 
 # Description
 
