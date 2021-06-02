@@ -137,13 +137,13 @@ const ItemContainer = styled.div`
   top: 5rem;
   left: 1.5rem;
   width: 476px;
-  height: 755px;
+  height: 85%;
   overflow-y: scroll;
 `;
 
 const ItemWrap = styled.div`
   display: flex;
-  margin-top: 40px;
+  margin: 20px;
   width: 100%;
   position: relative;
 `;

@@ -14,7 +14,7 @@ export default createGlobalStyle`
   *:after {
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
-      
+      scroll-behavior: smooth;
   }
 
   body {
