@@ -112,6 +112,9 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
           <SortDropDown onChangeHandler={handleChangeSortType} />
         </div>
 
+          {filteredProducts.length === 0 && (
+            <p className='no-product-message'>There is no product matching the filters.</p>
+          )}
         <div className="collection">
           {sortPlease(filteredProducts, sortType)
             //follwoing filter is doing the pagination stuff!
@@ -155,6 +158,15 @@ gap: 2rem;
 
 .wrapper {
   flex: 1;
+}
+
+.no-product-message {
+  font-size: 1.3em;
+  color: gray;
+  margin: 0 auto;
+  justify-self: center;
+  text-align: center;
+  padding: 5rem;
 }
 
 .collection {
