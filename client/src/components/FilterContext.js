@@ -43,11 +43,9 @@ const FilterProvider = ({ children }) => {
         [body_location.toLowerCase()]: false,
       };
     });
-    console.log("Before", initialFilters.brand);
     if (query.get("brand")) {
       initialFilters.brand[query.get("brand").toLowerCase()] = true;
     }
-    console.log("After", initialFilters.brand);
     if (query.get("category")) {
       initialFilters.category[query.get("category").toLowerCase()] = true;
     }
@@ -67,7 +65,8 @@ const FilterProvider = ({ children }) => {
 
   //resetting states on url change
   useEffect(() => {
-    setFilters(() => createInitialFilter());
+    const readyInitialState = createInitialFilter();
+    setFilters(readyInitialState);
   }, [
     query.get("brand"),
     query.get("category"),
@@ -80,25 +79,19 @@ const FilterProvider = ({ children }) => {
   // updating filteres $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   const updateFiltersHandler = (event) => {
+    console.log("updatIIIIIINNNG");
     const filterType = event.target.name;
-    const value = event.target.value;
-    if (event.target.checked) {
-      setFilters({
-        ...filters,
-        [filterType]: {
-          ...filters,
-          [filterType]: { ...filters[filterType], [value]: true },
-        },
-      });
-    } else {
-      setFilters({
-        ...filters,
-        [filterType]: {
-          ...filters,
-          [filterType]: { ...filters[filterType], [value]: false },
-        },
-      });
-    }
+    const key = event.target.value;
+    const isOn = event.target.checked;
+    console.log("filter type", filterType);
+    console.log("value", key);
+    console.log("isOn", isOn);
+    console.log("GGG", filters[filterType]);
+
+    let newfilters = filters;
+    newfilters[filterType][key] = !filters[filterType][key];
+    console.log('new F is', newfilters);
+    setFilters(newfilters);
   };
 
   // filtering products ##################################################################################
@@ -107,7 +100,7 @@ const FilterProvider = ({ children }) => {
     return arr;
   };
 
-  console.log("FILTERS IN FilterCONTEXT:", filters);
+  console.log('filllllters', filters);
 
   return (
     <FilterContext.Provider

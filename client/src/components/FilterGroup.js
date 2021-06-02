@@ -1,25 +1,33 @@
 import React from "react";
 import Styled from "styled-components";
 
-export const FilterGroup = ({ title, options, updateFiltersHandler }) => {
+export const FilterGroup = ({
+  filteType,
+  title,
+  options,
+  updateFiltersHandler,
+}) => {
+
   return (
     <Div>
-      {options && (
+      {options && Object.keys(options).length > 1 && (
         <details>
           <summary>
             <h2 className="filter-title">{title}</h2>
           </summary>
           <ul>
-            {Object.entries(options).map((entry) => {
+            {Object.keys(options).map((key) => {
               return (
                 <div>
                   <input
                     className=".checkbox"
                     type="checkbox"
-                    checked={entry[1]}
-                    onChange={updateFiltersHandler}
+                    defaultChecked={options[key]}
+                    value={key}
+                    name={filteType}
+                    onClick={updateFiltersHandler}
                   />
-                  <lable>{entry[0]}</lable>
+                  <lable>{key}</lable>
                 </div>
               );
             })}
