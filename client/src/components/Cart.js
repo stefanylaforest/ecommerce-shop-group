@@ -137,8 +137,8 @@ const ItemContainer = styled.div`
   top: 5rem;
   left: 1.5rem;
   width: 476px;
-  height: 700px;
-  overflow: scroll;
+  height: 755px;
+  overflow-y: scroll;
 `;
 
 const ItemWrap = styled.div`
