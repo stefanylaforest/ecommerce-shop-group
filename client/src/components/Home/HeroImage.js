@@ -33,17 +33,33 @@ const HeroImage = () => {
   const [bgImage, handleImage] = useState(garminFenix);
 
   window.addEventListener("mousemove", function (e) {
-    let windowWidth = window.screen.width;
+    let windowWidth = window.innerWidth;
 
     if (e.x < 0.4 * windowWidth) {
       handleImage(garminFenix);
     }
 
-    if (e.x > 0.4 * windowWidth && e.x < 0.8 * windowWidth) {
+    if (e.x > 0.4 * windowWidth && e.x < 0.6 * windowWidth) {
       handleImage(garminFenix1);
     }
 
-    if (e.x > 0.8 * windowWidth) {
+    if (e.x > 0.6 * windowWidth) {
+      handleImage(garminFenix2);
+    }
+  });
+
+  window.addEventListener("mousemove", function (e) {
+    let windowWidth = window.innerWidth;
+
+    if (e.x < 0.4 * windowWidth) {
+      handleImage(garminFenix);
+    }
+
+    if (e.x > 0.4 * windowWidth && e.x < 0.6 * windowWidth) {
+      handleImage(garminFenix1);
+    }
+
+    if (e.x > 0.6 * windowWidth) {
       handleImage(garminFenix2);
     }
   });
@@ -68,17 +84,6 @@ const HeroImage = () => {
             src={bgImage}
             alt={featuredProduct.name}
           />
-
-          {/* <ProductImg
-            className="inline-css show-on-scroll"
-            src={garminFenix1}
-            alt={featuredProduct.name}
-          />
-          <ProductImg
-            className="inline-css show-on-scroll"
-            src={garminFenix2}
-            alt={featuredProduct.name}
-          /> */}
         </ProductWrap>
       </Container>
     </div>
