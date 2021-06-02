@@ -7,10 +7,10 @@ export const SortDropdown = ({ onChangeHandler }) => {
       <label className="label">Sort by:</label>
 
       <Select className="sort-dropdown" onChange={onChangeHandler}>
-        <option value="priceLowToHight">Price: Lowest to Highest</option>
-        <option value="priceHightToLow">Price: Highest to Lowest</option>
-        <option value="AtoZ">A to Z</option>
-        <option value="ZtoA">Z to A</option>
+        <option value="priceLowToHight">Price - Lowest to Highest</option>
+        <option value="priceHightToLow">Price - Highest to Lowest</option>
+        <option value="AtoZ">Name - A to Z</option>
+        <option value="ZtoA">Name - Z to A</option>
       </Select>
     </Div>
   );

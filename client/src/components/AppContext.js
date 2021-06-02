@@ -28,6 +28,7 @@ export const AppProvider = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [formValue, setFormValue] = useState(initialState);
   const [purchased, setPurchased] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     fetch("/api/products")
