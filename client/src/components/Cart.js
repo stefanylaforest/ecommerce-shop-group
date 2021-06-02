@@ -85,9 +85,6 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
       Number(item.quantityOfProduct) * Number(removeDollarSign).toFixed(2));
   });
 
-
-
-
   return (
     <CartContainer isCartVisible={isCartVisible}>
       <Subject>Your shopping bag</Subject>
@@ -133,6 +130,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
 };
 
 const ItemContainer = styled.div`
+  padding: 30px 0;
   position: absolute;
   top: 5rem;
   left: 1.5rem;
@@ -143,7 +141,7 @@ const ItemContainer = styled.div`
 
 const ItemWrap = styled.div`
   display: flex;
-  margin: 20px;
+  margin: 20px 0;
   width: 100%;
   position: relative;
 `;
