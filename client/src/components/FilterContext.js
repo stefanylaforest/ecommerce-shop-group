@@ -98,14 +98,14 @@ const FilterProvider = ({ children }) => {
 
   const filterProductsPlease = (arr) => {
     if (!arr) {
-      return arr;
+      return products;
     }
     if (arr.length === 0) {
-      return arr;
+      return products;
     }
 
     if (!filters.brand || filters.brand.length < 2) {
-      return arr;
+      return products;
     }
 
     if (isOnlyShowInStockChecked) {
@@ -162,9 +162,11 @@ const FilterProvider = ({ children }) => {
   };
   useEffect(() => {
     setFilteredProducts(() => filterProductsPlease(products));
-  }, [filters, isOnlyShowInStockChecked]);
+  }, [filters, isOnlyShowInStockChecked, products]);
 
   // console.log("filllllters", filters);
+
+  // console.log('products');
 
   return (
     <FilterContext.Provider
