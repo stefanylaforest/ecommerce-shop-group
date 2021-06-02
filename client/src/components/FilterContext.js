@@ -65,6 +65,8 @@ const FilterProvider = ({ children }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
     useState(false);
+  const [pagination, setPagination] = useState(1);
+
 
   //resetting states on url change
   useEffect(() => {
@@ -90,6 +92,7 @@ const FilterProvider = ({ children }) => {
     newfilters[filterType][key] = !filters[filterType][key];
     setFilters(newfilters);
     setFilteredProducts(() => filterProductsPlease(products));
+    setPagination(1);
   };
 
   // filtering products ##################################################################################
@@ -183,6 +186,7 @@ console.log('CALLED?');
         filterProductsPlease,
         isOnlyShowInStockChecked,
         setIsOnlyShowInStockChecked,
+        pagination, setPagination
       }}
     >
       {children}

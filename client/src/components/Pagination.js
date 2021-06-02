@@ -93,7 +93,7 @@ margin: 0 auto;
 display: flex;
 gap: 0;
 justify-content: stretch;
-margin-top: 3rem;
+margin-top: 5rem;
 margin-bottom: 3rem;
 overflow: hidden;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

@@ -20,9 +20,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
   }
   const query = useQuery();
 
-  const [pagination, setPagination] = useState(1);
-  const [sortType, setSortType] = useState("");
-
   const {
     filters,
     setFilters,
@@ -32,7 +29,11 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     filterProductsPlease,
     isOnlyShowInStockChecked,
     setIsOnlyShowInStockChecked,
+    pagination,
+    setPagination,
   } = useContext(FilterContext);
+
+  const [sortType, setSortType] = useState("");
 
   //reseeting states on url change
   useEffect(() => {
