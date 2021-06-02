@@ -14,6 +14,7 @@ import ScrollToTop from "./ScrollToTop";
 import Hamburger from "./Hamburger";
 import Error from "./Error";
 import AllBrandsPage from "./AllBrandsPage";
+import FilterProvider from "./FilterContext";
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -53,7 +54,9 @@ function App() {
             <AllBrandsPage />
           </Route>
           <Route exact path="/products">
+            <FilterProvider>
             <CollectionPage handleClickOnCartIcon={handleClickOnCartIcon} />
+            </FilterProvider>
           </Route>
           <Route exact path="/products/:productId">
             <ProductDetails handleClickOnCartIcon={handleClickOnCartIcon} />
