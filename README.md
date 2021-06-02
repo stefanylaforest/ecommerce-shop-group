@@ -49,11 +49,12 @@ For example, if the user hovers on the Shop By Brand dropdown menu and clicks "C
 The collection page will render all the products by Casio.
 
 Other features of the collection page includes: 
--Sort by Price: low to high, high to low. 
--Sort by Name: A-Z, Z-A
--Option to select on products currently in stock
--Filters to multiple select: Categories, Brands, Body Location. 
--Option to add to cart from the collection page.
+
+- Sort by Price: low to high, high to low. 
+- Sort by Name: A-Z, Z-A
+- Option to select on products currently in stock
+- Filters to multiple select: Categories, Brands, Body Location. 
+- Option to add to cart from the collection page.
 
 ### Product / Item Details
 
