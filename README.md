@@ -27,7 +27,7 @@ Head over to https://localhost:3000 to view the project.
 
 ## Endpoints
 
-**Endpoints have been documented in `server/README.md` **
+***Endpoints have been documented in `server/README.md` ***
 
 ## What has been implemented in this project
 
