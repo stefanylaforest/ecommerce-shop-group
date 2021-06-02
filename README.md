@@ -2,7 +2,7 @@
 
 # Description
 
-This is a group e-commerce shop where you can shop for sports items. This project has been built on **React**, **Node.js**, and styled with **styled-components**.
+This is a group e-commerce shop where you can shop for sports items. This fully responsive project has been built on **React**, **Node.js**, and styled with **styled-components**.
 
 ## Contributers
 
@@ -25,7 +25,69 @@ Open another terminal and change directories into client by typing `cd client` h
 
 Head over to https://localhost:3000 to view the project.
 
-**_Endpoints have been documented in `server/README.md` _**
+## Endpoints
+
+**Endpoints have been documented in `server/README.md` **
+
+## What has been implemented in this project
+
+### Home
+- Dropdown menus for the users to shop by categories, brands or body location.
+- Animated watch on mouse location. 
+- User can shop by popular categories
+- User can shop by popular brands
+- A footer which contains a smooth scroll to top if the user clicks on the logo.
+
+### Collection page
+
+The collection page renders dependant on what the user query'ed. 
+
+For example, if the user hovers on the Shop By Brand dropdown menu and clicks "Casio": 
+
+`/products?brand=Casio`
+
+The collection page will render all the products by Casio.
+
+Other features of the collection page includes: 
+-Sort by Price: low to high, high to low. 
+-Sort by Name: A-Z, Z-A
+-Option to select on products currently in stock
+-Filters to multiple select: Categories, Brands, Body Location. 
+-Option to add to cart from the collection page.
+
+### Product / Item Details
+
+- Add to cart
+- Select up to the amount that is currently in stock
+- Icons of modes of payment accepted on the store.
+- Product Name, Price, Image
+- Shipping details
+
+### Cart
+
+The cart is a "drawer" style cart which slides out on click of the cart icon in the header.
+
+- Displays the total price of the selected items on the checkout button.
+- Ability to remove the item
+- Ability to select a different quantity
+- Product price, image and product name. 
+
+### Checkout 
+- Placeholders move to Labels on top of the input once input is active. 
+- Product price, image and product name and selected quantity displayed.
+- Shipping, subtotal, taxes and total price displayed.
+
+### Confirmation 
+
+- Ability to see all the order details mentioned in the checkout without item photos as well as confirmation, order number and date.
+
+## Track order
+
+- With the order number from the confirmation you have the ability to "track your order" at the track your order in the header menu. 
+- Date of arrival of items. 
+- Order status
+- Order Number
+
 
 ## Dependencies used in the front-end:
 
