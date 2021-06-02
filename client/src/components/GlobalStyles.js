@@ -71,12 +71,16 @@ a {
   font-weight: 600;
   cursor: pointer;
 
-  &:active {
-    animation: scaleIn 0.3s ease-in-out forwards;
-  }
+  
 
   &:hover {
     background-color: ${theme.hoverAccentColor};
+  }
+
+  @media screen and (min-width: 900px) {
+    &:active {
+    animation: scaleIn 0.3s ease-in-out forwards;
+  }
   }
 }
 
