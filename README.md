@@ -1,8 +1,63 @@
 # Wearables E-Commerce Project
 
-# some changes from hamid
+# Description
 
-# runtime-terror
+This is a group e-commerce shop where you can shop for sports items. This project has been built on **React**, **Node.js**, and styled with **styled-components**.
+
+## Contributers
+
+**Stefany Laforest**: https://github.com/stefanylaforest/
+
+**Junhwan Im (Jun)**: https://github.com/junhwanim
+
+**Hamid Keshmiri**: https://github.com/hamidkd
+
+## Setup instructions
+
+Fork the repository then clone the repository into your code editor.
+
+Open a terminal and change directories into server by typing `cd server` hit enter, then run `yarn install` to install dependencies. Run `yarn start` to start the back-end.
+
+Open another terminal and change directories into client by typing `cd client` hit enter, then run `yarn install` to install dependencies. Run `yarn start` to start the front-end.
+
+Head over to https://localhost:3000 to view the project.
+
+**_Endpoints have been documented in `server/README.md` _**
+
+## Dependencies used in the front-end:
+
+```json
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "moment": "^2.29.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.3.0",
+    "uuidv4": "^6.2.8"
+  },
+```
+
+## Dependencies used in the back-end:
+
+```json
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "file-system": "^2.2.2",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "uuidv4": "^6.2.8"
+  },
+```
+
+---
+
+## Guidelines from Concordia Bootcamp below:
 
 [See the list of TEAMS](__documentation/TEAMS.md)
 
@@ -64,7 +119,3 @@ The most important aspect of this project is the ability to work in a team. No m
 see the [GITHUB Document](__documentation/GITHUB.md)
 
 ---
-
-##
-
-Open another terminal and cd into client `cd client` then run `yarn install` to install dependencies. Run `yarn start` to start the client.

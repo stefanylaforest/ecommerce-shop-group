@@ -10,7 +10,7 @@ const Homepage = () => {
       <HeroImage />
       <Heading>Popular Categories</Heading>
       <PopularCategories />
-      <HeadingBrand>Our Brands</HeadingBrand>
+      <HeadingBrand>Popular Brands</HeadingBrand>
       <Brands />
     </div>
   );

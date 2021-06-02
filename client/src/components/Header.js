@@ -29,6 +29,7 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
         {location.pathname === "/" ||
         location.pathname === "/confirmation" ||
         location.pathname === "/view-order" ||
+        location.pathname === "/brands" ||
         location.pathname.includes("/products") ? (
           <MobileIcon onClick={handleClickOnHamburger}>
             <FaBars />
@@ -40,6 +41,7 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
       {location.pathname === "/" ||
       location.pathname === "/confirmation" ||
       location.pathname === "/view-order" ||
+      location.pathname === "/brands" ||
       location.pathname.includes("/products") ? (
         <NavMenu>
           <CategoriesDropDown />
@@ -49,7 +51,7 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
             <li>Shop All</li>
           </StyledNavLink>
           <StyledNavLink exact to="/view-order">
-            <li>View-Order</li>
+            <li>Track-Order</li>
           </StyledNavLink>
           <li>
             <StyledCartIcon onClick={handleClickOnCartIcon} />
@@ -62,6 +64,8 @@ const Header = ({ handleClickOnCartIcon, handleClickOnHamburger }) => {
     </div>
   );
 };
+
+
 
 const MobileIcon = styled.div`
   display: none;
@@ -98,6 +102,7 @@ const NavMenu = styled.ul`
   @media screen and (max-width: 820px) {
     display: none !important;
   }
+
 `;
 
 const HomeNavLink = styled(NavLink)`
@@ -114,7 +119,7 @@ const StyledNavLink = styled(NavLink)`
     color: ${theme.accentColor};
   }
   &:visited {
-    color: white;
+    color: none;
   }
 `;
 
