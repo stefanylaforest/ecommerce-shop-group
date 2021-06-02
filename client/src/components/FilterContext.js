@@ -63,6 +63,8 @@ const FilterProvider = ({ children }) => {
 
   const [filters, setFilters] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
+    useState(false);
 
   //resetting states on url change
   useEffect(() => {
@@ -103,6 +105,13 @@ const FilterProvider = ({ children }) => {
     if (!filters.brand || filters.brand.length < 2) {
       return arr;
     }
+    console.log("ARRR1", arr);
+
+    if (isOnlyShowInStockChecked) {
+      arr = arr.filter((product) => product.numInStock > 0);
+    }
+
+    console.log("ARRR2", arr);
 
     let productsThatPassBrandFilter = arr;
     let productsThatPassCategoryFilter = arr;
@@ -154,7 +163,7 @@ const FilterProvider = ({ children }) => {
   };
   useEffect(() => {
     setFilteredProducts(() => filterProductsPlease(products));
-  }, [filters]);
+  }, [filters, isOnlyShowInStockChecked]);
 
   // console.log("filllllters", filters);
 
@@ -167,6 +176,8 @@ const FilterProvider = ({ children }) => {
         setFilteredProducts,
         updateFiltersHandler,
         filterProductsPlease,
+        isOnlyShowInStockChecked,
+        setIsOnlyShowInStockChecked,
       }}
     >
       {children}

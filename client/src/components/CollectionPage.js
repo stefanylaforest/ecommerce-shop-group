@@ -22,8 +22,6 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
 
   const [pagination, setPagination] = useState(1);
   const [sortType, setSortType] = useState("");
-  const [isOnlyShowInStockChecked, setIsOnlyShowInStockChecked] =
-    useState(true);
 
   const {
     filters,
@@ -32,6 +30,8 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
     setFilteredProducts,
     updateFiltersHandler,
     filterProductsPlease,
+    isOnlyShowInStockChecked,
+    setIsOnlyShowInStockChecked,
   } = useContext(FilterContext);
 
   //reseeting states on url change
