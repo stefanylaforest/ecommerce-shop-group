@@ -55,6 +55,10 @@ const Hover = styled.div`
 
 const Title = styled.div`
   cursor: pointer;
+
+  &:hover {
+    color: ${theme.accentColor};
+  }
 `;
 
 const DropDownListItem = styled.button`

@@ -44,6 +44,10 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   cursor: pointer;
+
+  &:hover {
+    color: ${theme.accentColor};
+  }
 `;
 
 const Ulbox = styled.ul`

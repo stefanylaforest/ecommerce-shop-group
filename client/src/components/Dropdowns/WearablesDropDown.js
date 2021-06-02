@@ -23,9 +23,6 @@ const WearablesDropDown = () => {
               </Link>
             </li>
           ))}
-          <Link to={`/`}>
-            <DropDownListItem>View All</DropDownListItem>
-          </Link>
         </Ulbox>
       </Hover>
     </Wrapper>
@@ -39,6 +36,10 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   cursor: pointer;
+
+  &:hover {
+    color: ${theme.accentColor};
+  }
 `;
 
 const Ulbox = styled.ul`
