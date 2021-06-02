@@ -1,7 +1,7 @@
 import React from "react";
 import Styled from "styled-components";
 
-const OnlyShowInStockProductsCehckBox = ({
+const OnlyShowInStockProductsCheckBox = ({
   onChangeHandler,
   isOnlyShowInStockChecked,
 }) => {
@@ -17,7 +17,7 @@ const OnlyShowInStockProductsCehckBox = ({
   );
 };
 
-export default OnlyShowInStockProductsCehckBox;
+export default OnlyShowInStockProductsCheckBox;
 
 const Div = Styled.div`
 

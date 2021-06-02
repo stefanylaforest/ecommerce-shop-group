@@ -13,8 +13,6 @@ const FiltersPanel = () => {
     updateFiltersHandler,
   } = useContext(FilterContext);
 
-  // console.log("FILTERS ARE:", filters);
-
   return (
     <Div>
       <p className="filter-panel-title">Filters</p>
@@ -44,7 +42,7 @@ export default FiltersPanel;
 
 const Div = styled.div`
   @media screen and (max-width: 1080px) {
-    &{
+    & {
       display: none;
     }
   }
@@ -53,7 +51,6 @@ const Div = styled.div`
   flex: 0;
   min-width: 200px;
   max-width: 200px;
-
 
   .filter-panel-title {
     font-size: 1.5em;

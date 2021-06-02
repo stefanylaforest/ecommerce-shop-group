@@ -163,11 +163,6 @@ const FilterProvider = ({ children }) => {
   useEffect(() => {
     setFilteredProducts(() => filterProductsPlease(products));
   }, [filters, isOnlyShowInStockChecked, products]);
-
-  // console.log("filllllters", filters);
-
-  // console.log('products');
-
   return (
     <FilterContext.Provider
       value={{

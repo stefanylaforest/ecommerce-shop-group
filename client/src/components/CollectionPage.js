@@ -10,7 +10,7 @@ import FilterGroup from "./FilterGroup";
 import Pagination from "./Pagination";
 import SortDropDown from "./SortDropdown";
 import FiltersPanel from "./FiltersPanel";
-import OnlyShowInStockProductsCehckBox from "./OnlyShowInStockProductsCehckBox";
+import OnlyShowInStockProductsCheckBox from "./OnlyShowInStockProductsCheckBox";
 
 const CollectionPage = ({ handleClickOnCartIcon }) => {
   const { products, setItemsInCart } = useContext(AppContext);
@@ -105,7 +105,7 @@ const CollectionPage = ({ handleClickOnCartIcon }) => {
       <FiltersPanel className="filters" />
       <div className="wrapper">
         <div className="control-box">
-          <OnlyShowInStockProductsCehckBox
+          <OnlyShowInStockProductsCheckBox
             onChangeHandler={handleOnlyInStockProducts}
             isOnlyShowInStockChecked={isOnlyShowInStockChecked}
           />

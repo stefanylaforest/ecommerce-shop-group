@@ -48,22 +48,6 @@ const HeroImage = () => {
     }
   });
 
-  window.addEventListener("mousemove", function (e) {
-    let windowWidth = window.innerWidth;
-
-    if (e.x < 0.4 * windowWidth) {
-      handleImage(garminFenix);
-    }
-
-    if (e.x > 0.4 * windowWidth && e.x < 0.6 * windowWidth) {
-      handleImage(garminFenix1);
-    }
-
-    if (e.x > 0.6 * windowWidth) {
-      handleImage(garminFenix2);
-    }
-  });
-
   return (
     <div>
       <Container>
@@ -112,7 +96,7 @@ const ProductName = styled.p`
 
   @media screen and (max-width: 1040px) {
     transform: translateY(-50px);
-    transition: 0.2s ease-out
+    transition: 0.2s ease-out;
   }
 `;
 

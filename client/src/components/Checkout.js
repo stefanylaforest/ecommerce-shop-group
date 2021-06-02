@@ -73,8 +73,6 @@ const Checkout = () => {
   const createOrderHandler = () => {
     setStatus("pending");
 
-    console.log("form", formValue);
-
     fetch("/api/order", {
       method: "POST",
       headers: {
@@ -88,7 +86,7 @@ const Checkout = () => {
         console.log("Success:", data);
         const { status, error } = data;
         console.log("status", status);
-        // setFormValue(initialState);
+
         if (status === "success") {
           setStatus("confirmed");
           setPurchased(selectedItems);
@@ -115,9 +113,6 @@ const Checkout = () => {
       count +
       Number(item.quantityOfProduct) * Number(removeDollarSign)).toFixed(2);
   });
-
-  // console.log("formValue", formValue);
-  // console.log("purchased", purchased);
 
   return (
     <AllWrapper>
