@@ -12,6 +12,9 @@ This is a group e-commerce shop where you can shop for sports items. This projec
 
 **Hamid Keshmiri**: https://github.com/hamidkd
 
+<img width="1423" alt="homepage" src="https://user-images.githubusercontent.com/66086002/120538310-40aa7100-c3de-11eb-81a9-f8185363103b.png">
+
+
 ## Setup instructions
 
 Fork the repository then clone the repository into your code editor.
@@ -56,6 +59,10 @@ Head over to https://localhost:3000 to view the project.
 ```
 
 ---
+
+## Screenshots
+
+
 
 ## Guidelines from Concordia Bootcamp below:
 
