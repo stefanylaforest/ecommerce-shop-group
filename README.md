@@ -6,13 +6,13 @@ This is a group e-commerce shop where you can shop for sports items. This fully 
 
 ## Contributers
 
-**Stefany Laforest**: https://github.com/stefanylaforest/
+ **Stefany Laforest**: https://github.com/stefanylaforest/
 
 **Junhwan Im (Jun)**: https://github.com/junhwanim
 
 **Hamid Keshmiri**: https://github.com/hamidkd
 
-<img width="1423" alt="homepage" src="https://user-images.githubusercontent.com/66086002/120538310-40aa7100-c3de-11eb-81a9-f8185363103b.png">
+<img width="1432" alt="Screen Shot 2021-06-02 at 22 01 14" src="https://user-images.githubusercontent.com/66086002/120551549-0f39a180-c3ee-11eb-8842-7f6ea7223986.png">
 
 
 ## Setup instructions
