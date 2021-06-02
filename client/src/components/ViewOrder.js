@@ -50,37 +50,50 @@ const ViewOrder = () => {
           <TrackingInfo isClick={isClick}>
             <Para>
               <strong>
-                <em>Order #:</em>
+
+                <em>Order Number:</em>
+
               </strong>{" "}
               {getInfo.orderNum}
             </Para>
             <Para>
               <strong>
-                <em>Delivery status :</em>
+
+                <em>Delivery Status: </em>
+
+
               </strong>{" "}
               In transit
             </Para>
             <Para>
               <strong>
-                <em>Expected delivery date :</em>
+
+                <em>Expected Delivery-Date: </em>
+
               </strong>{" "}
               {moment().add(7, "d").format("dddd, MMMM Do YYYY")}
             </Para>
             <Para>
               <strong>
-                <em>Name :</em>
+
+                <em>Name: </em>
+
               </strong>{" "}
               {getInfo.firstName} {getInfo.lastName}
             </Para>
             <Para>
               <strong>
-                <em>Email :</em>
+
+                <em>Email: </em>
+
               </strong>{" "}
               {getInfo.email}
             </Para>
             <Para>
               <strong>
-                <em>Shipping address :</em>
+
+                <em>Shipping Address: </em>
+
               </strong>{" "}
               {getInfo.address}, {getInfo.city}
             </Para>
