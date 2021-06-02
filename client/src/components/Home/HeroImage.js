@@ -126,7 +126,7 @@ const New = styled.h3`
 
   @media screen and (max-width: 880px) {
     transform: translateY(-50px);
-    transition: 0.2s ease-out
+    transition: 0.2s ease-out;
   }
 `;
 
@@ -137,7 +137,7 @@ const CallToAction = styled.button`
 
   @media screen and (max-width: 880px) {
     transform: translateY(100px);
-    transition: 0.2s ease-out
+    transition: 0.2s ease-out;
   }
 `;
 
