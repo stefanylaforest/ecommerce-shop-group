@@ -110,8 +110,9 @@ const ProductName = styled.p`
   text-transform: capitalize;
   font-weight: 400;
 
-  @media screen and (max-width: 880px) {
+  @media screen and (max-width: 1040px) {
     transform: translateY(-50px);
+    transition: 0.2s ease-out
   }
 `;
 
@@ -125,6 +126,7 @@ const New = styled.h3`
 
   @media screen and (max-width: 880px) {
     transform: translateY(-50px);
+    transition: 0.2s ease-out
   }
 `;
 
@@ -135,6 +137,7 @@ const CallToAction = styled.button`
 
   @media screen and (max-width: 880px) {
     transform: translateY(100px);
+    transition: 0.2s ease-out
   }
 `;
 
