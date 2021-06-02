@@ -67,7 +67,6 @@ const FilterProvider = ({ children }) => {
     useState(false);
   const [pagination, setPagination] = useState(1);
 
-
   //resetting states on url change
   useEffect(() => {
     const readyInitialState = createInitialFilter();
@@ -98,28 +97,20 @@ const FilterProvider = ({ children }) => {
   // filtering products ##################################################################################
 
   const filterProductsPlease = (arr) => {
-console.log('CALLED?');
-
     if (!arr) {
-      console.log(1);
       return arr;
     }
     if (arr.length === 0) {
-      console.log(2);
       return arr;
-    }
-    
-    if (!filters.brand || filters.brand.length < 2) {
-      console.log(3);
-      return arr;
-    }
-    
-    console.log(4);
-    if (isOnlyShowInStockChecked) {
-      console.log(5);
-      arr = arr.filter((product) => product.numInStock > 0);
     }
 
+    if (!filters.brand || filters.brand.length < 2) {
+      return arr;
+    }
+
+    if (isOnlyShowInStockChecked) {
+      arr = arr.filter((product) => product.numInStock > 0);
+    }
 
     let productsThatPassBrandFilter = arr;
     let productsThatPassCategoryFilter = arr;
@@ -186,7 +177,8 @@ console.log('CALLED?');
         filterProductsPlease,
         isOnlyShowInStockChecked,
         setIsOnlyShowInStockChecked,
-        pagination, setPagination
+        pagination,
+        setPagination,
       }}
     >
       {children}
