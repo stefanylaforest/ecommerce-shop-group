@@ -292,7 +292,7 @@ const Checkout = () => {
           <Divider />
           <SubTotal>
             <p>Subtotal</p>
-            <p>CAD ${count}</p>
+            <p>CAD ${Number(count).toFixed(2)}</p>
           </SubTotal>
           <SubTotal>
             <p>Shipping</p>
