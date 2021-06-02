@@ -52,6 +52,8 @@ const Div = styled.div`
   justify-self: flex-start;
   flex: 0;
   min-width: 200px;
+  max-width: 200px;
+
 
   .filter-panel-title {
     font-size: 1.5em;
