@@ -130,7 +130,7 @@ const Cart = ({ isCartVisible, handleClickOnCartIcon }) => {
 };
 
 const ItemContainer = styled.div`
-  padding: 30px 0;
+  margin: 30px 0;
   position: absolute;
   top: 5rem;
   left: 1.5rem;
