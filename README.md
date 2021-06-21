@@ -4,7 +4,7 @@ Demo: https://www.youtube.com/watch?v=XwwbCloyKL8
 
 # Description
 
-This is a group e-commerce shop where you can shop for sports items. This fully responsive project has been built on **React**, **Node.js**, and styled with **styled-components**.
+This is a group e-commerce shop where you can shop for sports items. This fully responsive project has been built with **React**, **Node.js**, **Express** and styled with **styled-components**.
 
 ## Contributers
 
