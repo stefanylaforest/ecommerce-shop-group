@@ -1,6 +1,7 @@
 # Wearables E-Commerce Project
 
 Demo: https://www.youtube.com/watch?v=XwwbCloyKL8
+Live Demo: https://techactive.netlify.app
 
 # Description
 
