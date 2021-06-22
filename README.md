@@ -2,7 +2,7 @@
 
 Demo: https://www.youtube.com/watch?v=XwwbCloyKL8
 
-Live Demo: https://techactive.netlify.app
+Live Demo: https://techactiv.netlify.app
 
 # Description
 
